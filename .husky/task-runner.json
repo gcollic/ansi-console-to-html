@@ -1,0 +1,22 @@
+{
+   "tasks": [
+      {
+         "name": "fantomas",
+         "group": "pre-commit",
+         "command": "dotnet",
+         "args": ["fantomas", "${staged}"],
+         "include": ["**/*.fs"]
+      },
+      {
+         "name": "commit-message-linter",
+         "command": "dotnet",
+         "args": [
+            "husky",
+            "exec",
+            ".husky/csx/commit-lint.csx",
+            "--args",
+            "${args}"
+         ]
+      }
+   ]
+}

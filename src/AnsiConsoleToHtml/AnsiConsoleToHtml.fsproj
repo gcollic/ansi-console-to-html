@@ -1,0 +1,28 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <Authors>Guillaume Collic</Authors>
+    <PackageId>AnsiConsoleToHtml</PackageId>
+    <Company></Company>
+    <PackageProjectUrl>https://github.com/gcollic/ansiconsoletohtml/blob/main/README.md</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/gcollic/ansiconsoletohtml</RepositoryUrl>
+    <PackageTags>ansi console colour color colors colours html convert converter</PackageTags>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <Version>0.1.0</Version>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="Library.fs" />
+  </ItemGroup>
+
+</Project>
