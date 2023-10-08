@@ -19,6 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Include="Color.fs" />
     <Compile Include="Library.fs" />
   </ItemGroup>
 
