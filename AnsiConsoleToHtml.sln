@@ -5,19 +5,22 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{49502C93-D177-4938-ADAC-DCEC35E4ABF0}"
 EndProject
-Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "AnsiConsoleToHtml", "src\AnsiConsoleToHtml\AnsiConsoleToHtml.fsproj", "{283C92F4-4A1A-4078-93D1-EFE99166D367}"
+Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "AnsiConsoleToHtml", "src\AnsiConsoleToHtml\AnsiConsoleToHtml.fsproj", "{283C92F4-4A1A-4078-93D1-EFE99166D367}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{925909FE-3746-46AD-9950-97014D618F21}"
 EndProject
-Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "AnsiConsoleToHtml.DocAsTests", "tests\AnsiConsoleToHtml.DocAsTests\AnsiConsoleToHtml.DocAsTests.fsproj", "{6323E94B-CE8B-4987-A99A-81D01A921A10}"
+Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "AnsiConsoleToHtml.DocAsTests", "tests\AnsiConsoleToHtml.DocAsTests\AnsiConsoleToHtml.DocAsTests.fsproj", "{6323E94B-CE8B-4987-A99A-81D01A921A10}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{CC24B47D-C18D-4BE7-AF57-8DC91B770E66}"
+	ProjectSection(SolutionItems) = preProject
+		Directory.Build.props = Directory.Build.props
+		Directory.Packages.props = Directory.Packages.props
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{283C92F4-4A1A-4078-93D1-EFE99166D367}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -28,6 +31,9 @@ Global
 		{6323E94B-CE8B-4987-A99A-81D01A921A10}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6323E94B-CE8B-4987-A99A-81D01A921A10}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6323E94B-CE8B-4987-A99A-81D01A921A10}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{283C92F4-4A1A-4078-93D1-EFE99166D367} = {49502C93-D177-4938-ADAC-DCEC35E4ABF0}
