@@ -44,9 +44,11 @@ let docGrayScaleColors colors =
 
 let colors = Colors256.Table()
 
-let pageContent = 
-    [ "<h1>256 colors table (8 bits)</h1>\n Cf. <a href='https://en.wikipedia.org/wiki/ANSI_escape_code#8-bit'>Wikipedia</a>"
-    ; doc16Colors colors
-    ; doc216Colors colors
-    ; docGrayScaleColors colors ]
+let pageContent =
+    [
+        "<h1>256 colors table (8 bits)</h1>\n Cf. <a href='https://en.wikipedia.org/wiki/ANSI_escape_code#8-bit'>Wikipedia</a>"
+        doc16Colors colors
+        doc216Colors colors
+        docGrayScaleColors colors
+    ]
     |> String.concat "\n"
