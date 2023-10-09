@@ -6,7 +6,8 @@
     <GenerateProgramFile>false</GenerateProgramFile>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Sample.fs" />
+    <Compile Include="Pages\AnsiColorsPage.fs" />
+    <Compile Include="VerifyPages.fs" />
     <Compile Include="Main.fs" />
   </ItemGroup>
   <ItemGroup>

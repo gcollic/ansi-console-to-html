@@ -1,23 +1,7 @@
-module Tests
+﻿module AnsiColorsPage
 
-open Expecto
 open AnsiConsoleToHtml
 
-open VerifyTests
-open VerifyExpecto
-
-let verifySettings = VerifySettings()
-verifySettings.UseDirectory("expectations")
-verifySettings.DisableDiff()
-
-
-let verifyHtmlPart (name: string) (content: string) =
-    let settings = VerifySettings(verifySettings)
-    settings.UseFileName(name)
-    Verifier.Verify("useless", content, "html", settings)
-
-let testHtmlPart name content =
-    testTask name { do! verifyHtmlPart name content }
 
 let toCell (colors256: Color[]) i =
     let isLightBackground =
@@ -60,14 +44,9 @@ let docGrayScaleColors colors =
 
 let colors = Colors256.Table()
 
-[<Tests>]
-let tests =
-    testList
-        "samples"
-        [ testHtmlPart "greeting" <| Say.greetings "world"
-          testHtmlPart "ansi_colors"
-          <| ([ "<h1>256 colors table (8 bits)</h1>\n Cf. <a href='https://en.wikipedia.org/wiki/ANSI_escape_code#8-bit'>Wikipedia</a>"
-                doc16Colors colors
-                doc216Colors colors
-                docGrayScaleColors colors ]
-              |> String.concat "\n") ]
+let pageContent = 
+    [ "<h1>256 colors table (8 bits)</h1>\n Cf. <a href='https://en.wikipedia.org/wiki/ANSI_escape_code#8-bit'>Wikipedia</a>"
+    ; doc16Colors colors
+    ; doc216Colors colors
+    ; docGrayScaleColors colors ]
+    |> String.concat "\n"
