@@ -6,12 +6,14 @@
     <GenerateProgramFile>false</GenerateProgramFile>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Pages\Page.fs" />
     <Compile Include="Pages\AnsiColorsPage.fs" />
     <Compile Include="VerifyPages.fs" />
     <Compile Include="Main.fs" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Expecto" />
+    <PackageReference Include="Legivel" />
     <PackageReference Include="Verify.Expecto" />
     <PackageReference Include="YoloDev.Expecto.TestSdk" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" />

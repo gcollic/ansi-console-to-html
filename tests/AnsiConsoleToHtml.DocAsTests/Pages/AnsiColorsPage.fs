@@ -1,7 +1,7 @@
-﻿module AnsiColorsPage
+module AnsiColorsPage
 
 open AnsiConsoleToHtml
-
+open Page
 
 let toCell (colors256: Color[]) i =
     let isLightBackground =
@@ -44,11 +44,18 @@ let docGrayScaleColors colors =
 
 let colors = Colors256.Table()
 
-let pageContent =
-    [
-        "<h1>256 colors table (8 bits)</h1>\n Cf. <a href='https://en.wikipedia.org/wiki/ANSI_escape_code#8-bit'>Wikipedia</a>"
-        doc16Colors colors
-        doc216Colors colors
-        docGrayScaleColors colors
-    ]
-    |> String.concat "\n"
+let page = {
+    Metadata = {
+        Title = "ANSI 256 colors table"
+        Navbar = None
+        Toc = None
+    }
+    Content =
+        [
+            "<h1>256 colors table (8 bits)</h1>\n Cf. <a href='https://en.wikipedia.org/wiki/ANSI_escape_code#8-bit'>Wikipedia</a>"
+            doc16Colors colors
+            doc216Colors colors
+            docGrayScaleColors colors
+        ]
+        |> String.concat "\n"
+}
