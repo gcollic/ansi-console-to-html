@@ -1,0 +1,169 @@
+:root,
+[data-theme="light"],
+:root:not([data-theme="dark"]) {
+  --primary: #b378da;
+  --primary-hover: #621f94;
+  --primary-focus: #430672;
+  --primary-inverse: #FFF;
+  --primary-bright: #9e1fff;
+}
+
+:root {
+  --nav-background-color: rgb(0, 0, 0);
+  --nav-border-color: var(--primary-hover);
+  --nav-logo-color: var(--primary-inverse);
+}
+
+body > main {
+  padding-top: calc(var(--block-spacing-vertical) + 3.5rem);
+}
+@media (min-width: 992px) {
+  body > main {
+    --block-spacing-horizontal: calc(var(--spacing) * 1.75);
+    grid-column-gap: calc(var(--block-spacing-horizontal) * 3);
+    display: grid;
+    grid-template-columns: 200px auto;
+  }
+}
+@media (min-width: 1200px) {
+  body > main {
+    --block-spacing-horizontal: calc(var(--spacing) * 2);
+  }
+}
+body > main > aside,
+body > main div[role=document] {
+  min-width: 0;
+}
+
+main > aside nav {
+  width: 100%;
+  padding-bottom: var(--block-spacing-vertical);
+}
+@media (min-width: 992px) {
+  main > aside nav {
+    position: fixed;
+    width: 200px;
+    max-height: calc(100vh - 5.5rem);
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+}
+
+main > aside details {
+  padding-bottom: 0;
+}
+main > aside details summary {
+  padding-bottom: 0.5rem;
+}
+main > aside li,
+main > aside summary {
+  padding-top: 0;
+  padding-bottom: 0;
+  font-size: 16px;
+}
+main > aside ul {
+  padding-left: 0.25rem;
+}
+main > aside li a {
+  --nav-link-spacing-vertical: 0.25rem;
+  --nav-link-spacing-horizontal: 0.75rem;
+}
+main > aside li a svg {
+  vertical-align: middle;
+}
+main > aside a.secondary:focus {
+  background-color: transparent;
+  color: var(--primary-hover);
+}
+main > aside a[aria-current],
+main > aside a[aria-current]:hover {
+  color: var(--primary);
+}
+main > aside details {
+  border-bottom: none;
+}
+main > aside details summary {
+  color: var(--h1-color);
+  font-weight: 300;
+  font-size: 14px;
+  text-transform: uppercase;
+}
+main > aside details summary::after {
+  display: none;
+}
+main > aside details[open] > summary {
+  margin-bottom: 0;
+}
+main > aside details[open] > summary:not([role=button], :focus) {
+  color: var(--h1-color);
+}
+
+h1 {
+  margin-top: -0.25em;
+}
+
+section > hgroup {
+  margin-bottom: calc(var(--typography-spacing-vertical) * 2);
+}
+
+[role=document] section > h1,
+[role=document] section > h2,
+[role=document] section > h3 {
+  line-height: 1;
+}
+
+body > nav {
+  --nav-link-spacing-vertical: 1rem;
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  z-index: 99;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  backdrop-filter: saturate(180%) blur(20px);
+  background-color: var(--nav-background-color);
+  box-shadow: 0px 1px 0 var(--nav-border-color);
+}
+body > nav.container-fluid {
+  padding-right: calc(var(--spacing) + var(--scrollbar-width, 0px));
+}
+body > nav a {
+  border-radius: 0;
+}
+body > nav svg {
+  height: 1.2rem;
+  vertical-align: text-bottom;
+}
+body > nav ul:first-of-type {
+  margin-left: calc(var(--spacing) * -1);
+}
+body > nav ul:first-of-type li {
+  padding: 0;
+}
+body > nav ul:first-of-type li:first-of-type a {
+  display: block;
+  margin: 0;
+  padding: 0;
+  background: var(--h1-color);
+  color: var(--nav-logo-color);
+}
+body > nav ul:first-of-type li:first-of-type a:hover {
+  color: var(--primary-bright);
+}
+body > nav ul {
+  color: var(--nav-logo-color);
+}
+body > nav ul:first-of-type li:first-of-type a svg {
+  display: block;
+  width: 3.5rem;
+  height: 3.5rem;
+}
+body > nav ul:first-of-type li:nth-of-type(2) {
+  display: none;
+  margin-left: calc(var(--spacing) * 1.5);
+}
+@media (min-width: 500px) {
+  body > nav ul:first-of-type li:nth-of-type(2) {
+    display: inline;
+  }
+}
