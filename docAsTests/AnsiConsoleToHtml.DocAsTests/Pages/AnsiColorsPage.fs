@@ -45,13 +45,20 @@ let docGrayScaleColors colors =
 
 let colors = Colors256.Table()
 
+let title = "ANSI 256 colors table"
+
 let page = {
     Slug = Slug.from "ansi_colors"
     Metadata =
         Some {
-            Title = "ANSI 256 colors table"
+            Title = title
             Navbar = None
-            Toc = None
+            Toc =
+                Some {
+                    Parent = "ANSI commands"
+                    Label = title
+                    Order = 1
+                }
         }
     Content =
         [
