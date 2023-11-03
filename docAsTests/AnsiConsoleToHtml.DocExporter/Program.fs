@@ -35,21 +35,13 @@ let mainLayout =
     )
     |> File.ReadAllText
 
-[| mainLayout |]
-|> Array.iter (fun file ->
-    let fileName = Path.GetFileName(file)
-    let targetPath = Path.Combine(docFolder, fileName)
-    File.Copy(file, targetPath, true)
-    printfn $"Copied '{toRelative file}'"
-    printfn $"    to '{toRelative targetPath}'")
-
 Path.Combine(rootFolder, "docAsTests", "AnsiConsoleToHtml.DocAsTests", "expectations")
 |> Directory.GetFiles
-|> Array.iter (fun file ->
-    let fileName = Path.GetFileName(file)
-    let targetPath = Path.Combine(docFolder, fileName)
-    File.Copy(file, targetPath, true)
-    printfn $"Copied '{toRelative file}'"
-    printfn $"    to '{toRelative targetPath}'")
+|> Array.map (fun file ->
+    Deserializer.parseDocWithOptionalYamlFrontMatter file (File.ReadAllText file))
+|> Array.iter (fun docPart ->
+    let fileName = Path.Combine(docFolder, docPart.Slug.asString + ".html")
+    printfn $"Created '{toRelative fileName}'"
+    File.WriteAllText(fileName, docPart.Content))
 
 exit 0

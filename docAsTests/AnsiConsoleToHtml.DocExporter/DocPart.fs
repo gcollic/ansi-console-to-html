@@ -1,8 +1,5 @@
 module DocPart
 
-open Legivel.Serialization
-open System
-
 type NavbarMetadata = { Label: string; Order: int }
 
 type TocMetadata = {
@@ -34,33 +31,27 @@ type PageMetadata = {
         |> List.choose id
         |> String.concat "\n"
 
-    static member fromYaml yaml =
-        let result =
-            DeserializeWithOptions<PageMetadata>
-                [ MappingMode MapYaml.AndRequireFullProjection ]
-                yaml
+type Slug =
+    private
+    | Slug of string
 
-        match result with
-        | [] -> raise (InvalidOperationException "No yaml page metadata found")
-        | [ Error e ] -> raise (InvalidOperationException(e.Error.ToString()))
-        | [ Success s ] -> s.Data
-        | _ -> raise (InvalidOperationException "Multiple yaml page metadata found")
-
-type Slug = private Slug of string with
     member this.asString =
         match this with
         | Slug s -> s
-    static member from (s:string) = Slug (s.Trim())
+
+    static member from(s: string) = Slug(s.Trim())
 
 type DocPart = {
     Slug: Slug
     Metadata: PageMetadata option
     Content: string
 } with
+
     member this.yamlFrontMatter =
         match this.Metadata with
         | None -> this.Content
-        | Some metadata -> $"---
+        | Some metadata ->
+            $"---
 {metadata.toYaml}
 ---
 {this.Content}"

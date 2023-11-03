@@ -7,8 +7,9 @@
 
   <ItemGroup>
     <Compile Include="DocPart.fs" />
+    <Compile Include="Deserializer.fs" />
     <Compile Include="Program.fs" />
-    <EmbeddedResource Include="templates/mainLayout.html" />
+    <Content Include="templates/mainLayout.html" />
     <Content Include="assets/main.css" />
     <Content Include="assets/pico.min.css" />
   </ItemGroup>
