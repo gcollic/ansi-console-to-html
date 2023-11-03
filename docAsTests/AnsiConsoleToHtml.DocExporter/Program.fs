@@ -35,10 +35,14 @@ let mainLayout =
     )
     |> File.ReadAllText
 
-Path.Combine(rootFolder, "docAsTests", "AnsiConsoleToHtml.DocAsTests", "expectations")
-|> Directory.GetFiles
-|> Array.map (fun file ->
-    Deserializer.parseDocWithOptionalYamlFrontMatter file (File.ReadAllText file))
+let parts =
+    Path.Combine(rootFolder, "docAsTests", "AnsiConsoleToHtml.DocAsTests", "expectations")
+    |> Directory.GetFiles
+    |> Array.map (fun file ->
+        Deserializer.parseDocWithOptionalYamlFrontMatter file (File.ReadAllText file))
+
+parts
+|> Array.filter (fun p -> p.Metadata.IsSome)
 |> Array.iter (fun docPart ->
     let fileName = Path.Combine(docFolder, docPart.Slug.asString + ".html")
     printfn $"Created '{toRelative fileName}'"
