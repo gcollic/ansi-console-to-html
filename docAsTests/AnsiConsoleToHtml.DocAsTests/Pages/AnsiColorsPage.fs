@@ -1,7 +1,7 @@
 module AnsiColorsPage
 
 open AnsiConsoleToHtml
-open Page
+open DocPart
 
 let toCell (colors256: Color[]) i =
     let isLightBackground =

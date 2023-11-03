@@ -1,4 +1,4 @@
-module Page
+module DocPart
 
 open Legivel.Serialization
 open System
@@ -52,7 +52,7 @@ type Slug = private Slug of string with
         | Slug s -> s
     static member from (s:string) = Slug (s.Trim())
 
-type Page = {
+type DocPart = {
     Slug: Slug
     Metadata: PageMetadata option
     Content: string

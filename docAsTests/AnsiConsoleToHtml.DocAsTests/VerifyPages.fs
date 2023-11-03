@@ -1,33 +1,39 @@
 module Tests
 
 open Expecto
-open AnsiConsoleToHtml
-
 open VerifyTests
 open VerifyExpecto
-open Page
+
+open AnsiConsoleToHtml
+open DocPart
 
 let verifySettings = VerifySettings()
 verifySettings.UseDirectory("expectations")
 verifySettings.DisableDiff()
 
 
-let verifyPage (page: Page.Page) =
-    let settings = VerifySettings(verifySettings)
-    settings.UseFileName(page.Slug.asString)
-    let uselessNotEmptyVerifierParameter = "useless"
-    Verifier.Verify(uselessNotEmptyVerifierParameter, page.yamlFrontMatter, "html", settings)
+let verifyDocPart (part: DocPart.DocPart) =
+    testTask part.Slug.asString {
+        let settings = VerifySettings(verifySettings)
+        settings.UseFileName(part.Slug.asString)
+        let uselessNotEmptyVerifierParameter = "useless"
 
-let testHtmlPage (page: Page.Page) =
-    testTask page.Slug.asString { do! verifyPage page }
+        do!
+            Verifier.Verify(
+                uselessNotEmptyVerifierParameter,
+                part.yamlFrontMatter,
+                "html",
+                settings
+            )
+    }
 
 [<Tests>]
 let tests =
-    testList "samples" [
-        testHtmlPage {
+    testList "Doc parts" [
+        verifyDocPart {
             Slug = Slug.from "greeting"
             Metadata = None
             Content = Say.greetings "world"
         }
-        testHtmlPage AnsiColorsPage.page
+        verifyDocPart AnsiColorsPage.page
     ]
