@@ -11,7 +11,8 @@ let toCell (colors256: Color[]) i =
         | x -> x > 243
 
     let fontColor = if isLightBackground then "black" else "white"
-    $"<td style='background:{(colors256[i]).AsHexColor()};color:{fontColor}'>{i}</td>"
+    let spacing = if i < 10 then $"&nbsp;&nbsp;" else ""
+    $"<td style='background:{(colors256[i]).AsHexColor()};color:{fontColor}'>{spacing}{i}</td>"
 
 let colorsToRow colors indexes =
     indexes

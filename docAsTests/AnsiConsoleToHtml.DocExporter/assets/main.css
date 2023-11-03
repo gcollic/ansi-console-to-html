@@ -167,3 +167,9 @@ body > nav ul:first-of-type li:nth-of-type(2) {
     display: inline;
   }
 }
+
+.page_ansi_colors td {
+  padding:calc(var(--spacing)/2) 0;
+  font-size:0.6rem;
+  text-align:center;
+}

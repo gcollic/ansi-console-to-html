@@ -58,6 +58,7 @@ parts
             homeUrl = "homeurl"
             repoRoot = "repo"
             mainContent = docPart.Content
+            slug = docPart.Slug.asString
         |}
     )
 
