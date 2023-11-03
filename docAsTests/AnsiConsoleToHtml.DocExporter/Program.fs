@@ -1,6 +1,5 @@
 // For more information see https://aka.ms/fsharp-console-apps
 open System
-open System.Linq
 open System.IO
 
 printfn "Hello World"
@@ -20,6 +19,15 @@ Path.Combine(rootFolder, "docAsTests", "AnsiConsoleToHtml.DocExporter", "assets"
     printfn $"    to '{targetPath}'")
 
 Path.Combine(rootFolder, "docAsTests", "AnsiConsoleToHtml.DocExporter", "templates")
+|> Directory.GetFiles
+|> Array.iter (fun file ->
+    let fileName = Path.GetFileName(file)
+    let targetPath = Path.Combine(rootFolder, "doc", fileName)
+    File.Copy(file, targetPath, true)
+    printfn $"Copied '{file}'"
+    printfn $"    to '{targetPath}'")
+
+Path.Combine(rootFolder, "docAsTests", "AnsiConsoleToHtml.DocAsTests", "expectations")
 |> Directory.GetFiles
 |> Array.iter (fun file ->
     let fileName = Path.GetFileName(file)
