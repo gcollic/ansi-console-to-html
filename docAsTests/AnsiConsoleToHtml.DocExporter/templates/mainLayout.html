@@ -13,7 +13,7 @@
     <nav class="container-fluid">
       <ul>
         <li>
-          <a href="{{homeUrl}}" aria-label="Back home"
+          <a href="{{home_url}}" aria-label="Back home"
             ><svg viewBox="0 0 153.4937 153.4937" height="56px" aria-hidden="true" focusable="false" role="img" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg">
            <defs>
              <linearGradient id="whiteToPrimary">
@@ -38,7 +38,7 @@
         <li><a href="./" class="secondary-inverse">Docs</a></li>
         <li>
           <a
-            href="{{repoRoot}}"
+            href="{{repo_root}}"
             class="secondary-inverse"
             aria-label="GitHub repository"
             ><svg
@@ -79,20 +79,7 @@
 
       <div role="document">
         <section id="start">
-          Brush by Manohara from <a href="https://thenounproject.com/icon/brush-1235651/" target="_blank" title="Brush Icons">Noun Project</a> (CC BY 3.0)
-          {{include}}
-          <button type="submit" aria-label="Example button" onclick="event.preventDefault()">Login</button>
-          https://www.schemecolor.com/tag/rainbow
-          <div data-theme="valid">
-            <pre>
-              <code>
-chroma.scale([
-"#6A54B4", "#DC5B6E","#F19748","#EAD04B","#55A973","#2D8FB6","#6A54B4",
-].map(x=>chroma(x).brighten()) )
-.colors(7)
-              </code>
-            </pre>
-          </div>
+          {{main_content}}
         </section>
 
         <footer>
@@ -101,7 +88,7 @@ chroma.scale([
             <small
               >Code licensed
               <a
-                href="{{repoRoot}}/blob/master/LICENSE"
+                href="{{repo_root}}/blob/master/LICENSE"
                 class="secondary"
                 >TODO LICENSE NAME</a
               ></small

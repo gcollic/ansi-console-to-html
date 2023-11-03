@@ -17,6 +17,7 @@
   <ItemGroup>
     <PackageReference Include="FSharp.Core" />
     <PackageReference Include="Legivel" />
+    <PackageReference Include="Scriban" />
   </ItemGroup>
 
 </Project>

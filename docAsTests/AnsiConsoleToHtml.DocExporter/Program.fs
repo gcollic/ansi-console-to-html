@@ -1,6 +1,8 @@
 // For more information see https://aka.ms/fsharp-console-apps
 open System
 open System.IO
+open Scriban
+open Scriban.Runtime
 
 Environment.GetCommandLineArgs()
 |> Array.iteri (fun index arg -> printfn $"arg[{index}] = {arg}")
@@ -34,6 +36,7 @@ let mainLayout =
         "mainLayout.html"
     )
     |> File.ReadAllText
+    |> Template.Parse
 
 let parts =
     Path.Combine(rootFolder, "docAsTests", "AnsiConsoleToHtml.DocAsTests", "expectations")
@@ -41,11 +44,29 @@ let parts =
     |> Array.map (fun file ->
         Deserializer.parseDocWithOptionalYamlFrontMatter file (File.ReadAllText file))
 
+
 parts
 |> Array.filter (fun p -> p.Metadata.IsSome)
 |> Array.iter (fun docPart ->
+    let context = new TemplateContext()
+    let so = new ScriptObject()
+
+    so.Import(
+        {|
+            title = "title"
+            description = "description"
+            homeUrl = "homeurl"
+            repoRoot = "repo"
+            mainContent = docPart.Content
+        |}
+    )
+
+    context.PushGlobal(so)
+
+    let templatedContent = mainLayout.Render(context)
+
     let fileName = Path.Combine(docFolder, docPart.Slug.asString + ".html")
-    printfn $"Created '{toRelative fileName}'"
-    File.WriteAllText(fileName, docPart.Content))
+    File.WriteAllText(fileName, templatedContent)
+    printfn $"Created '{toRelative fileName}'")
 
 exit 0
