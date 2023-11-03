@@ -6,14 +6,12 @@
     <GenerateProgramFile>false</GenerateProgramFile>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Pages\Page.fs" />
     <Compile Include="Pages\AnsiColorsPage.fs" />
     <Compile Include="VerifyPages.fs" />
     <Compile Include="Main.fs" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Expecto" />
-    <PackageReference Include="Legivel" />
     <PackageReference Include="Verify.Expecto" />
     <PackageReference Include="YoloDev.Expecto.TestSdk" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" />
@@ -21,6 +19,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="../../src/AnsiConsoleToHtml/AnsiConsoleToHtml.fsproj" />
+    <ProjectReference Include="..\AnsiConsoleToHtml.DocExporter\AnsiConsoleToHtml.DocExporter.fsproj" />
   </ItemGroup>
   <Target Name="Husky" BeforeTargets="Restore;CollectPackageReferences" Condition="'$(HUSKY)' != 0">
     <Exec Command="dotnet tool restore" StandardOutputImportance="Low" StandardErrorImportance="High" />

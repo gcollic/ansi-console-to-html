@@ -19,17 +19,17 @@ type PageMetadata = {
     // https://fjoppe.github.io/Legivel/
     // F# yaml support is not great and needs trade-off.
     // Legivel yaml deserialization library is F# fluent, but the trade-off is manual serialization.
-    member x.toYaml =
+    member this.toYaml =
         [
-            Some $"Title: '{x.Title}'"
+            Some $"Title: '{this.Title}'"
             Option.map
                 (fun (nav: NavbarMetadata) ->
                     $"Navbar:\n  Label: '{nav.Label}'\n  Order: {nav.Order}")
-                x.Navbar
+                this.Navbar
             Option.map
                 (fun (toc: TocMetadata) ->
                     $"Toc:\n  Parent: '{toc.Parent}'\n  Label: '{toc.Label}'\n  Order: {toc.Order}")
-                x.Toc
+                this.Toc
         ]
         |> List.choose id
         |> String.concat "\n"
@@ -46,13 +46,21 @@ type PageMetadata = {
         | [ Success s ] -> s.Data
         | _ -> raise (InvalidOperationException "Multiple yaml page metadata found")
 
+type Slug = private Slug of string with
+    member this.asString =
+        match this with
+        | Slug s -> s
+    static member from (s:string) = Slug (s.Trim())
+
 type Page = {
-    Metadata: PageMetadata
+    Slug: Slug
+    Metadata: PageMetadata option
     Content: string
 } with
-
-    member x.yamlFrontMatter =
-        $"---
-{x.Metadata.toYaml}
+    member this.yamlFrontMatter =
+        match this.Metadata with
+        | None -> this.Content
+        | Some metadata -> $"---
+{metadata.toYaml}
 ---
-{x.Content}"
+{this.Content}"

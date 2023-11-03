@@ -12,21 +12,22 @@ verifySettings.UseDirectory("expectations")
 verifySettings.DisableDiff()
 
 
-let verifyHtml name (content: string) =
+let verifyPage (page: Page.Page) =
     let settings = VerifySettings(verifySettings)
-    settings.UseFileName(name)
+    settings.UseFileName(page.Slug.asString)
     let uselessNotEmptyVerifierParameter = "useless"
-    Verifier.Verify(uselessNotEmptyVerifierParameter, content, "html", settings)
+    Verifier.Verify(uselessNotEmptyVerifierParameter, page.yamlFrontMatter, "html", settings)
 
-let testHtmlPart name content =
-    testTask name { do! verifyHtml name content }
-
-let testHtmlPage name (page: Page.Page) =
-    testTask name { do! verifyHtml name page.yamlFrontMatter }
+let testHtmlPage (page: Page.Page) =
+    testTask page.Slug.asString { do! verifyPage page }
 
 [<Tests>]
 let tests =
     testList "samples" [
-        testHtmlPart "greeting" <| Say.greetings "world"
-        testHtmlPage "ansi_colors" AnsiColorsPage.page
+        testHtmlPage {
+            Slug = Slug.from "greeting"
+            Metadata = None
+            Content = Say.greetings "world"
+        }
+        testHtmlPage AnsiColorsPage.page
     ]

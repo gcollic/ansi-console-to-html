@@ -45,11 +45,13 @@ let docGrayScaleColors colors =
 let colors = Colors256.Table()
 
 let page = {
-    Metadata = {
-        Title = "ANSI 256 colors table"
-        Navbar = None
-        Toc = None
-    }
+    Slug = Slug.from "ansi_colors"
+    Metadata =
+        Some {
+            Title = "ANSI 256 colors table"
+            Navbar = None
+            Toc = None
+        }
     Content =
         [
             "<h1>256 colors table (8 bits)</h1>\n Cf. <a href='https://en.wikipedia.org/wiki/ANSI_escape_code#8-bit'>Wikipedia</a>"

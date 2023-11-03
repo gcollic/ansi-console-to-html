@@ -6,6 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Include="Page.fs" />
     <Compile Include="Program.fs" />
     <EmbeddedResource Include="templates/mainLayout.html" />
     <Content Include="assets/main.css" />
@@ -14,6 +15,7 @@
 
   <ItemGroup>
     <PackageReference Include="FSharp.Core" />
+    <PackageReference Include="Legivel" />
   </ItemGroup>
 
 </Project>
