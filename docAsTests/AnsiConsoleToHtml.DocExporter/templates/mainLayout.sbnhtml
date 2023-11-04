@@ -9,10 +9,10 @@
     <meta name="robots" content="index, follow">
     <meta property="og:title" content="{{title}}">
     <meta property="og:description" content="{{description}}">
-    <meta property="og:url" content="{{root_url}}{{url_to slug}}">
+    <meta property="og:url" content="{{root_url}}/{{url_to slug}}">
     <meta property="og:site_name" content="{{project_name}}">
     <meta property="og:type" content="website">
-    <meta property="og:image" content="{{root_url}}og_image.jpg">
+    <meta property="og:image" content="{{root_url}}/og_image.jpg">
     <meta property="og:image:type" content="image/jpeg">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
@@ -85,7 +85,7 @@
 
       <div role="document">
         <section id="start" class="page_{{slug.as_string}}">
-          {{main_content}}
+          {{ main_content }}
         </section>
 
         <footer>
@@ -96,7 +96,7 @@
               <a
                 href="{{repo_root}}/blob/master/LICENSE"
                 class="secondary"
-                >TODO LICENSE NAME</a
+                >{{ license_name }}</a
               ></small
             >
           </p>

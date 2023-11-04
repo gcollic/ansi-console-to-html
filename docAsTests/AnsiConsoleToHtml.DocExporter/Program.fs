@@ -4,6 +4,13 @@ open System.IO
 open Scriban
 open Scriban.Runtime
 
+let projectConfig = {|
+    rootUrl = "."
+    projectName = "ANSIConsoleToHtml"
+    repoRoot = "https://github.com/gcollic/ANSIConsoleToHtml"
+    licenseName = "MIT"
+|}
+
 Environment.GetCommandLineArgs()
 |> Array.iteri (fun index arg -> printfn $"arg[{index}] = {arg}")
 
@@ -99,14 +106,12 @@ pages
     context.StrictVariables <- true
 
     let so = new ScriptObject()
+    so.Import(projectConfig)
 
     so.Import(
         {|
             title = docPart.Metadata.Value.Title
             description = docPart.Metadata.Value.Title
-            rootUrl = "./"
-            repoRoot = "repo"
-            projectName = "ANSIConsoleToHtml"
             mainContent = docPart.Content
             slug = docPart.Slug
             toc = toc
