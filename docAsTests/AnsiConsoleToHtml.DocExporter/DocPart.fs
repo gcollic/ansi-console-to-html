@@ -8,6 +8,10 @@ type TocMetadata = {
     Order: int
 }
 
+type PageFormat =
+    | Html
+    | Markdown
+
 type PageMetadata = {
     Title: string
     Navbar: NavbarMetadata option
@@ -45,6 +49,7 @@ type DocPart = {
     Slug: Slug
     Metadata: PageMetadata option
     Content: string
+    Format: PageFormat
 } with
 
     member this.yamlFrontMatter =

@@ -34,6 +34,7 @@ let tests =
             Slug = Slug.from "greeting"
             Metadata = None
             Content = Say.greetings "world"
+            Format = Markdown
         }
         verifyDocPart AnsiColorsPage.page
     ]

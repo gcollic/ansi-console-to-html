@@ -36,6 +36,11 @@ let parseDocWithOptionalYamlFrontMatter (path: string) fileContent =
                 s
         |> Slug.from
 
+    let format =
+        match Path.GetExtension(path).ToLowerInvariant() with
+        | ".md" -> Markdown
+        | _ -> Html
+
     let m = frontMatterRegex.Match(fileContent)
 
     match m.Success with
@@ -43,9 +48,11 @@ let parseDocWithOptionalYamlFrontMatter (path: string) fileContent =
         Slug = slug
         Metadata = m.Groups.["yaml"].Value |> pageMetadataFromYaml |> Some
         Content = m.Groups.["content"].Value
+        Format = format
       }
     | _ -> {
         Slug = slug
         Metadata = None
         Content = fileContent
+        Format = format
       }

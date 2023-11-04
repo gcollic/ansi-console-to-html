@@ -4,6 +4,8 @@ open System.IO
 open Scriban
 open Scriban.Runtime
 
+open DocPart
+
 let projectConfig = {|
     rootUrl = "."
     projectName = "ANSIConsoleToHtml"
@@ -46,8 +48,11 @@ let mainLayout =
     |> Template.Parse
 
 let allParts =
-    Path.Combine(rootFolder, "docAsTests", "AnsiConsoleToHtml.DocAsTests", "expectations")
-    |> Directory.GetFiles
+    [|
+        Path.Combine(rootFolder, "docAsTests", "AnsiConsoleToHtml.DocAsTests", "expectations")
+        Path.Combine(rootFolder, "docAsTests", "AnsiConsoleToHtml.DocExporter", "handwritten")
+    |]
+    |> Array.collect Directory.GetFiles
     |> Array.map (fun file ->
         Deserializer.parseDocWithOptionalYamlFrontMatter file (File.ReadAllText file))
 
@@ -102,6 +107,12 @@ type Helpers() =
 
 pages
 |> Array.iter (fun docPart ->
+
+    let content =
+        match docPart.Format with
+        | Markdown -> Markdig.Markdown.ToHtml docPart.Content
+        | _ -> docPart.Content
+
     let context = new TemplateContext()
     context.StrictVariables <- true
 
@@ -112,7 +123,7 @@ pages
         {|
             title = docPart.Metadata.Value.Title
             description = docPart.Metadata.Value.Title
-            mainContent = docPart.Content
+            mainContent = content
             slug = docPart.Slug
             toc = toc
             navItems = navItems

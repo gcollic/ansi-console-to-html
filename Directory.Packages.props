@@ -4,6 +4,7 @@
     <PackageVersion Include="FParsec" Version="1.1.1" />
     <PackageVersion Include="FSharp.Core" Version="7.0.401" />
     <PackageVersion Include="Legivel" Version="0.4.6" />
+    <PackageVersion Include="Markdig" Version="0.33.0" />
     <PackageVersion Include="Scriban" Version="5.9.0" />
     <PackageVersion Include="Verify.Expecto" Version="22.1.4" />
     <PackageVersion Include="YoloDev.Expecto.TestSdk" Version="0.14.2" />

@@ -68,4 +68,5 @@ let page = {
             docGrayScaleColors colors
         ]
         |> String.concat "\n"
+    Format = Html
 }
