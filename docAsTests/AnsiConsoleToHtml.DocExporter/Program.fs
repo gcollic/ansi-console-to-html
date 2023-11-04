@@ -22,7 +22,6 @@ let docFolder = Path.Combine(rootFolder, "doc")
 
 docFolder
 |> Directory.GetFiles
-|> Array.filter (fun file -> not (file.EndsWith(".gitignore")))
 |> Array.iter (fun file ->
     printfn $"Deleting '{toRelative file}'"
     File.Delete file)
