@@ -88,10 +88,11 @@ pages
 
     so.Import(
         {|
-            title = "title"
-            description = "description"
-            homeUrl = "homeurl"
+            title = docPart.Metadata.Value.Title
+            description = docPart.Metadata.Value.Title
+            rootUrl = "./"
             repoRoot = "repo"
+            projectName = "ANSIConsoleToHtml"
             mainContent = docPart.Content
             slug = docPart.Slug
             toc = toc

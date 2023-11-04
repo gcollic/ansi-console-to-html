@@ -1,10 +1,21 @@
 <!doctype html>
 <html lang="en" data-theme="light">
   <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{{title}}</title>
     <meta name="description" content="{{description}}" />
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="{{title}}">
+    <meta property="og:description" content="{{description}}">
+    <meta property="og:url" content="{{root_url}}{{url_to slug}}">
+    <meta property="og:site_name" content="{{project_name}}">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="{{root_url}}og_image.jpg">
+    <meta property="og:image:type" content="image/jpeg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
     <link rel="stylesheet" href="pico.min.css" />
     <link rel="stylesheet" href="main.css" />
   </head>
@@ -13,7 +24,7 @@
     <nav class="container-fluid">
       <ul>
         <li>
-          <a href="{{home_url}}" aria-label="Back home"
+          <a href="{{root_url}}" aria-label="Back home"
             ><svg viewBox="0 0 153.4937 153.4937" height="56px" aria-hidden="true" focusable="false" role="img" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg">
            <defs>
              <linearGradient id="whiteToPrimary">
