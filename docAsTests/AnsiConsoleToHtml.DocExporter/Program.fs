@@ -70,6 +70,20 @@ let toc =
     })
     |> Seq.toArray
 
+let navItems =
+    pages
+    |> Seq.ofArray
+    |> Seq.map (fun page ->
+        match page with
+        | {
+              Metadata = Some { Navbar = Some nav }
+          } -> Some(page.Slug, nav)
+        | _ -> None)
+    |> Seq.choose id
+    |> Seq.sortBy (fun (_, nav) -> nav.Order)
+    |> Seq.map (fun (slug, nav) -> { Label = nav.Label; Slug = slug })
+    |> Seq.toArray
+
 type Helpers() =
     static member urlTo target = slugToFile target
 
@@ -96,6 +110,7 @@ pages
             mainContent = docPart.Content
             slug = docPart.Slug
             toc = toc
+            navItems = navItems
         |}
     )
 

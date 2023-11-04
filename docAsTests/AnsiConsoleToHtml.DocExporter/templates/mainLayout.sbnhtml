@@ -43,10 +43,9 @@
         <li>ANSI<span style="color:#9b81e7">C</span><span style="color:#ff8c9c">o</span><span style="color:#ffc877">n</span><span style="color:#ffff7d">s</span><span style="color:#86dba2">o</span><span style="color:#68bfe8">l</span><span style="color:#9b81e7">e</span>ToHtml</li>
       </ul>
       <ul>
-        <li>
-          <a href="." class="secondary-inverse">Credits</a>
-        </li>
-        <li><a href="./" class="secondary-inverse">Docs</a></li>
+        {{ for item in nav_items }}
+          <li><a href="{{url_to item.slug}}" class="secondary-inverse">{{ item.label }}</a></li>
+        {{ end }}
         <li>
           <a
             href="{{repo_root}}"
