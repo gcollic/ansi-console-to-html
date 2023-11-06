@@ -1,3 +1,10 @@
+---
+Title: 'Change Log'
+Toc:
+  Parent: 'Misc'
+  Label: 'Change Log'
+  Order: 2
+---
 # Change Log
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.

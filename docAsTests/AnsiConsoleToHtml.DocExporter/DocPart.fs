@@ -43,7 +43,7 @@ type Slug =
         match this with
         | Slug s -> s
 
-    static member from(s: string) = Slug(s.Trim())
+    static member from(s: string) = Slug(s.Trim().ToLowerInvariant())
 
 type DocPart = {
     Slug: Slug

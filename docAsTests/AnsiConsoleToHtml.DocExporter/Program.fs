@@ -52,6 +52,7 @@ let allParts =
         Path.Combine(rootFolder, "docAsTests", "AnsiConsoleToHtml.DocExporter", "handwritten")
     |]
     |> Array.collect Directory.GetFiles
+    |> Array.append [| Path.Combine(rootFolder, "CHANGELOG.md") |]
     |> Array.map (fun file ->
         Deserializer.parseDocWithOptionalYamlFrontMatter file (File.ReadAllText file))
 
