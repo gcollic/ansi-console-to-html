@@ -4,3 +4,4 @@
 *.verified.html text eol=lf
 *.html text eol=lf
 *.sbnhtml text eol=lf
+*.md text eol=lf
