@@ -12,6 +12,11 @@ type PageFormat =
     | Html
     | Markdown
 
+    member this.extension =
+        match this with
+        | Html -> "html"
+        | Markdown -> "md"
+
 type PageMetadata = {
     Title: string
     Navbar: NavbarMetadata option

@@ -22,7 +22,7 @@ let verifyDocPart (part: DocPart.DocPart) =
             Verifier.Verify(
                 uselessNotEmptyVerifierParameter,
                 part.yamlFrontMatter,
-                "html",
+                part.Format.extension,
                 settings
             )
     }
