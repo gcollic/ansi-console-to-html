@@ -26,47 +26,68 @@ let colorsToTable colors indexes =
     |> String.concat ""
     |> fun s -> $"\n<table>\n{s}</table>\n"
 
-let doc16Colors colors =
-    [ [ 0..7 ]; [ 8..15 ] ]
-    |> colorsToTable colors
-    |> fun x ->
-        "\n<h2>0-15: 16 colors</h2>\nTODO depends on OS, etc. Standard and high intensity colors (4 bits)."
-        + x
-
-let doc216Colors colors =
-    [ for rowIndex in 0..5 -> [ for col in 0..35 -> (rowIndex * 36 + col + 16) ] ]
-    |> colorsToTable colors
-    |> fun s -> "\n<h2>16-231: 216 colors</h2>\n" + s
-
-let docGrayScaleColors colors =
-    [ [ 232..255 ] ]
-    |> colorsToTable colors
-    |> fun s -> "\n<h2>232-255: grayscale colors</h2>\n" + s
-
 let colors = Colors256.Table()
 
 let title = "ANSI 256 colors table"
+let table16ColorsSlug = "16-color-table"
+let table216ColorsSlug = "216-color-table"
+let tableGraysSlug = "grays-table"
 
-let page = {
-    Slug = Slug.from "ansi_colors"
-    Metadata =
-        Some {
-            Title = title
-            Navbar = Some { Label = "Docs"; Order = 1 }
-            Toc =
-                Some {
-                    Parent = "ANSI commands"
-                    Label = title
-                    Order = 1
-                }
-        }
-    Content =
-        [
-            "<h1>256 colors table (8 bits)</h1>\n Cf. <a href='https://en.wikipedia.org/wiki/ANSI_escape_code#8-bit'>Wikipedia</a>"
-            doc16Colors colors
-            doc216Colors colors
-            docGrayScaleColors colors
-        ]
-        |> String.concat "\n"
-    Format = Html
-}
+let pages () = [
+    {
+        Slug = Slug.from table16ColorsSlug
+        Metadata = None
+        Content = [ [ 0..7 ]; [ 8..15 ] ] |> colorsToTable colors
+        Format = Html
+    }
+    {
+        Slug = Slug.from table216ColorsSlug
+        Metadata = None
+        Content =
+            [ for rowIndex in 0..5 -> [ for col in 0..35 -> (rowIndex * 36 + col + 16) ] ]
+            |> colorsToTable colors
+        Format = Html
+    }
+    {
+        Slug = Slug.from tableGraysSlug
+        Metadata = None
+        Content = [ [ 232..255 ] ] |> colorsToTable colors
+        Format = Html
+    }
+    {
+        Slug = Slug.from "ansi_colors"
+        Metadata =
+            Some {
+                Title = title
+                Navbar = Some { Label = "Docs"; Order = 1 }
+                Toc =
+                    Some {
+                        Parent = "ANSI commands"
+                        Label = title
+                        Order = 1
+                    }
+            }
+        Content =
+            $"""
+# 256 colors table (8 bits)
+
+Cf. [Wikipedia](https://en.wikipedia.org/wiki/ANSI_escape_code#8-bit)
+
+## 0-15: 16 colors
+
+TODO depends on OS, etc. Standard and high intensity colors (4 bits).
+
+<div>{{{{include '{table16ColorsSlug}'}}}}</div>
+
+## 16-231: 216 colors
+
+<div>{{{{include '{table216ColorsSlug}'}}}}</div>
+
+## 232-255: grayscale colors
+
+<div>{{{{include '{tableGraysSlug}'}}}}</div>
+
+"""
+        Format = Markdown
+    }
+]

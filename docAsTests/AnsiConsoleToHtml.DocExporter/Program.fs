@@ -3,6 +3,8 @@ open System
 open System.IO
 open Scriban
 open Scriban.Runtime
+open System.Threading.Tasks
+
 
 open DocPart
 
@@ -58,6 +60,39 @@ let allParts =
 
 let pages = allParts |> Array.filter (fun p -> p.Metadata.IsSome)
 
+let docPartsBySlug =
+    allParts |> Array.map (fun page -> (page.Slug, page)) |> Map.ofArray
+
+let templateLoader =
+    { new ITemplateLoader with
+        /// <summary>
+        /// Gets an absolute path for the specified include template name. Note that it is not necessarely a path on a disk,
+        /// but an absolute path that can be used as a dictionary key for caching)
+        /// </summary>
+        /// <param name="context">The current context called from</param>
+        /// <param name="callerSpan">The current span called from</param>
+        /// <param name="templateName">The name of the template to load</param>
+        /// <returns>An absolute path or unique key for the specified template name</returns>
+        member this.GetPath(context, callerSpan, templateName) = templateName
+
+        /// <summary>
+        /// Loads a template using the specified template path/key.
+        /// </summary>
+        /// <param name="context">The current context called from</param>
+        /// <param name="callerSpan">The current span called from</param>
+        /// <param name="templatePath">The path/key previously returned by <see cref="GetPath"/></param>
+        /// <returns>The content string loaded from the specified template path/key</returns>
+        member this.Load(context, callerSpan, templatePath) =
+            let docPart = docPartsBySlug.[Slug.from templatePath]
+
+            match docPart.Format with
+            | Markdown -> Markdig.Markdown.ToHtml docPart.Content
+            | _ -> docPart.Content
+
+        member this.LoadAsync(context, callerSpan, templatePath) =
+            this.Load(context, callerSpan, templatePath) |> ValueTask<string>
+    }
+
 let slugToFile (slug: DocPart.Slug) = slug.asString + ".html"
 
 type TocItem = { Label: string; Slug: DocPart.Slug }
@@ -108,12 +143,8 @@ type Helpers() =
 pages
 |> Array.iter (fun docPart ->
 
-    let content =
-        match docPart.Format with
-        | Markdown -> Markdig.Markdown.ToHtml docPart.Content
-        | _ -> docPart.Content
-
     let context = new TemplateContext()
+    context.TemplateLoader <- templateLoader
     context.StrictVariables <- true
 
     let so = new ScriptObject()
@@ -123,7 +154,7 @@ pages
         {|
             title = docPart.Metadata.Value.Title
             description = docPart.Metadata.Value.Title
-            mainContent = content
+            mainInclude = docPart.Slug.asString
             slug = docPart.Slug
             toc = toc
             navItems = navItems

@@ -85,7 +85,7 @@
 
       <div role="document">
         <section id="start" class="page_{{slug.as_string}}">
-          {{ main_content }}
+          {{ include main_include }}
         </section>
 
         <footer>
