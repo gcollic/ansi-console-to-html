@@ -138,7 +138,9 @@ let navItems =
 type Helpers() =
     static member urlTo target = slugToFile target
 
-    static member linkTo target =
+    static member urlToStr(target: string) = Slug.from target |> Helpers.urlTo
+
+    static member linkTo(target: Slug) =
         "<a href='" + (Helpers.urlTo target) + "'>" + target.asString + "</a>"
 
     static member groupContains group (slug: DocPart.Slug) =

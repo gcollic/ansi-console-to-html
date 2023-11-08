@@ -97,7 +97,11 @@
                 href="{{repo_root}}/blob/master/LICENSE"
                 class="secondary"
                 >{{ license_name }}</a
-              > • V.{{ version }}</small
+              > • V.<a
+                href="{{url_to_str 'changelog'}}"
+                class="secondary"
+                >{{ version }}</a
+              ></small
             >
           </p>
         </footer>
