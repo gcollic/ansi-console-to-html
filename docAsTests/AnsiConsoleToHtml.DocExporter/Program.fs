@@ -1,10 +1,11 @@
 // For more information see https://aka.ms/fsharp-console-apps
 open System
 open System.IO
+open System.Reflection
+open System.Threading.Tasks
 open Scriban
 open Scriban.Runtime
-open System.Threading.Tasks
-
+open AnsiConsoleToHtml
 
 open DocPart
 
@@ -13,6 +14,9 @@ let projectConfig = {|
     projectName = "ANSIConsoleToHtml"
     repoRoot = "https://github.com/gcollic/ANSIConsoleToHtml"
     licenseName = "MIT"
+    version =
+        Assembly.GetAssembly(typeof<Color>).GetName().Version
+        |> fun v -> $"{v.Major}.{v.Minor}.{v.Build}"
 |}
 
 Environment.GetCommandLineArgs()

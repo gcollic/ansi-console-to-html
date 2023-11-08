@@ -97,7 +97,7 @@
                 href="{{repo_root}}/blob/master/LICENSE"
                 class="secondary"
                 >{{ license_name }}</a
-              ></small
+              > • V.{{ version }}</small
             >
           </p>
         </footer>

@@ -19,6 +19,7 @@
     <PackageReference Include="Legivel" />
     <PackageReference Include="Markdig" />
     <PackageReference Include="Scriban" />
+    <ProjectReference Include="../../src/AnsiConsoleToHtml/AnsiConsoleToHtml.fsproj" />
   </ItemGroup>
 
 </Project>
