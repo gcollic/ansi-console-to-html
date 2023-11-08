@@ -73,17 +73,22 @@ let pages () = [
 
 Cf. [Wikipedia](https://en.wikipedia.org/wiki/ANSI_escape_code#8-bit)
 
-## 0-15: 16 colors
+## 0-15: named colors
 
-TODO depends on OS, etc. Standard and high intensity colors (4 bits).
+The name of these colors are in the specification, but the actual colors depends on the terminal and user configuration.
+0-7 are standard colors, and 8-15 high-intensity versions.
 
 <div>{{{{include '{table16ColorsSlug}'}}}}</div>
 
 ## 16-231: 216 colors
 
+It's a 6×6×6 color cube.
+
 <div>{{{{include '{table216ColorsSlug}'}}}}</div>
 
-## 232-255: grayscale colors
+## 232-255: gray
+
+It's a scale of 24 shades of gray.
 
 <div>{{{{include '{tableGraysSlug}'}}}}</div>
 
