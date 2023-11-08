@@ -19,9 +19,6 @@ let projectConfig = {|
         |> fun v -> $"{v.Major}.{v.Minor}.{v.Build}"
 |}
 
-Environment.GetCommandLineArgs()
-|> Array.iteri (fun index arg -> printfn $"arg[{index}] = {arg}")
-
 let rootFolder = Directory.GetCurrentDirectory()
 let toRelative path = Path.GetRelativePath(rootFolder, path)
 let docFolder = Path.Combine(rootFolder, "doc")
@@ -29,7 +26,7 @@ let docFolder = Path.Combine(rootFolder, "doc")
 docFolder
 |> Directory.GetFiles
 |> Array.iter (fun file ->
-    printfn $"Deleting '{toRelative file}'"
+    printfn $"🗑️ Deleting '{toRelative file}'"
     File.Delete file)
 
 Path.Combine(rootFolder, "docAsTests", "AnsiConsoleToHtml.DocExporter", "assets")
@@ -38,8 +35,7 @@ Path.Combine(rootFolder, "docAsTests", "AnsiConsoleToHtml.DocExporter", "assets"
     let fileName = Path.GetFileName(file)
     let targetPath = Path.Combine(docFolder, fileName)
     File.Copy(file, targetPath, true)
-    printfn $"Copied '{toRelative file}'"
-    printfn $"    to '{toRelative targetPath}'")
+    printfn $"✒️ Copied '{toRelative targetPath}'")
 
 let mainLayout =
     Path.Combine(
@@ -173,6 +169,6 @@ pages
 
     let fileName = Path.Combine(docFolder, Helpers.fileNameOf (docPart.Slug.ToString()))
     File.WriteAllText(fileName, templatedContent)
-    printfn $"Created '{toRelative fileName}'")
+    printfn $"⚙️ Generated '{toRelative fileName}'")
 
 exit 0
