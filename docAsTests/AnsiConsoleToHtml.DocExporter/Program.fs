@@ -97,8 +97,6 @@ let templateLoader =
             this.Load(context, callerSpan, templatePath) |> ValueTask<string>
     }
 
-let slugToFile (slug: DocPart.Slug) = slug.asString + ".html"
-
 type TocItem = { Label: string; Slug: DocPart.Slug }
 type TocGroup = { Name: string; Items: TocItem array }
 
@@ -136,12 +134,12 @@ let navItems =
     |> Seq.toArray
 
 type Helpers() =
-    static member urlTo target = slugToFile target
 
-    static member urlToStr(target: string) = Slug.from target |> Helpers.urlTo
+    static member fileNameOf target = target + ".html"
+    static member urlTo target = Helpers.fileNameOf target
 
-    static member linkTo(target: Slug) =
-        "<a href='" + (Helpers.urlTo target) + "'>" + target.asString + "</a>"
+    static member linkTo target =
+        "<a href='" + (Helpers.urlTo target) + "'>" + target + "</a>"
 
     static member groupContains group (slug: DocPart.Slug) =
         group.Items |> Array.exists (fun item -> item.Slug = slug)
@@ -160,7 +158,7 @@ pages
         {|
             title = docPart.Metadata.Value.Title
             description = docPart.Metadata.Value.Title
-            mainInclude = docPart.Slug.asString
+            mainInclude = docPart.Slug
             slug = docPart.Slug
             toc = toc
             navItems = navItems
@@ -173,7 +171,7 @@ pages
 
     let templatedContent = mainLayout.Render(context)
 
-    let fileName = Path.Combine(docFolder, slugToFile docPart.Slug)
+    let fileName = Path.Combine(docFolder, Helpers.fileNameOf (docPart.Slug.ToString()))
     File.WriteAllText(fileName, templatedContent)
     printfn $"Created '{toRelative fileName}'")
 

@@ -84,7 +84,7 @@
       </aside>
 
       <div role="document">
-        <section id="start" class="page_{{slug.as_string}}">
+        <section id="start" class="page_{{slug}}">
           {{ include main_include }}
         </section>
 
@@ -98,7 +98,7 @@
                 class="secondary"
                 >{{ license_name }}</a
               > • V.<a
-                href="{{url_to_str 'changelog'}}"
+                href="{{url_to 'changelog'}}"
                 class="secondary"
                 >{{ version }}</a
               ></small

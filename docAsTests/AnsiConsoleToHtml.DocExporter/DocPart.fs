@@ -44,7 +44,7 @@ type Slug =
     private
     | Slug of string
 
-    member this.asString =
+    override this.ToString() =
         match this with
         | Slug s -> s
 

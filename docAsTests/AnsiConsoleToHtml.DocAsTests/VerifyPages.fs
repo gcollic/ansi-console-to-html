@@ -13,9 +13,11 @@ verifySettings.DisableDiff()
 
 
 let verifyDocPart (part: DocPart.DocPart) =
-    testTask part.Slug.asString {
+    let slug = part.Slug.ToString()
+
+    testTask slug {
         let settings = VerifySettings(verifySettings)
-        settings.UseFileName(part.Slug.asString)
+        settings.UseFileName(slug)
         let uselessNotEmptyVerifierParameter = "useless"
 
         do!
