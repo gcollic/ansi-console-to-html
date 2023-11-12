@@ -7,6 +7,7 @@
 
   <ItemGroup>
     <Compile Include="DocPart.fs" />
+    <Compile Include="Serializer.fs" />
     <Compile Include="Deserializer.fs" />
     <Compile Include="DocSources.fs" />
     <Compile Include="SiteMap.fs" />

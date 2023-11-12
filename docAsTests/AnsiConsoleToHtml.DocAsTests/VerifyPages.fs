@@ -23,7 +23,7 @@ let verifyDocPart (part: DocPart.DocPart) =
         do!
             Verifier.Verify(
                 uselessNotEmptyVerifierParameter,
-                part.yamlFrontMatter,
+                Serializer.toYamlFrontMatter part,
                 part.Format.extension,
                 settings
             )
