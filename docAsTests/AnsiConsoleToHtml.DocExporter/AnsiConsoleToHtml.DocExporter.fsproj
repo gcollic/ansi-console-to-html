@@ -8,10 +8,13 @@
   <ItemGroup>
     <Compile Include="DocPart.fs" />
     <Compile Include="Deserializer.fs" />
+    <Compile Include="DocSources.fs" />
+    <Compile Include="SiteMap.fs" />
+    <Compile Include="TemplateEngine.fs" />
+    <Compile Include="VerboseIo.fs" />
     <Compile Include="Program.fs" />
     <Content Include="templates/mainLayout.sbnhtml" />
     <Content Include="assets/main.css" />
-    <Content Include="assets/pico.min.css" />
   </ItemGroup>
 
   <ItemGroup>
