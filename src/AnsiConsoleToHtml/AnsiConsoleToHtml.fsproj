@@ -22,7 +22,6 @@
     <Compile Include="Color.fs" />
     <Compile Include="Colors256.fs" />
     <Compile Include="AnsiConsole.fs" />
-    <Compile Include="Library.fs" />
   </ItemGroup>
 
   <ItemGroup>

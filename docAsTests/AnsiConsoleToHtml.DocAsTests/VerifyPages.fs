@@ -32,13 +32,5 @@ let verifyDocPart (part: DocPart.DocPart) =
 [<Tests>]
 let tests =
     testList "Doc parts" [
-        testList "Sample" [
-            verifyDocPart {
-                Slug = Slug.from "greeting"
-                Metadata = None
-                Content = Say.greetings "world"
-                Format = Markdown
-            }
-        ]
         testList "AnsiColorsPage" (AnsiColorsPage.pages () |> List.map verifyDocPart)
     ]
