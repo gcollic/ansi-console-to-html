@@ -26,7 +26,7 @@ let colorsToTable colors indexes =
     |> String.concat ""
     |> fun s -> $"\n<table>\n{s}</table>\n"
 
-let colors = Colors256.Table()
+let colors = AnsiConsole.Colors256()
 
 let title = "ANSI 256 colors table"
 let table16ColorsSlug = "16-color-table"
