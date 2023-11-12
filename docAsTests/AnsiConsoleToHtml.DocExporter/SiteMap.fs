@@ -20,6 +20,11 @@ type SiteMap = {
                 | _ -> None)
             |> Seq.choose id
             |> Seq.groupBy (fun (_, toc) -> toc.Parent)
+            |> Seq.sortBy (fun (key, _) ->
+                match key with
+                | "Getting started" -> 0
+                | "Misc" -> 1000
+                | _ -> 1)
             |> Seq.map (fun (key, values) -> {
                 Name = key
                 Items =

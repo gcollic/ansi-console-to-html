@@ -1,8 +1,5 @@
 ﻿---
 Title: 'ANSI 256 colors table'
-Navbar:
-  Label: 'Docs'
-  Order: 1
 Toc:
   Parent: 'ANSI commands'
   Label: 'ANSI 256 colors table'

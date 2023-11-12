@@ -174,3 +174,6 @@ body > nav ul:first-of-type li:nth-of-type(2) {
   text-align: center;
   border: 1px solid #FFFFFF;
 }
+pre {
+  padding: 1em;
+}

@@ -59,7 +59,7 @@ let pages () = [
         Metadata =
             Some {
                 Title = title
-                Navbar = Some { Label = "Docs"; Order = 1 }
+                Navbar = None
                 Toc =
                     Some {
                         Parent = "ANSI commands"

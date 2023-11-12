@@ -32,5 +32,6 @@ let verifyDocPart (part: DocPart.DocPart) =
 [<Tests>]
 let tests =
     testList "Doc parts" [
-        testList "AnsiColorsPage" (AnsiColorsPage.pages () |> List.map verifyDocPart)
+        testList "ANSI Colors Page" (AnsiColorsPage.pages () |> List.map verifyDocPart)
+        testList "Getting started Page" (GettingStartedPage.pages () |> List.map verifyDocPart)
     ]
