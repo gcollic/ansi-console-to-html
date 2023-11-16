@@ -19,6 +19,15 @@
          ]
       },
       {
+         "name": "clean-obsolete-verified",
+         "command": "dotnet",
+         "args": [
+            "husky",
+            "exec",
+            ".husky/csx/clean-obsolete-verified.csx"
+         ]
+      },
+      {
          "name": "export-doc",
          "command": "dotnet",
          "args": [
