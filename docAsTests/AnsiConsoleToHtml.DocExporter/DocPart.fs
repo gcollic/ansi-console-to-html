@@ -33,6 +33,10 @@ type Slug =
 
     static member from(s: string) = Slug(s.Trim().ToLowerInvariant())
 
+let (|Slug|) (input: Slug) =
+    match input with
+    | Slug s -> Slug s
+
 type DocPart = {
     Slug: Slug
     Metadata: PageMetadata option
