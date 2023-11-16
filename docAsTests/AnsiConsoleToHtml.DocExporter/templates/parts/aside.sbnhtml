@@ -1,0 +1,15 @@
+
+<aside>
+  <nav>
+{{ for group in toc }}
+    <details {{ if group_contains group slug }} open="true"{{ end }}>
+      <summary>{{group.name}}</summary>
+      <ul>
+{{ for item in group.items }}
+        <li><a href="{{url_to item.slug}}" class="secondary"{{ if item.slug == slug }} aria-current="page"{{ end }}>{{ item.label }}</a></li>
+{{ end }}
+      </ul>
+    </details>
+{{ end }}
+  </nav>
+</aside>

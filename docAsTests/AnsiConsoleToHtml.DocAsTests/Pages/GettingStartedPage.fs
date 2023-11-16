@@ -18,12 +18,28 @@ let formatter = new HtmlFormatter()
 let colorize lang code = formatter.GetHtmlString(code, lang)
 
 let dotnet =
-    $"{nameof AnsiConsole}.{nameof AnsiConsole.ToHtml}({toDotNetstring sample})"
+    $"{nameof AnsiConsole}.{nameof AnsiConsole.ToHtml}(
+    {toDotNetstring sample}
+)"
     |> colorize Languages.CSharp
 
 let result = AnsiConsole.ToHtml sample
 let html = result |> colorize Languages.Html
-let comparison = $"{dotnet}\n<br/>\n{html}\n<br/>\n{result}"
+
+let comparison =
+    $"
+<div>
+    DotNet
+{dotnet}
+</div>
+<div>
+    HTML code result
+{html}
+</div>
+<div>
+    HTML render result
+{result}
+</div>"
 
 let pages () = [
     {

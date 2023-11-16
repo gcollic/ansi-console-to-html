@@ -4,12 +4,12 @@
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Credits</title>
-    <meta name="description" content="Credits" />
+    <title>ANSIConsoleToHtml</title>
+    <meta name="description" content="ANSIConsoleToHtml" />
     <meta name="robots" content="index, follow" />
-    <meta property="og:title" content="Credits" />
-    <meta property="og:description" content="Credits" />
-    <meta property="og:url" content="./credits.html" />
+    <meta property="og:title" content="ANSIConsoleToHtml" />
+    <meta property="og:description" content="ANSIConsoleToHtml" />
+    <meta property="og:url" content="./index.html" />
     <meta property="og:site_name" content="ANSIConsoleToHtml" />
     <meta property="og:type" content="website" />
     <meta property="og:image" content="./og_image.jpg" />
@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css" />
     <link rel="stylesheet" href="main.css" />
 
-    <link rel="stylesheet" href="docs.css" />
+    <link rel="stylesheet" href="index.css" />
   </head>
 
   <body>
@@ -80,83 +80,52 @@
       </ul>
     </nav>
 
-    <main class="container" id="docs">
+    <main id="docs">
 
       
-      <aside>
-        <nav>
-      
-          <details >
-            <summary>Getting started</summary>
-            <ul>
-      
-              <li><a href="getting_started.html" class="secondary">How to use</a></li>
-      
-            </ul>
-          </details>
-      
-          <details >
-            <summary>ANSI commands</summary>
-            <ul>
-      
-              <li><a href="ansi_colors.html" class="secondary">ANSI 256 colors table</a></li>
-      
-            </ul>
-          </details>
-      
-          <details  open="true">
-            <summary>Misc</summary>
-            <ul>
-      
-              <li><a href="credits.html" class="secondary" aria-current="page">Credits</a></li>
-      
-              <li><a href="changelog.html" class="secondary">Change Log</a></li>
-      
-            </ul>
-          </details>
-      
-        </nav>
-      </aside>
 
       <div role="document">
 
+<section id="header">
+  <div class="container">
+    <h1>A .NET library to convert ANSI console output to HTML.</h1>
+    <p><a href="getting_started.html" role="button" class="secondary" aria-label="Documentation">Get
+        started</a>
+      <a href="https://www.nuget.org/packages/AnsiConsoleToHtml/" role="button" class="contrast outline"
+        aria-label="Download">Download</a>
+    </p>
+    <p><code>dotnet add package AnsiConsoleToHtml</code></p>
+  </div>
+</section>
+<section id="demo" aria-label="Demo">
+  <div class="container">
+    <div class="grid">
 
-        <section id="start" class="page_credits">
-<h1>Credits</h1>
-<p>The aim of this file is to acknowledge the projects that have been invaluable in helping us produce this software.</p>
-<ul>
-<li>Library
-<ul>
-<li><a href="https://fsharp.org/">F#</a> (MIT)</li>
-<li><a href="http://www.quanttec.com/fparsec/">FParsec</a>, a parser combinator library for F# (BSD 2-Clause &quot;Simplified&quot; License)</li>
-</ul>
-</li>
-<li>Doc As Test
-<ul>
-<li><a href="https://github.com/sfauvel">Sébastien Fauvel</a> for sharing <a href="https://sfauvel.github.io/documentationtesting/">his approach</a></li>
-<li><a href="https://github.com/scriban/scriban">Scriban</a>, a fast, powerful, safe and lightweight templating and scripting engine for .NET (BSD 2-Clause &quot;Simplified&quot; License)</li>
-<li><a href="https://github.com/xoofx/markdig">Markdig</a>, a fast, powerful, CommonMark compliant, extensible Markdown processor for .NET (BSD 2-Clause &quot;Simplified&quot; License)</li>
-<li><a href="https://fjoppe.github.io/Legivel/">Legivel</a>, a Yaml to Native processor in F#, producing F# types (The Unlicense)</li>
-<li><a href="https://github.com/VerifyTests/Verify">Verify</a>, a snapshot tool that simplifies the assertion of complex data models and documents (MIT)</li>
-</ul>
-</li>
-<li>General tooling
-<ul>
-<li><a href="https://fsprojects.github.io/fantomas/">Fantomas</a>, an opinionated code formatter for F# (Apache-2.0)</li>
-<li><a href="https://alirezanet.github.io/Husky.Net/">Husky.Net</a>, a Git hooks and task runner for .Net (MIT)</li>
-<li><a href="https://github.com/versionize/versionize">Versionize</a>, an automatic versioning and CHANGELOG generator, using conventional commit messages (MIT)</li>
-</ul>
-</li>
-<li>Assets
-<ul>
-<li><a href="https://picocss.com/">Pico CSS</a>, a minimal CSS Framework for semantic HTML (MIT)</li>
-<li>Logo based on Brush by Manohara from <a href="https://thenounproject.com/icon/brush-1235651/" target="_blank" title="Brush Icons">Noun Project</a> (CC BY 3.0)</li>
-</ul>
-</li>
-</ul>
-
-        </section>
-
+<div>
+    DotNet
+<div style="color:#000000;background-color:#FFFFFF;"><pre>
+AnsiConsole.ToHtml(
+    <span style="color:#A31515;">&quot;Hi \x1B[32mWorld&quot;</span>
+)
+</pre></div>
+</div>
+<div>
+    HTML code result
+<div style="color:#000000;background-color:#FFFFFF;"><pre>
+<span style="color:#0000FF;">&lt;</span><span style="color:#A31515;">pre</span> <span style="color:#FF0000;">style</span><span style="color:#0000FF;">=</span><span style="color:#0000FF;">&#39;color:#FFFFFF;background:#000000&#39;</span><span style="color:#0000FF;">&gt;</span>
+Hi <span style="color:#0000FF;">&lt;</span><span style="color:#A31515;">span</span> <span style="color:#FF0000;">style</span><span style="color:#0000FF;">=</span><span style="color:#0000FF;">&#39;color:#00BB00;&#39;</span><span style="color:#0000FF;">&gt;</span>World<span style="color:#0000FF;">&lt;/</span><span style="color:#A31515;">span</span><span style="color:#0000FF;">&gt;</span>
+<span style="color:#0000FF;">&lt;/</span><span style="color:#A31515;">pre</span><span style="color:#0000FF;">&gt;</span>
+</pre></div>
+</div>
+<div>
+    HTML render result
+<pre style='color:#FFFFFF;background:#000000'>
+Hi <span style='color:#00BB00;'>World</span>
+</pre>
+</div>
+    </div>
+  </div>
+</section>
 
         <footer>
           <hr />

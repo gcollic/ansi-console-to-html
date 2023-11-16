@@ -1,0 +1,39 @@
+#header {
+    padding: 140px 0 0 0;
+}
+
+#demo pre {
+    height: 8em;
+    padding: 20px;
+    font-size: smaller;
+}
+
+body>main {
+    padding-bottom: 0;
+}
+
+#header h1,
+#header p {
+    text-align: center
+}
+
+
+#header h1 {
+    margin-bottom: var(--spacing)
+}
+
+#header h1~p {
+    color: var(--muted-color)
+}
+
+#header a:not(:last-of-type) {
+    margin-right: calc(var(--spacing) * .5)
+}
+
+#header p:last-of-type {
+    margin-bottom: 0
+}
+
+footer p:last-of-type {
+    padding-left: 1em;
+}

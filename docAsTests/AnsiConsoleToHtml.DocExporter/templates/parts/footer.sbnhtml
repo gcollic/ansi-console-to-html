@@ -1,0 +1,9 @@
+<footer>
+  <hr />
+  <p>
+    <small>Code licensed
+      <a href="{{repo_root}}/blob/master/LICENSE" class="secondary">{{ license_name }}</a> • V.<a
+        href="{{url_to 'changelog'}}" class="secondary">{{ version }}</a>
+    </small>
+  </p>
+</footer>

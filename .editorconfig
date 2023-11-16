@@ -4,6 +4,8 @@ root = true
 [*.{html,sbnhtml,md}]
 insert_final_newline = true
 end_of_line = lf
+indent_style = space
+indent_size = 2
 
 [*.csx]
 insert_final_newline = true

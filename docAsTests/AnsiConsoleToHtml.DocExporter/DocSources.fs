@@ -8,6 +8,13 @@ let sources rootFolder = {|
     partsFolders = [|
         Path.Combine(rootFolder, "docAsTests", "AnsiConsoleToHtml.DocAsTests", "expectations")
         Path.Combine(rootFolder, "docAsTests", "AnsiConsoleToHtml.DocExporter", "handwritten")
+        Path.Combine(
+            rootFolder,
+            "docAsTests",
+            "AnsiConsoleToHtml.DocExporter",
+            "templates",
+            "parts"
+        )
     |]
     partsDirectFiles = [| Path.Combine(rootFolder, "CHANGELOG.md") |]
     mainLayoutFile =
