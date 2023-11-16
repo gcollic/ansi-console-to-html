@@ -46,7 +46,7 @@ let applyLayoutToDoc =
 let mainLayout = sources.mainLayoutFile |> File.ReadAllText |> Template.Parse
 
 allDocParts
-|> Array.filter (fun p -> p.Metadata.IsSome)
+|> Array.filter _.Metadata.IsSome
 |> Array.iter (fun docPart ->
     let templatedContent = applyLayoutToDoc mainLayout docPart
 
