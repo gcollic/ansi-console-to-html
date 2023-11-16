@@ -32,7 +32,7 @@ if(!string.IsNullOrEmpty(gitStatus))
 }
 
 var expectationsFolder = Path.Combine(rootFolder, "docAsTests", "AnsiConsoleToHtml.DocAsTests", "expectations");
-Console.WriteLine($"➡️ delete all verified files in {expectationsFolder}");
+Console.WriteLine($"➡️ delete all '.verified.' files in {expectationsFolder}");
 foreach(var file in Directory.GetFiles(expectationsFolder, "*.verified.*"))
 {
     File.Delete(file);
@@ -47,10 +47,10 @@ Process.Start("dotnet", "verify accept -y").WaitForExit();
 gitStatus = GetGitStatus();
 if(!string.IsNullOrEmpty(gitStatus))
 {
-    Console.WriteLine("❌ \x1b[31mUseless verified files found.\x1b[0m");
+    Console.WriteLine("❌ \x1b[31mObsolete '.verified.' files found.\x1b[0m");
     Console.WriteLine(gitStatus);
     return 1;
 }
 
-Console.WriteLine("✅ \x1b[32mNo useless verified files found.\x1b[0m");
+Console.WriteLine("✅ \x1b[32mNo obsolete '.verified.' files found.\x1b[0m");
 return 0;
