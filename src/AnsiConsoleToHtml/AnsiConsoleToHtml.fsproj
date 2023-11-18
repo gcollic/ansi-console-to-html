@@ -20,7 +20,11 @@
 
   <ItemGroup>
     <Compile Include="Color.fs" />
-    <Compile Include="Colors256.fs" />
+    <Compile Include="Internal/Colors256.fs" />
+    <Compile Include="Internal/AnsiModel.fs" />
+    <Compile Include="Internal/Parser.fs" />
+    <Compile Include="Internal/Interpreter.fs" />
+    <Compile Include="Internal/Renderer.fs" />
     <Compile Include="AnsiConsole.fs" />
   </ItemGroup>
 

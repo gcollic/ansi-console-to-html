@@ -4,7 +4,6 @@ open Expecto
 open VerifyTests
 open VerifyExpecto
 
-open AnsiConsoleToHtml
 open DocPart
 
 let verifySettings = VerifySettings()
@@ -34,4 +33,7 @@ let tests =
     testList "Doc parts" [
         testList "ANSI Colors Page" (AnsiColorsPage.pages () |> List.map verifyDocPart)
         testList "Getting started Page" (GettingStartedPage.pages () |> List.map verifyDocPart)
+        testList
+            "Non-graphic sequences Page"
+            (NonGraphicSequencesPage.pages () |> List.map verifyDocPart)
     ]

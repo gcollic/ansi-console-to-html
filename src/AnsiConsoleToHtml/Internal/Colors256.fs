@@ -1,8 +1,8 @@
-module Colors256
+module internal Colors256
 
 open AnsiConsoleToHtml
 
-let internal Colors256 () =
+let Colors256 () =
     seq {
         yield { R = 0uy; G = 0uy; B = 0uy }
         yield { R = 187uy; G = 0uy; B = 0uy }

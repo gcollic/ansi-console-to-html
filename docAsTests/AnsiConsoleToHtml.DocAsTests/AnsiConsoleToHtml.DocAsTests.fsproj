@@ -7,6 +7,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Pages\GettingStartedPage.fs" />
+    <Compile Include="Pages\NonGraphicSequencesPage.fs" />
     <Compile Include="Pages\AnsiColorsPage.fs" />
     <Compile Include="VerifyPages.fs" />
     <Compile Include="Main.fs" />

@@ -62,9 +62,9 @@ let pages () = [
                 Navbar = None
                 Toc =
                     Some {
-                        Parent = "ANSI commands"
+                        Parent = "ANSI escape sequences"
                         Label = title
-                        Order = 1
+                        Order = 100
                     }
             }
         Content =

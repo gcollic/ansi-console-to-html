@@ -19,11 +19,17 @@ type Helpers() =
     static member fileNameOf target = target + ".html"
     static member urlTo target = Helpers.fileNameOf target
 
-    static member linkTo target =
-        "<a href='" + (Helpers.urlTo target) + "'>" + target + "</a>"
+    static member linkTo target label =
+        "<a href='" + (Helpers.urlTo target) + "'>" + label + "</a>"
 
     static member groupContains group (slug: DocPart.Slug) =
         group.Items |> Array.exists (fun item -> item.Slug = slug)
+
+
+let markdownPipeline =
+    new Markdig.MarkdownPipelineBuilder()
+    |> Markdig.MarkdownExtensions.UsePipeTables
+    |> _.Build()
 
 let templateRenderer (allParts: DocPart array) =
 
@@ -46,7 +52,7 @@ let templateRenderer (allParts: DocPart array) =
                 let docPart = docPartsBySlug[Slug.from templateKey]
 
                 match docPart.Format with
-                | Markdown -> Markdig.Markdown.ToHtml docPart.Content
+                | Markdown -> Markdig.Markdown.ToHtml(docPart.Content, markdownPipeline)
                 | _ -> docPart.Content
 
             member this.LoadAsync(context, callerSpan, templatePath) =

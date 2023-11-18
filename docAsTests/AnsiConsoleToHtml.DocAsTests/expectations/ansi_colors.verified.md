@@ -1,9 +1,9 @@
 ﻿---
 Title: 'ANSI 256 colors table'
 Toc:
-  Parent: 'ANSI commands'
+  Parent: 'ANSI escape sequences'
   Label: 'ANSI 256 colors table'
-  Order: 1
+  Order: 100
 ---
 
 # 256 colors table (8 bits)
