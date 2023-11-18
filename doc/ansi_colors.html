@@ -4,11 +4,11 @@
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>ANSI 256 colors table</title>
-    <meta name="description" content="ANSI 256 colors table" />
+    <title>ANSI colors</title>
+    <meta name="description" content="ANSI colors" />
     <meta name="robots" content="index, follow" />
-    <meta property="og:title" content="ANSI 256 colors table" />
-    <meta property="og:description" content="ANSI 256 colors table" />
+    <meta property="og:title" content="ANSI colors" />
+    <meta property="og:description" content="ANSI colors" />
     <meta property="og:url" content="./ansi_colors.html" />
     <meta property="og:site_name" content="ANSIConsoleToHtml" />
     <meta property="og:type" content="website" />
@@ -101,7 +101,7 @@
       
               <li><a href="ansi-sequences-overview.html" class="secondary">Overview</a></li>
       
-              <li><a href="ansi_colors.html" class="secondary" aria-current="page">ANSI 256 colors table</a></li>
+              <li><a href="ansi_colors.html" class="secondary" aria-current="page">ANSI colors</a></li>
       
             </ul>
           </details>
@@ -124,9 +124,58 @@
 
 
         <section id="start" class="page_ansi_colors">
-<h1>256 colors table (8 bits)</h1>
+<h1>ANSI colors</h1>
+<h2>Sequences</h2>
+<h3>Foreground Color</h3>
+<h4>30–37: direct color</h4>
+<p>Substract 30 to get the index of the corresponding color in the 256 colors table.</p>
+<p><table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>30</td>
+<td><pre style='color:#FFFFFF;background:#000000'><span style='color:#000000;'>Hello</span></pre></td>
+</tr>
+<tr>
+<td>31</td>
+<td><pre style='color:#FFFFFF;background:#000000'><span style='color:#BB0000;'>Hello</span></pre></td>
+</tr>
+<tr>
+<td>32</td>
+<td><pre style='color:#FFFFFF;background:#000000'><span style='color:#00BB00;'>Hello</span></pre></td>
+</tr>
+<tr>
+<td>33</td>
+<td><pre style='color:#FFFFFF;background:#000000'><span style='color:#BBBB00;'>Hello</span></pre></td>
+</tr>
+<tr>
+<td>34</td>
+<td><pre style='color:#FFFFFF;background:#000000'><span style='color:#0000BB;'>Hello</span></pre></td>
+</tr>
+<tr>
+<td>35</td>
+<td><pre style='color:#FFFFFF;background:#000000'><span style='color:#BB00BB;'>Hello</span></pre></td>
+</tr>
+<tr>
+<td>36</td>
+<td><pre style='color:#FFFFFF;background:#000000'><span style='color:#00BBBB;'>Hello</span></pre></td>
+</tr>
+<tr>
+<td>37</td>
+<td><pre style='color:#FFFFFF;background:#000000'><span style='color:#BBBBBB;'>Hello</span></pre></td>
+</tr>
+</tbody>
+</table>
+</p>
+<div class="color-tables">
+<h2>256 colors table (8 bits)</h2>
 <p>References: <a href="https://en.wikipedia.org/wiki/ANSI_escape_code#8-bit">Wikipedia</a></p>
-<h2>0-15: named colors</h2>
+<h3>0-15: named colors</h3>
 <p>The name of these colors are in the specification, but the actual colors depends on the terminal and user configuration.
 0-7 are standard colors, and 8-15 high-intensity versions.</p>
 <div>
@@ -135,7 +184,7 @@
 <tr><td style='background:#555555;color:black'>&nbsp;&nbsp;8</td><td style='background:#FF5555;color:black'>&nbsp;&nbsp;9</td><td style='background:#00FF00;color:black'>10</td><td style='background:#FFFF55;color:black'>11</td><td style='background:#5555FF;color:black'>12</td><td style='background:#FF55FF;color:black'>13</td><td style='background:#55FFFF;color:black'>14</td><td style='background:#FFFFFF;color:black'>15</td></tr>
 </table>
 </div>
-<h2>16-231: 216 colors</h2>
+<h3>16-231: 216 colors</h3>
 <p>It's a 6×6×6 color cube.</p>
 <div>
 <table>
@@ -147,12 +196,13 @@
 <tr><td style='background:#FF0000;color:white'>196</td><td style='background:#FF005F;color:white'>197</td><td style='background:#FF0087;color:white'>198</td><td style='background:#FF00AF;color:white'>199</td><td style='background:#FF00D7;color:white'>200</td><td style='background:#FF00FF;color:white'>201</td><td style='background:#FF5F00;color:white'>202</td><td style='background:#FF5F5F;color:white'>203</td><td style='background:#FF5F87;color:white'>204</td><td style='background:#FF5FAF;color:white'>205</td><td style='background:#FF5FD7;color:white'>206</td><td style='background:#FF5FFF;color:white'>207</td><td style='background:#FF8700;color:white'>208</td><td style='background:#FF875F;color:white'>209</td><td style='background:#FF8787;color:white'>210</td><td style='background:#FF87AF;color:white'>211</td><td style='background:#FF87D7;color:white'>212</td><td style='background:#FF87FF;color:white'>213</td><td style='background:#FFAF00;color:black'>214</td><td style='background:#FFAF5F;color:black'>215</td><td style='background:#FFAF87;color:black'>216</td><td style='background:#FFAFAF;color:black'>217</td><td style='background:#FFAFD7;color:black'>218</td><td style='background:#FFAFFF;color:black'>219</td><td style='background:#FFD700;color:black'>220</td><td style='background:#FFD75F;color:black'>221</td><td style='background:#FFD787;color:black'>222</td><td style='background:#FFD7AF;color:black'>223</td><td style='background:#FFD7D7;color:black'>224</td><td style='background:#FFD7FF;color:black'>225</td><td style='background:#FFFF00;color:black'>226</td><td style='background:#FFFF5F;color:black'>227</td><td style='background:#FFFF87;color:black'>228</td><td style='background:#FFFFAF;color:black'>229</td><td style='background:#FFFFD7;color:black'>230</td><td style='background:#FFFFFF;color:black'>231</td></tr>
 </table>
 </div>
-<h2>232-255: gray</h2>
+<h3>232-255: gray</h3>
 <p>It's a scale of 24 shades of gray.</p>
 <div>
 <table>
 <tr><td style='background:#080808;color:white'>232</td><td style='background:#121212;color:white'>233</td><td style='background:#1C1C1C;color:white'>234</td><td style='background:#262626;color:white'>235</td><td style='background:#303030;color:white'>236</td><td style='background:#3A3A3A;color:white'>237</td><td style='background:#444444;color:white'>238</td><td style='background:#4E4E4E;color:white'>239</td><td style='background:#585858;color:white'>240</td><td style='background:#626262;color:white'>241</td><td style='background:#6C6C6C;color:white'>242</td><td style='background:#767676;color:white'>243</td><td style='background:#808080;color:black'>244</td><td style='background:#8A8A8A;color:black'>245</td><td style='background:#949494;color:black'>246</td><td style='background:#9E9E9E;color:black'>247</td><td style='background:#A8A8A8;color:black'>248</td><td style='background:#B2B2B2;color:black'>249</td><td style='background:#BCBCBC;color:black'>250</td><td style='background:#C6C6C6;color:black'>251</td><td style='background:#D0D0D0;color:black'>252</td><td style='background:#DADADA;color:black'>253</td><td style='background:#E4E4E4;color:black'>254</td><td style='background:#EEEEEE;color:black'>255</td></tr>
 </table>
+</div>
 </div>
 
         </section>

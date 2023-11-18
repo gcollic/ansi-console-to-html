@@ -20,24 +20,34 @@ let colorsToRow colors indexes =
     |> String.concat ""
     |> fun s -> $"<tr>{s}</tr>\n"
 
-let colorsToTable colors indexes =
+let colorsToHtmlTable colors indexes =
     indexes
     |> List.map (colorsToRow colors)
     |> String.concat ""
     |> fun s -> $"\n<table>\n{s}</table>\n"
 
+let codesToMarkdownTable codes =
+    codes
+    |> List.map (fun i ->
+        let result = $"\x1B[{i}mHello" |> AnsiConsole.ToHtml |> _.Replace("\n", "")
+        $"| {i} | {result} |")
+    |> String.concat "\n"
+    |> fun s -> $"| Code | Result |\n|---|---|\n{s}\n"
+
 let colors = AnsiConsole.Colors256()
 
-let title = "ANSI 256 colors table"
+let title = "ANSI colors"
+let slug = "ansi_colors"
 let table16ColorsSlug = "16-color-table"
 let table216ColorsSlug = "216-color-table"
 let tableGraysSlug = "grays-table"
+let tableSequence3037Slug = slug + "-sequence-30-37"
 
 let pages () = [
     {
         Slug = Slug.from table16ColorsSlug
         Metadata = None
-        Content = [ [ 0..7 ]; [ 8..15 ] ] |> colorsToTable colors
+        Content = [ [ 0..7 ]; [ 8..15 ] ] |> colorsToHtmlTable colors
         Format = Html
     }
     {
@@ -45,17 +55,23 @@ let pages () = [
         Metadata = None
         Content =
             [ for rowIndex in 0..5 -> [ for col in 0..35 -> (rowIndex * 36 + col + 16) ] ]
-            |> colorsToTable colors
+            |> colorsToHtmlTable colors
         Format = Html
     }
     {
         Slug = Slug.from tableGraysSlug
         Metadata = None
-        Content = [ [ 232..255 ] ] |> colorsToTable colors
+        Content = [ [ 232..255 ] ] |> colorsToHtmlTable colors
         Format = Html
     }
     {
-        Slug = Slug.from "ansi_colors"
+        Slug = Slug.from tableSequence3037Slug
+        Metadata = None
+        Content = [ 30..37 ] |> codesToMarkdownTable
+        Format = Markdown
+    }
+    {
+        Slug = Slug.from slug
         Metadata =
             Some {
                 Title = title
@@ -69,29 +85,44 @@ let pages () = [
             }
         Content =
             $"""
-# 256 colors table (8 bits)
+# ANSI colors
+
+## Sequences
+
+### Foreground Color
+
+#### 30–37: direct color
+
+Substract 30 to get the index of the corresponding color in the 256 colors table.
+
+{{{{include '{tableSequence3037Slug}'}}}}
+
+<div class="color-tables">
+
+## 256 colors table (8 bits)
 
 References: [Wikipedia](https://en.wikipedia.org/wiki/ANSI_escape_code#8-bit)
 
-## 0-15: named colors
+### 0-15: named colors
 
 The name of these colors are in the specification, but the actual colors depends on the terminal and user configuration.
 0-7 are standard colors, and 8-15 high-intensity versions.
 
 <div>{{{{include '{table16ColorsSlug}'}}}}</div>
 
-## 16-231: 216 colors
+### 16-231: 216 colors
 
 It's a 6×6×6 color cube.
 
 <div>{{{{include '{table216ColorsSlug}'}}}}</div>
 
-## 232-255: gray
+### 232-255: gray
 
 It's a scale of 24 shades of gray.
 
 <div>{{{{include '{tableGraysSlug}'}}}}</div>
 
+</div>
 """
         Format = Markdown
     }
