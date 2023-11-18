@@ -7,12 +7,18 @@ open AnsiModel
 open Interpreter
 
 let private toHtmlStyle (style: AnsiStyle) =
-    Option.map (fun (c: Color) -> $"color:{c.AsHexColor()};") style.Foreground
+
+    [
+        Option.map (fun (c: Color) -> $"color:{c.AsHexColor()};") style.Foreground
+        if style.Bold then Some "font-weight: 900;" else None
+    ]
+    |> List.choose id
+    |> String.Concat
 
 let private toSpan ansiStyle innerContent =
     match toHtmlStyle ansiStyle with
-    | None -> innerContent
-    | Some style -> $"<span style='{style}'>{innerContent}</span>"
+    | "" -> innerContent
+    | style -> $"<span style='{style}'>{innerContent}</span>"
 
 let rec private convertToHtmlParts tokens =
     match tokens with
