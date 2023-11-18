@@ -34,7 +34,6 @@ let tests =
         testList "ANSI Colors Page" (AnsiColorsPage.pages () |> List.map verifyDocPart)
         testList "Getting started Page" (GettingStartedPage.pages () |> List.map verifyDocPart)
         testList
-            "Non-graphic sequences Page"
-            (NonGraphicSequencesPage.pages () |> List.map verifyDocPart)
-        testList "Graphic sequences Page" (GraphicSequencesPage.pages () |> List.map verifyDocPart)
+            "Sequences overview Page"
+            (SequencesOverviewPage.pages () |> List.map verifyDocPart)
     ]

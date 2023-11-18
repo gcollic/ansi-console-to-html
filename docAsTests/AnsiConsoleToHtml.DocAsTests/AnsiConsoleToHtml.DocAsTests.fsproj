@@ -8,8 +8,7 @@
   <ItemGroup>
     <Compile Include="Colorizer.fs" />
     <Compile Include="Pages\GettingStartedPage.fs" />
-    <Compile Include="Pages\GraphicSequencesPage.fs" />
-    <Compile Include="Pages\NonGraphicSequencesPage.fs" />
+    <Compile Include="Pages\SequencesOverviewPage.fs" />
     <Compile Include="Pages\AnsiColorsPage.fs" />
     <Compile Include="VerifyPages.fs" />
     <Compile Include="Main.fs" />
