@@ -8,7 +8,7 @@ Toc:
 
 # Non-graphic sequences
 
-Only the {{link_to 'getting_started' 'SGR (Select Graphic Rendition) sequences'}} are supported. The other ANSI escape sequences are ignored.
+Only the {{link_to 'ansi-graphic-sequences' 'SGR (Select Graphic Rendition) sequences'}} are supported. The other ANSI escape sequences are ignored.
 
 All the following sequences are rendered as <pre style='color:#FFFFFF;background:#000000'>
 Hello  World

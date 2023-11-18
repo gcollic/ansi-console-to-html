@@ -6,6 +6,7 @@ open Parser
 
 let rec private ansiCodesToStyle (colors256: Color[]) codes style =
     match codes with
+    | [[0]] -> AnsiStyle.Empty
     | [[32]] -> { style with Foreground = Some (colors256[2]) }
     | _ ->  style
 

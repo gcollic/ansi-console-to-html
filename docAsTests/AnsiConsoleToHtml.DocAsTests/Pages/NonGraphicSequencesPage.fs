@@ -53,7 +53,7 @@ let pages () = [
             $"""
 # {title}
 
-Only the {{{{link_to 'getting_started' 'SGR (Select Graphic Rendition) sequences'}}}} are supported. The other ANSI escape sequences are ignored.
+Only the {{{{link_to '{GraphicSequencesPage.slug}' 'SGR (Select Graphic Rendition) sequences'}}}} are supported. The other ANSI escape sequences are ignored.
 
 {examples}
 

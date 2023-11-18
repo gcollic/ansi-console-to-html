@@ -1,9 +1,8 @@
 module GettingStartedPage
 
 open AnsiConsoleToHtml
-open System.Web
-open ColorCode
 open DocPart
+open Colorizer
 
 let colors = AnsiConsole.Colors256()
 
@@ -11,20 +10,14 @@ let title = "Getting started"
 let comparisonSlug = "getting_started_comparison"
 let sample = "Hi \x1B[32mWorld"
 
-let toDotNetstring (s: string) =
-    "\"" + s.Replace("\x1B", "\\x1B") + "\""
-
-let formatter = new HtmlFormatter()
-let colorize lang code = formatter.GetHtmlString(code, lang)
-
 let dotnet =
     $"{nameof AnsiConsole}.{nameof AnsiConsole.ToHtml}(
-    {toDotNetstring sample}
+    {Colorizer.toDotNetstring sample}
 )"
-    |> colorize Languages.CSharp
+    |> Colorizer.cSharp
 
 let result = AnsiConsole.ToHtml sample
-let html = result |> colorize Languages.Html
+let html = result |> Colorizer.html
 
 let comparison =
     $"

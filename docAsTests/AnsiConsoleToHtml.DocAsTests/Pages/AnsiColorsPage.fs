@@ -71,7 +71,7 @@ let pages () = [
             $"""
 # 256 colors table (8 bits)
 
-Cf. [Wikipedia](https://en.wikipedia.org/wiki/ANSI_escape_code#8-bit)
+References: [Wikipedia](https://en.wikipedia.org/wiki/ANSI_escape_code#8-bit)
 
 ## 0-15: named colors
 

@@ -4,12 +4,12 @@
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Non-graphic sequences</title>
-    <meta name="description" content="Non-graphic sequences" />
+    <title>Graphic sequence overview</title>
+    <meta name="description" content="Graphic sequence overview" />
     <meta name="robots" content="index, follow" />
-    <meta property="og:title" content="Non-graphic sequences" />
-    <meta property="og:description" content="Non-graphic sequences" />
-    <meta property="og:url" content="./ansi-non-graphic-sequences.html" />
+    <meta property="og:title" content="Graphic sequence overview" />
+    <meta property="og:description" content="Graphic sequence overview" />
+    <meta property="og:url" content="./ansi-graphic-sequences.html" />
     <meta property="og:site_name" content="ANSIConsoleToHtml" />
     <meta property="og:type" content="website" />
     <meta property="og:image" content="./og_image.jpg" />
@@ -99,9 +99,9 @@
             <summary>ANSI escape sequences</summary>
             <ul>
       
-              <li><a href="ansi-non-graphic-sequences.html" class="secondary" aria-current="page">Non-graphic sequences</a></li>
+              <li><a href="ansi-non-graphic-sequences.html" class="secondary">Non-graphic sequences</a></li>
       
-              <li><a href="ansi-graphic-sequences.html" class="secondary">Graphic sequence overview</a></li>
+              <li><a href="ansi-graphic-sequences.html" class="secondary" aria-current="page">Graphic sequence overview</a></li>
       
               <li><a href="ansi_colors.html" class="secondary">ANSI 256 colors table</a></li>
       
@@ -125,38 +125,38 @@
       <div role="document">
 
 
-        <section id="start" class="page_ansi-non-graphic-sequences">
-<h1>Non-graphic sequences</h1>
-<p>Only the <a href='ansi-graphic-sequences.html'>SGR (Select Graphic Rendition) sequences</a> are supported. The other ANSI escape sequences are ignored.</p>
-<p>All the following sequences are rendered as <pre style='color:#FFFFFF;background:#000000'>
-Hello  World
-</pre></p>
-<table>
+        <section id="start" class="page_ansi-graphic-sequences">
+<h1>Graphic sequence overview</h1>
+<p>References: <a href="https://en.wikipedia.org/wiki/ANSI_escape_code#SGR_(Select_Graphic_Rendition)_parameters">Wikipedia</a></p>
+<p>The control sequence <code style='color:#A31515;'>&quot;\x1B[ n m&quot;</code>, named Select Graphic Rendition (SGR), sets display attributes.
+Several attributes can be set in the same sequence, separated by semicolons.
+Each display attribute remains in effect until a following occurrence of SGR resets it.</p>
+<h2>Overview</h2>
+<p><table>
 <thead>
 <tr>
-<th>Input</th>
-<th>Sequence meaning</th>
+<th>n</th>
+<th>Description</th>
+<th>Example</th>
+<th>Rendered</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code style='color:#A31515;'>&quot;Hello \x1B[3A World&quot;</code></td>
-<td>Cursor 3 times up</td>
+<td>0</td>
+<td>Reset</td>
+<td><code style='color:#A31515;'>&quot;\x1B[32mHi \x1B[0mWorld&quot;</code></td>
+<td><pre style='color:#FFFFFF;background:#000000'><span style='color:#00BB00;'>Hi </span>World</pre></td>
 </tr>
 <tr>
-<td><code style='color:#A31515;'>&quot;Hello \x1B[22;5H World&quot;</code></td>
-<td>Moves the cursor to row 22, column 5</td>
-</tr>
-<tr>
-<td><code style='color:#A31515;'>&quot;Hello \x1B[2J World&quot;</code></td>
-<td>Clear entire screen</td>
-</tr>
-<tr>
-<td><code style='color:#A31515;'>&quot;Hello \x1B World&quot;</code></td>
-<td>Invalid/unfinished sequence</td>
+<td>30–37</td>
+<td>Set foreground color</td>
+<td><code style='color:#A31515;'>&quot;Hi \x1B[32mWorld&quot;</code></td>
+<td><pre style='color:#FFFFFF;background:#000000'>Hi <span style='color:#00BB00;'>World</span></pre></td>
 </tr>
 </tbody>
 </table>
+</p>
 
         </section>
 

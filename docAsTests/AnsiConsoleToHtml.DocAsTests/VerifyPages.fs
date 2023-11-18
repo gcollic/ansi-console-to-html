@@ -36,4 +36,5 @@ let tests =
         testList
             "Non-graphic sequences Page"
             (NonGraphicSequencesPage.pages () |> List.map verifyDocPart)
+        testList "Graphic sequences Page" (GraphicSequencesPage.pages () |> List.map verifyDocPart)
     ]
