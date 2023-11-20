@@ -11,6 +11,10 @@ let private toHtmlStyle (style: AnsiStyle) =
     [
         Option.map (fun (c: Color) -> $"color:{c.AsHexColor()};") style.Foreground
         if style.Bold then Some "font-weight: 900;" else None
+        Option.map
+            (function
+            | (c: Color) -> $"background:{c.AsHexColor()};")
+            style.Background
     ]
     |> List.choose id
     |> String.Concat

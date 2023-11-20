@@ -126,52 +126,20 @@
         <section id="start" class="page_ansi_colors">
 <h1>ANSI colors</h1>
 <h2>Sequences</h2>
-<h3>Foreground Color</h3>
-<h4>30–37: direct color</h4>
-<p>Substract 30 to get the index of the corresponding color in the 256 colors table.</p>
-<p><table>
-<thead>
-<tr>
-<th>Code</th>
-<th>Result</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>30</td>
-<td><pre style='color:#FFFFFF;background:#000000'><span style='color:#000000;'>Hello</span></pre></td>
-</tr>
-<tr>
-<td>31</td>
-<td><pre style='color:#FFFFFF;background:#000000'><span style='color:#BB0000;'>Hello</span></pre></td>
-</tr>
-<tr>
-<td>32</td>
-<td><pre style='color:#FFFFFF;background:#000000'><span style='color:#00BB00;'>Hello</span></pre></td>
-</tr>
-<tr>
-<td>33</td>
-<td><pre style='color:#FFFFFF;background:#000000'><span style='color:#BBBB00;'>Hello</span></pre></td>
-</tr>
-<tr>
-<td>34</td>
-<td><pre style='color:#FFFFFF;background:#000000'><span style='color:#0000BB;'>Hello</span></pre></td>
-</tr>
-<tr>
-<td>35</td>
-<td><pre style='color:#FFFFFF;background:#000000'><span style='color:#BB00BB;'>Hello</span></pre></td>
-</tr>
-<tr>
-<td>36</td>
-<td><pre style='color:#FFFFFF;background:#000000'><span style='color:#00BBBB;'>Hello</span></pre></td>
-</tr>
-<tr>
-<td>37</td>
-<td><pre style='color:#FFFFFF;background:#000000'><span style='color:#BBBBBB;'>Hello</span></pre></td>
-</tr>
-</tbody>
-</table>
-</p>
+<h3>30–37 / 40-47 direct colors</h3>
+<p>30-37 are for foreground colors, 40-47 are for background colors.
+Substract respectively 30 and 40 to get the actual index of the corresponding color in the 256 colors table.</p>
+<p><pre style='color:#FFFFFF;background:#000000'>
+     40   41   42   43   44   45   46   47
+30<span style='color:#000000;background:#000000;'>40;30</span><span style='color:#000000;background:#BB0000;'>41;30</span><span style='color:#000000;background:#00BB00;'>42;30</span><span style='color:#000000;background:#BBBB00;'>43;30</span><span style='color:#000000;background:#0000BB;'>44;30</span><span style='color:#000000;background:#BB00BB;'>45;30</span><span style='color:#000000;background:#00BBBB;'>46;30</span><span style='color:#000000;background:#BBBBBB;'>47;30</span>
+31<span style='color:#BB0000;background:#000000;'>40;31</span><span style='color:#BB0000;background:#BB0000;'>41;31</span><span style='color:#BB0000;background:#00BB00;'>42;31</span><span style='color:#BB0000;background:#BBBB00;'>43;31</span><span style='color:#BB0000;background:#0000BB;'>44;31</span><span style='color:#BB0000;background:#BB00BB;'>45;31</span><span style='color:#BB0000;background:#00BBBB;'>46;31</span><span style='color:#BB0000;background:#BBBBBB;'>47;31</span>
+32<span style='color:#00BB00;background:#000000;'>40;32</span><span style='color:#00BB00;background:#BB0000;'>41;32</span><span style='color:#00BB00;background:#00BB00;'>42;32</span><span style='color:#00BB00;background:#BBBB00;'>43;32</span><span style='color:#00BB00;background:#0000BB;'>44;32</span><span style='color:#00BB00;background:#BB00BB;'>45;32</span><span style='color:#00BB00;background:#00BBBB;'>46;32</span><span style='color:#00BB00;background:#BBBBBB;'>47;32</span>
+33<span style='color:#BBBB00;background:#000000;'>40;33</span><span style='color:#BBBB00;background:#BB0000;'>41;33</span><span style='color:#BBBB00;background:#00BB00;'>42;33</span><span style='color:#BBBB00;background:#BBBB00;'>43;33</span><span style='color:#BBBB00;background:#0000BB;'>44;33</span><span style='color:#BBBB00;background:#BB00BB;'>45;33</span><span style='color:#BBBB00;background:#00BBBB;'>46;33</span><span style='color:#BBBB00;background:#BBBBBB;'>47;33</span>
+34<span style='color:#0000BB;background:#000000;'>40;34</span><span style='color:#0000BB;background:#BB0000;'>41;34</span><span style='color:#0000BB;background:#00BB00;'>42;34</span><span style='color:#0000BB;background:#BBBB00;'>43;34</span><span style='color:#0000BB;background:#0000BB;'>44;34</span><span style='color:#0000BB;background:#BB00BB;'>45;34</span><span style='color:#0000BB;background:#00BBBB;'>46;34</span><span style='color:#0000BB;background:#BBBBBB;'>47;34</span>
+35<span style='color:#BB00BB;background:#000000;'>40;35</span><span style='color:#BB00BB;background:#BB0000;'>41;35</span><span style='color:#BB00BB;background:#00BB00;'>42;35</span><span style='color:#BB00BB;background:#BBBB00;'>43;35</span><span style='color:#BB00BB;background:#0000BB;'>44;35</span><span style='color:#BB00BB;background:#BB00BB;'>45;35</span><span style='color:#BB00BB;background:#00BBBB;'>46;35</span><span style='color:#BB00BB;background:#BBBBBB;'>47;35</span>
+36<span style='color:#00BBBB;background:#000000;'>40;36</span><span style='color:#00BBBB;background:#BB0000;'>41;36</span><span style='color:#00BBBB;background:#00BB00;'>42;36</span><span style='color:#00BBBB;background:#BBBB00;'>43;36</span><span style='color:#00BBBB;background:#0000BB;'>44;36</span><span style='color:#00BBBB;background:#BB00BB;'>45;36</span><span style='color:#00BBBB;background:#00BBBB;'>46;36</span><span style='color:#00BBBB;background:#BBBBBB;'>47;36</span>
+37<span style='color:#BBBBBB;background:#000000;'>40;37</span><span style='color:#BBBBBB;background:#BB0000;'>41;37</span><span style='color:#BBBBBB;background:#00BB00;'>42;37</span><span style='color:#BBBBBB;background:#BBBB00;'>43;37</span><span style='color:#BBBBBB;background:#0000BB;'>44;37</span><span style='color:#BBBBBB;background:#BB00BB;'>45;37</span><span style='color:#BBBBBB;background:#00BBBB;'>46;37</span><span style='color:#BBBBBB;background:#BBBBBB;'>47;37</span>
+</pre></p>
 <div class="color-tables">
 <h2>256 colors table (8 bits)</h2>
 <p>References: <a href="https://en.wikipedia.org/wiki/ANSI_escape_code#8-bit">Wikipedia</a></p>

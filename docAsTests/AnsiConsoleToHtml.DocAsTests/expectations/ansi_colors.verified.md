@@ -10,13 +10,12 @@ Toc:
 
 ## Sequences
 
-### Foreground Color
+### 30–37 / 40-47 direct colors
 
-#### 30–37: direct color
+30-37 are for foreground colors, 40-47 are for background colors.
+Substract respectively 30 and 40 to get the actual index of the corresponding color in the 256 colors table.
 
-Substract 30 to get the index of the corresponding color in the 256 colors table.
-
-{{include 'ansi_colors-sequence-30-37'}}
+{{include 'ansi_colors-sequence-30-37-40-47'}}
 
 <div class="color-tables">
 

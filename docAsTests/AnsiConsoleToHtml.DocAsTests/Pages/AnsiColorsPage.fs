@@ -34,6 +34,31 @@ let codesToMarkdownTable codes =
     |> String.concat "\n"
     |> fun s -> $"| Code | Result |\n|---|---|\n{s}\n"
 
+let cartesianCodesToAsciiTable (xCodes: int list) (yCodes: int list) =
+    let xAsString = xCodes |> List.map _.ToString()
+    let maxXLength = xAsString |> List.map _.Length |> List.max
+    let yAsString = yCodes |> List.map _.ToString()
+    let maxYLength = yAsString |> List.map _.Length |> List.max
+    let maxCombinaisonLength = maxXLength + maxYLength + 1
+
+    let header =
+        xAsString
+        |> List.map (fun x -> x.PadLeft(maxCombinaisonLength, ' '))
+        |> String.concat ""
+        |> (fun row -> new string (' ', maxYLength) + row)
+
+    let rows =
+        yAsString
+        |> List.map (fun y ->
+            xAsString
+            |> List.map (fun x -> $"{x};{y}")
+            |> List.map (fun combo ->
+                $"\x1B[{combo}m{combo.PadLeft(maxCombinaisonLength, ' ')}\x1B[0m")
+            |> String.concat ""
+            |> (fun row -> y.PadLeft(maxYLength, ' ') + row))
+
+    header :: rows |> String.concat "\n" |> AnsiConsole.ToHtml
+
 let colors = AnsiConsole.Colors256()
 
 let title = "ANSI colors"
@@ -41,7 +66,7 @@ let slug = "ansi_colors"
 let table16ColorsSlug = "16-color-table"
 let table216ColorsSlug = "216-color-table"
 let tableGraysSlug = "grays-table"
-let tableSequence3037Slug = slug + "-sequence-30-37"
+let tableSequence30374047Slug = slug + "-sequence-30-37-40-47"
 
 let pages () = [
     {
@@ -65,10 +90,10 @@ let pages () = [
         Format = Html
     }
     {
-        Slug = Slug.from tableSequence3037Slug
+        Slug = Slug.from tableSequence30374047Slug
         Metadata = None
-        Content = [ 30..37 ] |> codesToMarkdownTable
-        Format = Markdown
+        Content = cartesianCodesToAsciiTable [ 40..47 ] [ 30..37 ]
+        Format = Html
     }
     {
         Slug = Slug.from slug
@@ -89,13 +114,12 @@ let pages () = [
 
 ## Sequences
 
-### Foreground Color
+### 30–37 / 40-47 direct colors
 
-#### 30–37: direct color
+30-37 are for foreground colors, 40-47 are for background colors.
+Substract respectively 30 and 40 to get the actual index of the corresponding color in the 256 colors table.
 
-Substract 30 to get the index of the corresponding color in the 256 colors table.
-
-{{{{include '{tableSequence3037Slug}'}}}}
+{{{{include '{tableSequence30374047Slug}'}}}}
 
 <div class="color-tables">
 
