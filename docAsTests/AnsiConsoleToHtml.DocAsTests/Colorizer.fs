@@ -2,11 +2,16 @@ module Colorizer
 
 open ColorCode
 
-let toDotNetstring (s: string) =
-    "\"" + s.Replace("\x1B", "\\x1B") + "\""
+let toDotNetString (s: string) =
+    let cleaned = s.Replace("\\", "\\\\").Replace("\x1B", "\\x1B").Replace("\"", "\\\"")
+    "\"" + cleaned + "\""
+
+let toUnixShellString (s: string) =
+    let cleaned = s.Replace("\\", "\\\\").Replace("\x1B", "\\033").Replace("\"", "\\\"")
+    "\"" + cleaned + "\""
 
 let inlineHtmlDotNetstring (s: string) =
-    $"<code style='color:#A31515;'>{toDotNetstring s}</code>"
+    $"<code style='color:#A31515;'>{toDotNetString s}</code>"
 
 let private formatter = new HtmlFormatter()
 

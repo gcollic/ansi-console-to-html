@@ -2,6 +2,7 @@ module AnsiColorsPage
 
 open AnsiConsoleToHtml
 open DocPart
+open SampleRenderer
 
 let toCell (colors256: Color[]) i =
     let isLightBackground =
@@ -57,7 +58,7 @@ let cartesianCodesToAsciiTable (xCodes: int list) (yCodes: int list) =
             |> String.concat ""
             |> (fun row -> y.PadLeft(maxYLength, ' ') + row))
 
-    header :: rows |> String.concat "\n" |> AnsiConsole.ToHtml
+    header :: rows |> String.concat "\n" |> renderSample
 
 let colors = AnsiConsole.Colors256()
 

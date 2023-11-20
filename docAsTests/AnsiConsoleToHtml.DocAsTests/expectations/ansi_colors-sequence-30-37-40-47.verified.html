@@ -1,4 +1,14 @@
-﻿<pre style='color:#FFFFFF;background:#000000'>
+﻿
+<div role="sample">
+  <div role="tabselect">
+    <ul>
+      <li><a href="#" role="tab" aria-current="true">HTML</a></li>
+      <li><a href="#" role="tab">DotNet</a></li>
+      <li><a href="#" role="tab">Bash</a></li>
+    </ul>
+  </div>
+  <div role="tabpanel">
+<pre style='color:#FFFFFF;background:#000000'>
      40   41   42   43   44   45   46   47
 30<span style='color:#000000;background:#000000;'>40;30</span><span style='color:#000000;background:#BB0000;'>41;30</span><span style='color:#000000;background:#00BB00;'>42;30</span><span style='color:#000000;background:#BBBB00;'>43;30</span><span style='color:#000000;background:#0000BB;'>44;30</span><span style='color:#000000;background:#BB00BB;'>45;30</span><span style='color:#000000;background:#00BBBB;'>46;30</span><span style='color:#000000;background:#BBBBBB;'>47;30</span>
 31<span style='color:#BB0000;background:#000000;'>40;31</span><span style='color:#BB0000;background:#BB0000;'>41;31</span><span style='color:#BB0000;background:#00BB00;'>42;31</span><span style='color:#BB0000;background:#BBBB00;'>43;31</span><span style='color:#BB0000;background:#0000BB;'>44;31</span><span style='color:#BB0000;background:#BB00BB;'>45;31</span><span style='color:#BB0000;background:#00BBBB;'>46;31</span><span style='color:#BB0000;background:#BBBBBB;'>47;31</span>
@@ -9,3 +19,29 @@
 36<span style='color:#00BBBB;background:#000000;'>40;36</span><span style='color:#00BBBB;background:#BB0000;'>41;36</span><span style='color:#00BBBB;background:#00BB00;'>42;36</span><span style='color:#00BBBB;background:#BBBB00;'>43;36</span><span style='color:#00BBBB;background:#0000BB;'>44;36</span><span style='color:#00BBBB;background:#BB00BB;'>45;36</span><span style='color:#00BBBB;background:#00BBBB;'>46;36</span><span style='color:#00BBBB;background:#BBBBBB;'>47;36</span>
 37<span style='color:#BBBBBB;background:#000000;'>40;37</span><span style='color:#BBBBBB;background:#BB0000;'>41;37</span><span style='color:#BBBBBB;background:#00BB00;'>42;37</span><span style='color:#BBBBBB;background:#BBBB00;'>43;37</span><span style='color:#BBBBBB;background:#0000BB;'>44;37</span><span style='color:#BBBBBB;background:#BB00BB;'>45;37</span><span style='color:#BBBBBB;background:#00BBBB;'>46;37</span><span style='color:#BBBBBB;background:#BBBBBB;'>47;37</span>
 </pre>
+  </div>
+  <div role="tabpanel" hidden>
+<div style="color:#000000;background-color:#FFFFFF;"><pre>
+AnsiConsole.ToHtml(<span style="color:#A31515;">@&quot;     40   41   42   43   44   45   46   47
+30\x1B[40;30m40;30\x1B[0m\x1B[41;30m41;30\x1B[0m\x1B[42;30m42;30\x1B[0m\x1B[43;30m43;30\x1B[0m\x1B[44;30m44;30\x1B[0m\x1B[45;30m45;30\x1B[0m\x1B[46;30m46;30\x1B[0m\x1B[47;30m47;30\x1B[0m
+31\x1B[40;31m40;31\x1B[0m\x1B[41;31m41;31\x1B[0m\x1B[42;31m42;31\x1B[0m\x1B[43;31m43;31\x1B[0m\x1B[44;31m44;31\x1B[0m\x1B[45;31m45;31\x1B[0m\x1B[46;31m46;31\x1B[0m\x1B[47;31m47;31\x1B[0m
+32\x1B[40;32m40;32\x1B[0m\x1B[41;32m41;32\x1B[0m\x1B[42;32m42;32\x1B[0m\x1B[43;32m43;32\x1B[0m\x1B[44;32m44;32\x1B[0m\x1B[45;32m45;32\x1B[0m\x1B[46;32m46;32\x1B[0m\x1B[47;32m47;32\x1B[0m
+33\x1B[40;33m40;33\x1B[0m\x1B[41;33m41;33\x1B[0m\x1B[42;33m42;33\x1B[0m\x1B[43;33m43;33\x1B[0m\x1B[44;33m44;33\x1B[0m\x1B[45;33m45;33\x1B[0m\x1B[46;33m46;33\x1B[0m\x1B[47;33m47;33\x1B[0m
+34\x1B[40;34m40;34\x1B[0m\x1B[41;34m41;34\x1B[0m\x1B[42;34m42;34\x1B[0m\x1B[43;34m43;34\x1B[0m\x1B[44;34m44;34\x1B[0m\x1B[45;34m45;34\x1B[0m\x1B[46;34m46;34\x1B[0m\x1B[47;34m47;34\x1B[0m
+35\x1B[40;35m40;35\x1B[0m\x1B[41;35m41;35\x1B[0m\x1B[42;35m42;35\x1B[0m\x1B[43;35m43;35\x1B[0m\x1B[44;35m44;35\x1B[0m\x1B[45;35m45;35\x1B[0m\x1B[46;35m46;35\x1B[0m\x1B[47;35m47;35\x1B[0m
+36\x1B[40;36m40;36\x1B[0m\x1B[41;36m41;36\x1B[0m\x1B[42;36m42;36\x1B[0m\x1B[43;36m43;36\x1B[0m\x1B[44;36m44;36\x1B[0m\x1B[45;36m45;36\x1B[0m\x1B[46;36m46;36\x1B[0m\x1B[47;36m47;36\x1B[0m
+37\x1B[40;37m40;37\x1B[0m\x1B[41;37m41;37\x1B[0m\x1B[42;37m42;37\x1B[0m\x1B[43;37m43;37\x1B[0m\x1B[44;37m44;37\x1B[0m\x1B[45;37m45;37\x1B[0m\x1B[46;37m46;37\x1B[0m\x1B[47;37m47;37\x1B[0m&quot;</span>)
+</pre></div>
+  </div>
+  <div role="tabpanel" hidden>
+<pre>printf "     40   41   42   43   44   45   46   47
+30\033[40;30m40;30\033[0m\033[41;30m41;30\033[0m\033[42;30m42;30\033[0m\033[43;30m43;30\033[0m\033[44;30m44;30\033[0m\033[45;30m45;30\033[0m\033[46;30m46;30\033[0m\033[47;30m47;30\033[0m
+31\033[40;31m40;31\033[0m\033[41;31m41;31\033[0m\033[42;31m42;31\033[0m\033[43;31m43;31\033[0m\033[44;31m44;31\033[0m\033[45;31m45;31\033[0m\033[46;31m46;31\033[0m\033[47;31m47;31\033[0m
+32\033[40;32m40;32\033[0m\033[41;32m41;32\033[0m\033[42;32m42;32\033[0m\033[43;32m43;32\033[0m\033[44;32m44;32\033[0m\033[45;32m45;32\033[0m\033[46;32m46;32\033[0m\033[47;32m47;32\033[0m
+33\033[40;33m40;33\033[0m\033[41;33m41;33\033[0m\033[42;33m42;33\033[0m\033[43;33m43;33\033[0m\033[44;33m44;33\033[0m\033[45;33m45;33\033[0m\033[46;33m46;33\033[0m\033[47;33m47;33\033[0m
+34\033[40;34m40;34\033[0m\033[41;34m41;34\033[0m\033[42;34m42;34\033[0m\033[43;34m43;34\033[0m\033[44;34m44;34\033[0m\033[45;34m45;34\033[0m\033[46;34m46;34\033[0m\033[47;34m47;34\033[0m
+35\033[40;35m40;35\033[0m\033[41;35m41;35\033[0m\033[42;35m42;35\033[0m\033[43;35m43;35\033[0m\033[44;35m44;35\033[0m\033[45;35m45;35\033[0m\033[46;35m46;35\033[0m\033[47;35m47;35\033[0m
+36\033[40;36m40;36\033[0m\033[41;36m41;36\033[0m\033[42;36m42;36\033[0m\033[43;36m43;36\033[0m\033[44;36m44;36\033[0m\033[45;36m45;36\033[0m\033[46;36m46;36\033[0m\033[47;36m47;36\033[0m
+37\033[40;37m40;37\033[0m\033[41;37m41;37\033[0m\033[42;37m42;37\033[0m\033[43;37m43;37\033[0m\033[44;37m44;37\033[0m\033[45;37m45;37\033[0m\033[46;37m46;37\033[0m\033[47;37m47;37\033[0m"</pre>
+  </div>
+</div>

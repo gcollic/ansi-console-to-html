@@ -2,7 +2,6 @@ module GettingStartedPage
 
 open AnsiConsoleToHtml
 open DocPart
-open Colorizer
 
 let colors = AnsiConsole.Colors256()
 
@@ -12,7 +11,7 @@ let sample = "Hi \x1B[32mWorld"
 
 let dotnet =
     $"{nameof AnsiConsole}.{nameof AnsiConsole.ToHtml}(
-    {Colorizer.toDotNetstring sample}
+    {Colorizer.toDotNetString sample}
 )"
     |> Colorizer.cSharp
 

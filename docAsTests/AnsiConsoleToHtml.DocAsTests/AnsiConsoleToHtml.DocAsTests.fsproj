@@ -7,6 +7,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Colorizer.fs" />
+    <Compile Include="SampleRenderer.fs" />
     <Compile Include="Pages\GettingStartedPage.fs" />
     <Compile Include="Pages\SequencesOverviewPage.fs" />
     <Compile Include="Pages\AnsiColorsPage.fs" />

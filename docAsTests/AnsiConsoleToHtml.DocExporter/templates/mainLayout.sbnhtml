@@ -34,5 +34,8 @@
 
       </div>
     </main>
+    {{ if slug != "index"
+          include 'tabscript'
+       end }}
   </body>
 </html>
