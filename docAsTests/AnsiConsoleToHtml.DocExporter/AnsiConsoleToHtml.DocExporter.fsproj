@@ -14,8 +14,6 @@
     <Compile Include="TemplateEngine.fs" />
     <Compile Include="VerboseIo.fs" />
     <Compile Include="Program.fs" />
-    <Content Include="templates/mainLayout.sbnhtml" />
-    <Content Include="assets/main.css" />
   </ItemGroup>
 
   <ItemGroup>

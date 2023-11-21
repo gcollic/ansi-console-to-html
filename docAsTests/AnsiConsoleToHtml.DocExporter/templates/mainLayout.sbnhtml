@@ -33,9 +33,7 @@
         {{ include 'footer' }}
 
       </div>
-    </main>
-    {{ if slug != "index"
-          include 'tabscript'
-       end }}
+    </main>{{ if slug != "index"}}
+    <script src="main.js" type="text/javascript"></script>{{ end }}
   </body>
 </html>

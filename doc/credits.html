@@ -172,36 +172,6 @@
 
       </div>
     </main>
-    <script>
-      [...document.querySelectorAll("[role=tab]")].forEach((tab) => {
-        tab.addEventListener("click", (e) => {
-          e.preventDefault();
-    
-          if (!e.target.hasAttribute("aria-current")) {
-            e.target.setAttribute("aria-current", true);
-          }
-    
-          const parent = e.target.closest("div[role=sample]");
-          const find = (el) => [...parent.querySelectorAll(el)];
-    
-          find("[role=tab]").forEach((t) => {
-            if (t.hasAttribute("aria-current") && t != e.target) {
-              t.removeAttribute("aria-current");
-            }
-          });
-    
-          const currentIndex = find("[role=tab]").indexOf(e.target);
-          const tabPanels = find("[role=tabpanel]");
-          tabPanels.forEach((tp) => {
-            if (tabPanels.indexOf(tp) == currentIndex) {
-              tp.removeAttribute("hidden");
-            } else {
-              tp.setAttribute("hidden", true);
-            }
-          });
-        });
-      });
-    </script>
-
+    <script src="main.js" type="text/javascript"></script>
   </body>
 </html>
