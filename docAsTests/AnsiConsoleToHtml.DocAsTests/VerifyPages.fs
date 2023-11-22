@@ -9,6 +9,7 @@ open DocPart
 let verifySettings = VerifySettings()
 verifySettings.UseDirectory("expectations")
 verifySettings.DisableDiff()
+EmptyFiles.FileExtensions.AddTextExtension("sample")
 
 
 let verifyDocPart (part: DocPart.DocPart) =

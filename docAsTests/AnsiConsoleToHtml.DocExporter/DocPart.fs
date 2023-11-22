@@ -11,11 +11,19 @@ type TocMetadata = {
 type PageFormat =
     | Html
     | Markdown
+    | Sample
 
     member this.extension =
         match this with
         | Html -> "html"
         | Markdown -> "md"
+        | Sample -> "sample"
+
+    static member from(s: string) =
+        match s.ToLowerInvariant() with
+        | "md" -> Markdown
+        | "sample" -> Sample
+        | _ -> Html
 
 type PageMetadata = {
     Title: string

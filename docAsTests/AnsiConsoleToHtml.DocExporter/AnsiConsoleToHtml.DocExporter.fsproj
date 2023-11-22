@@ -1,11 +1,12 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
-
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>net7.0</TargetFramework>
   </PropertyGroup>
-
   <ItemGroup>
+    <Compile Include="Colorizer.fs" />
+    <Compile Include="Sample.fs" />
+    <Compile Include="SampleRenderer.fs" />
     <Compile Include="DocPart.fs" />
     <Compile Include="Serializer.fs" />
     <Compile Include="Deserializer.fs" />
@@ -15,13 +16,12 @@
     <Compile Include="VerboseIo.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
-
   <ItemGroup>
+    <PackageReference Include="ColorCode.HTML" />
     <PackageReference Include="FSharp.Core" />
     <PackageReference Include="Legivel" />
     <PackageReference Include="Markdig" />
     <PackageReference Include="Scriban" />
     <ProjectReference Include="../../src/AnsiConsoleToHtml/AnsiConsoleToHtml.fsproj" />
   </ItemGroup>
-
 </Project>

@@ -35,7 +35,7 @@ let codesToMarkdownTable codes =
     |> String.concat "\n"
     |> fun s -> $"| Code | Result |\n|---|---|\n{s}\n"
 
-let cartesianCodesToAsciiTable (xCodes: int list) (yCodes: int list) =
+let cartesianCodesToAsciiTable slug (xCodes: int list) (yCodes: int list) =
     let xAsString = xCodes |> List.map _.ToString()
     let maxXLength = xAsString |> List.map _.Length |> List.max
     let yAsString = yCodes |> List.map _.ToString()
@@ -58,7 +58,7 @@ let cartesianCodesToAsciiTable (xCodes: int list) (yCodes: int list) =
             |> String.concat ""
             |> (fun row -> y.PadLeft(maxYLength, ' ') + row))
 
-    header :: rows |> String.concat "\n" |> renderSample
+    header :: rows |> String.concat "\n" |> createSample slug
 
 let colors = AnsiConsole.Colors256()
 
@@ -90,12 +90,7 @@ let pages () = [
         Content = [ [ 232..255 ] ] |> colorsToHtmlTable colors
         Format = Html
     }
-    {
-        Slug = Slug.from tableSequence30374047Slug
-        Metadata = None
-        Content = cartesianCodesToAsciiTable [ 40..47 ] [ 30..37 ]
-        Format = Html
-    }
+    cartesianCodesToAsciiTable tableSequence30374047Slug [ 40..47 ] [ 30..37 ]
     {
         Slug = Slug.from slug
         Metadata =

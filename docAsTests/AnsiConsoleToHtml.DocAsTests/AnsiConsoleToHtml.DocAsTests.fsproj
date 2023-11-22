@@ -6,7 +6,7 @@
     <GenerateProgramFile>false</GenerateProgramFile>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Colorizer.fs" />
+    <Compile Include="SampleTests.fs" />
     <Compile Include="SampleRenderer.fs" />
     <Compile Include="Pages\GettingStartedPage.fs" />
     <Compile Include="Pages\SequencesOverviewPage.fs" />
@@ -15,7 +15,6 @@
     <Compile Include="Main.fs" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="ColorCode.HTML" />
     <PackageReference Include="Expecto" />
     <PackageReference Include="Verify.Expecto" />
     <PackageReference Include="YoloDev.Expecto.TestSdk" />

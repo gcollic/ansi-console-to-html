@@ -4,6 +4,8 @@ open System.Threading.Tasks
 open Scriban
 open Scriban.Runtime
 open DocPart
+open Sample
+open SampleRenderer
 open SiteMap
 
 type DocumentationGlobalConfig = {
@@ -53,6 +55,7 @@ let templateRenderer (allParts: DocPart array) =
 
                 match docPart.Format with
                 | Markdown -> Markdig.Markdown.ToHtml(docPart.Content, markdownPipeline)
+                | Sample -> docPart.Content |> Sample.deserialize |> SampleRenderer.renderSample
                 | _ -> docPart.Content
 
             member this.LoadAsync(context, callerSpan, templatePath) =

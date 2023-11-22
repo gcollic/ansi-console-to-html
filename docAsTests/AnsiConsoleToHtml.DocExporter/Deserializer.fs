@@ -36,10 +36,7 @@ let parseDocWithOptionalYamlFrontMatter (path: string) fileContent =
                 s
         |> Slug.from
 
-    let format =
-        match Path.GetExtension(path).ToLowerInvariant() with
-        | ".md" -> Markdown
-        | _ -> Html
+    let format = Path.GetExtension(path) |> _.Substring(1) |> PageFormat.from
 
     let m = frontMatterRegex.Match(fileContent)
 
