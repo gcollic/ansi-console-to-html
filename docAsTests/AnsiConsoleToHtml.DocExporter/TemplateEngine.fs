@@ -5,7 +5,6 @@ open Scriban
 open Scriban.Runtime
 open DocPart
 open Sample
-open SampleRenderer
 open SiteMap
 
 type DocumentationGlobalConfig = {
@@ -27,13 +26,13 @@ type Helpers() =
     static member groupContains group (slug: DocPart.Slug) =
         group.Items |> Array.exists (fun item -> item.Slug = slug)
 
+type TemplateRenderer(allParts: DocPart array) =
+    let mutable usedKeys = Set.empty
 
-let markdownPipeline =
-    new Markdig.MarkdownPipelineBuilder()
-    |> Markdig.MarkdownExtensions.UsePipeTables
-    |> _.Build()
-
-let templateRenderer (allParts: DocPart array) =
+    let markdownPipeline =
+        new Markdig.MarkdownPipelineBuilder()
+        |> Markdig.MarkdownExtensions.UsePipeTables
+        |> _.Build()
 
     let docPartsBySlug =
         allParts |> Array.map (fun page -> (page.Slug, page)) |> Map.ofArray
@@ -51,6 +50,7 @@ let templateRenderer (allParts: DocPart array) =
             /// <param name="templatePath">The key previously returned by <see cref="GetPath"/></param>
             /// <returns>The content string loaded from the specified template key</returns>
             member this.Load(_, _, templateKey) =
+                usedKeys <- Set.add templateKey usedKeys
                 let docPart = docPartsBySlug[Slug.from templateKey]
 
                 match docPart.Format with
@@ -62,8 +62,9 @@ let templateRenderer (allParts: DocPart array) =
                 this.Load(context, callerSpan, templatePath) |> ValueTask<string>
         }
 
+    member this.UsedKeys = usedKeys
 
-    let applyLayoutToDoc
+    member this.applyLayoutToDoc
         (projectConfig: DocumentationGlobalConfig)
         (siteMap: SiteMap)
         (layout: Template)
@@ -92,5 +93,3 @@ let templateRenderer (allParts: DocPart array) =
         context.PushGlobal(so)
 
         layout.Render(context)
-
-    applyLayoutToDoc

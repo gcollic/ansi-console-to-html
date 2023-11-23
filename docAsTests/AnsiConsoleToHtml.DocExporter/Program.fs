@@ -40,19 +40,31 @@ let allDocParts =
 
 let siteMap = SiteMap.SiteMap.from allDocParts
 
-let applyLayoutToDoc =
-    TemplateEngine.templateRenderer allDocParts projectConfig siteMap
-
 let mainLayout = sources.mainLayoutFile |> File.ReadAllText |> Template.Parse
+
+let templateRenderer = new TemplateRenderer(allDocParts)
+
+let applyLayoutToDoc =
+    templateRenderer.applyLayoutToDoc projectConfig siteMap mainLayout
 
 allDocParts
 |> Array.filter _.Metadata.IsSome
 |> Array.iter (fun docPart ->
-    let templatedContent = applyLayoutToDoc mainLayout docPart
-
     let fileName =
         Path.Combine(sources.targetDocFolder, Helpers.fileNameOf (docPart.Slug.ToString()))
 
-    io.write fileName templatedContent)
+    applyLayoutToDoc docPart |> io.write fileName)
 
-exit 0
+let unusedDocParts =
+    allDocParts
+    |> Array.map _.Slug.ToString()
+    |> Array.filter (fun slug -> templateRenderer.UsedKeys |> Set.contains slug |> not)
+
+unusedDocParts
+|> Array.iter (printfn "\x1b[31mError: documentation part not used: %s\x1b[0m")
+
+unusedDocParts
+|> Array.isEmpty
+|> not
+|> fun missing -> if missing then 1 else 0
+|> exit
