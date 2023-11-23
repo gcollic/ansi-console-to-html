@@ -6,18 +6,26 @@ open Parser
 
 let rec private ansiCodesToStyle (colors256: Color[]) codes style =
     match codes with
-    | [code] :: tail ->
+    | [ code ] :: tail ->
         let newStyle =
             match code with
             | 0 -> AnsiStyle.Empty
             | 1 -> { style with Bold = true }
             | 3 -> { style with Italic = true }
-            | x when (30 <= x && x <= 37) -> { style with Foreground = Some (colors256[x-30]) }
-            | x when (40 <= x && x <= 47) -> { style with Background = Some (colors256[x-40]) }
+            | 23 -> { style with Italic = false }
+            | x when (30 <= x && x <= 37) -> {
+                style with
+                    Foreground = Some(colors256[x - 30])
+              }
+            | x when (40 <= x && x <= 47) -> {
+                style with
+                    Background = Some(colors256[x - 40])
+              }
             // Unsupported
             | _ -> style
+
         ansiCodesToStyle colors256 tail newStyle
-    | _ ->  style
+    | _ -> style
 
 type StyledText =
     | Text of (string * AnsiStyle)

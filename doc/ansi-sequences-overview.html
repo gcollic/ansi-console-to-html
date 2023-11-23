@@ -160,6 +160,12 @@ Each display attribute remains in effect until a following occurrence of SGR res
 <td><pre style='color:#FFFFFF;background:#000000'>Hi <span style='font-style:italic;'>World</span></pre></td>
 </tr>
 <tr>
+<td>23</td>
+<td>Not italic</td>
+<td><code style='color:#A31515;'>&quot;\x1B[3mHi \x1B[23mWorld&quot;</code></td>
+<td><pre style='color:#FFFFFF;background:#000000'><span style='font-style:italic;'>Hi </span>World</pre></td>
+</tr>
+<tr>
 <td>30–37</td>
 <td>Set foreground color</td>
 <td><code style='color:#A31515;'>&quot;Hi \x1B[32mWorld&quot;</code></td>
