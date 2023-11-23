@@ -4,6 +4,8 @@ open AnsiConsoleToHtml
 open DocPart
 open SampleRenderer
 
+let colors = AnsiConsole.Colors256()
+
 let toCell (colors256: Color[]) i =
     let isLightBackground =
         match i with
@@ -26,6 +28,13 @@ let colorsToHtmlTable colors indexes =
     |> List.map (colorsToRow colors)
     |> String.concat ""
     |> fun s -> $"\n<table>\n{s}</table>\n"
+
+let colorsToHtmlTableDocPart slug indexes = {
+    Slug = Slug.from slug
+    Metadata = None
+    Content = colorsToHtmlTable colors indexes
+    Format = Html
+}
 
 let codesToMarkdownTable codes =
     codes
@@ -60,8 +69,6 @@ let cartesianCodesToAsciiTable slug (xCodes: int list) (yCodes: int list) =
 
     header :: rows |> String.concat "\n" |> createSample slug
 
-let colors = AnsiConsole.Colors256()
-
 let title = "ANSI colors"
 let slug = "ansi_colors"
 let table16ColorsSlug = "16-color-table"
@@ -70,26 +77,11 @@ let tableGraysSlug = "grays-table"
 let tableSequence30374047Slug = slug + "-sequence-30-37-40-47"
 
 let pages () = [
-    {
-        Slug = Slug.from table16ColorsSlug
-        Metadata = None
-        Content = [ [ 0..7 ]; [ 8..15 ] ] |> colorsToHtmlTable colors
-        Format = Html
-    }
-    {
-        Slug = Slug.from table216ColorsSlug
-        Metadata = None
-        Content =
-            [ for rowIndex in 0..5 -> [ for col in 0..35 -> (rowIndex * 36 + col + 16) ] ]
-            |> colorsToHtmlTable colors
-        Format = Html
-    }
-    {
-        Slug = Slug.from tableGraysSlug
-        Metadata = None
-        Content = [ [ 232..255 ] ] |> colorsToHtmlTable colors
-        Format = Html
-    }
+    colorsToHtmlTableDocPart table16ColorsSlug [ [ 0..7 ]; [ 8..15 ] ]
+    colorsToHtmlTableDocPart table216ColorsSlug [
+        for rowIndex in 0..5 -> [ for col in 0..35 -> (rowIndex * 36 + col + 16) ]
+    ]
+    colorsToHtmlTableDocPart tableGraysSlug [ [ 232..255 ] ]
     cartesianCodesToAsciiTable tableSequence30374047Slug [ 40..47 ] [ 30..37 ]
     {
         Slug = Slug.from slug
