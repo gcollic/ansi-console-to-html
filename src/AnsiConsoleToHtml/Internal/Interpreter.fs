@@ -11,6 +11,7 @@ let rec private ansiCodesToStyle (colors256: Color[]) codes style =
             match code with
             | 0 -> AnsiStyle.Empty
             | 1 -> { style with Bold = true }
+            | 3 -> { style with Italic = true }
             | x when (30 <= x && x <= 37) -> { style with Foreground = Some (colors256[x-30]) }
             | x when (40 <= x && x <= 47) -> { style with Background = Some (colors256[x-40]) }
             // Unsupported

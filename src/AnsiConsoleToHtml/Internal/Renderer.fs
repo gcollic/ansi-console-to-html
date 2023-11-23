@@ -8,15 +8,19 @@ open Interpreter
 
 let private toHtmlStyle (style: AnsiStyle) =
 
-    [
-        Option.map (fun (c: Color) -> $"color:{c.AsHexColor()};") style.Foreground
-        if style.Bold then Some "font-weight: 900;" else None
-        Option.map
-            (function
-            | (c: Color) -> $"background:{c.AsHexColor()};")
-            style.Background
-    ]
-    |> List.choose id
+    seq {
+        if style.Foreground.IsSome then
+            yield $"color:{style.Foreground.Value.AsHexColor()};"
+
+        if style.Background.IsSome then
+            yield $"background:{style.Background.Value.AsHexColor()};"
+
+        if style.Bold then
+            yield "font-weight:900;"
+
+        if style.Italic then
+            yield "font-style:italic;"
+    }
     |> String.Concat
 
 let private toSpan ansiStyle innerContent =

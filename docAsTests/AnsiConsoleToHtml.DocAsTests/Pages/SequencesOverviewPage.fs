@@ -40,6 +40,7 @@ let graphicOverview =
     [
         ("0", "Reset", "\x1B[32mHi \x1B[0mWorld")
         ("1", "Bold or intense", "Hi \x1B[1mWorld")
+        ("3", "Italic", "Hi \x1B[3mWorld")
         ("30–37", "Set foreground color", "Hi \x1B[32mWorld")
     ]
     |> List.map (fun (n, description, example) ->
