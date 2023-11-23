@@ -74,7 +74,7 @@ let slug = "ansi_colors"
 let table16ColorsSlug = "16-color-table"
 let table216ColorsSlug = "216-color-table"
 let tableGraysSlug = "grays-table"
-let tableSequence30374047Slug = slug + "-sequence-30-37-40-47"
+let tableSequenceDirectColorsSlug = slug + "-sequence-direct-colors"
 
 let pages () = [
     colorsToHtmlTableDocPart table16ColorsSlug [ [ 0..7 ]; [ 8..15 ] ]
@@ -82,7 +82,10 @@ let pages () = [
         for rowIndex in 0..5 -> [ for col in 0..35 -> (rowIndex * 36 + col + 16) ]
     ]
     colorsToHtmlTableDocPart tableGraysSlug [ [ 232..255 ] ]
-    cartesianCodesToAsciiTable tableSequence30374047Slug [ 40..47 ] [ 30..37 ]
+    cartesianCodesToAsciiTable tableSequenceDirectColorsSlug [
+        yield! [ 40..47 ]
+        yield! [ 100..107 ]
+    ] [ yield! [ 30..37 ]; yield! [ 90..97 ] ]
     {
         Slug = Slug.from slug
         Metadata =
@@ -102,12 +105,18 @@ let pages () = [
 
 ## Sequences
 
-### 30–37 / 40-47 direct colors
+### 30-37 / 40-47 / 90-97 / 100-107 direct colors
 
-30-37 are for foreground colors, 40-47 are for background colors.
-Substract respectively 30 and 40 to get the actual index of the corresponding color in the 256 colors table.
+Substract 'x' to get the actual index in the 256 colors table.
 
-{{{{include '{tableSequence30374047Slug}'}}}}
+* Standard colors
+    * foreground: 30-37 (substract 30 for color index)
+    * background: 40-47 (substract 40 for color index)
+* Bright colors
+    * foreground: 90-97 (substract 82 for color index)
+    * background: 100-107 (substract 92 for color index)
+
+{{{{include '{tableSequenceDirectColorsSlug}'}}}}
 
 <div class="color-tables">
 
