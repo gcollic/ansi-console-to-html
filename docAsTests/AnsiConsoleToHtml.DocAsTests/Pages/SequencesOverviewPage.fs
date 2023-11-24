@@ -42,7 +42,10 @@ let graphicOverview =
         ("1", "Bold or intense", "Hi \x1B[1mWorld")
         ("3", "Italic", "Hi \x1B[3mWorld")
         ("23", "Not italic", "\x1B[3mHi \x1B[23mWorld")
-        ("30–37", "Set foreground color", "Hi \x1B[32mWorld")
+        ("30–37", "Set foreground color (standard)", "Hi \x1B[32mWorld")
+        ("40–47", "Set background color (standard)", "Hi \x1B[42mWorld")
+        ("90–97", "Set foreground color (bright)", "Hi \x1B[92mWorld")
+        ("100–107", "Set background color (bright)", "Hi \x1B[102mWorld")
     ]
     |> List.map (fun (n, description, example) ->
         let dotnet = Colorizer.inlineHtmlDotNetstring example

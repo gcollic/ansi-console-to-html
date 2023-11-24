@@ -5,4 +5,7 @@
 | 1 | Bold or intense | <code style='color:#A31515;'>"Hi \x1B[1mWorld"</code> | <pre style='color:#FFFFFF;background:#000000'>Hi <span style='font-weight:900;'>World</span></pre> |
 | 3 | Italic | <code style='color:#A31515;'>"Hi \x1B[3mWorld"</code> | <pre style='color:#FFFFFF;background:#000000'>Hi <span style='font-style:italic;'>World</span></pre> |
 | 23 | Not italic | <code style='color:#A31515;'>"\x1B[3mHi \x1B[23mWorld"</code> | <pre style='color:#FFFFFF;background:#000000'><span style='font-style:italic;'>Hi </span>World</pre> |
-| 30–37 | Set foreground color | <code style='color:#A31515;'>"Hi \x1B[32mWorld"</code> | <pre style='color:#FFFFFF;background:#000000'>Hi <span style='color:#00BB00;'>World</span></pre> |
+| 30–37 | Set foreground color (standard) | <code style='color:#A31515;'>"Hi \x1B[32mWorld"</code> | <pre style='color:#FFFFFF;background:#000000'>Hi <span style='color:#00BB00;'>World</span></pre> |
+| 40–47 | Set background color (standard) | <code style='color:#A31515;'>"Hi \x1B[42mWorld"</code> | <pre style='color:#FFFFFF;background:#000000'>Hi <span style='background:#00BB00;'>World</span></pre> |
+| 90–97 | Set foreground color (bright) | <code style='color:#A31515;'>"Hi \x1B[92mWorld"</code> | <pre style='color:#FFFFFF;background:#000000'>Hi <span style='color:#00FF00;'>World</span></pre> |
+| 100–107 | Set background color (bright) | <code style='color:#A31515;'>"Hi \x1B[102mWorld"</code> | <pre style='color:#FFFFFF;background:#000000'>Hi <span style='background:#00FF00;'>World</span></pre> |
