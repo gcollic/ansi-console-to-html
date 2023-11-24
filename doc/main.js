@@ -32,15 +32,16 @@ document.addEventListener('DOMContentLoaded', function ()
   });
   if (navigator.clipboard && navigator.clipboard.writeText) {
     [...document.querySelectorAll("div[role=tabpanel]")].forEach((div) => {
-      var span = document.createElement('span');
+      const span = document.createElement('span');
       span.innerHTML = copyIcon;
       span.role = 'tabcopy';
       div.appendChild(span);
-
-      var pre = div.getElementsByTagName('pre')[0];
+      const isMainPanel =  !div.hasAttribute("hidden");
+      const pre = div.getElementsByTagName('pre')[0];
       span.onclick = function (e)
       {
-        navigator.clipboard.writeText(pre.innerText.trim()).then(function ()
+        const content = isMainPanel ? pre.outerHTML : pre.innerText;
+        navigator.clipboard.writeText(content.trim()).then(function ()
         {
           span.innerHTML = okIcon;
           setTimeout(function ()
