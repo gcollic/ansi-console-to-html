@@ -10,7 +10,7 @@ Toc:
 
 ## 30-37 / 40-47 / 90-97 / 100-107 direct colors
 
-Substract 'x' to get the actual index in the 256 colors table.
+Substract 'x' to get the actual index in the {{link_to 'ansi_colors_table' '256 colors table'}}.
 
 * Standard colors
     * foreground: 30-37 (substract 30 for color index)

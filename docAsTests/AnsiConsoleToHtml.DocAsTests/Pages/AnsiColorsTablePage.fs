@@ -2,7 +2,6 @@ module AnsiColorsTablePage
 
 open AnsiConsoleToHtml
 open DocPart
-open SampleRenderer
 
 let colors = AnsiConsole.Colors256()
 

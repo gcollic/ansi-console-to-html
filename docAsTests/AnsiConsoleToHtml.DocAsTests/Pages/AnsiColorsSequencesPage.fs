@@ -1,6 +1,5 @@
 module AnsiColorsSequencesPage
 
-open AnsiConsoleToHtml
 open DocPart
 open SampleRenderer
 
@@ -57,7 +56,7 @@ let pages () = [
 
 ## 30-37 / 40-47 / 90-97 / 100-107 direct colors
 
-Substract 'x' to get the actual index in the 256 colors table.
+Substract 'x' to get the actual index in the {{{{link_to '{AnsiColorsTablePage.slug}' '256 colors table'}}}}.
 
 * Standard colors
     * foreground: 30-37 (substract 30 for color index)
