@@ -6,6 +6,10 @@ open Parser
 
 let rec private ansiCodesToStyle (colors256: Color[]) codes style =
     match codes with
+    | [38] :: [2] :: [r] :: [g] :: [b] :: tail -> ansiCodesToStyle colors256 tail { style with Foreground = Some {R=uint8 r; G=uint8 g; B=uint8 b} }
+    | [38] :: [5] :: [i] :: tail -> ansiCodesToStyle colors256 tail { style with Foreground = Some (colors256[i]) }
+    | [48] :: [2] :: [r] :: [g] :: [b] :: tail -> ansiCodesToStyle colors256 tail { style with Background = Some {R=uint8 r; G=uint8 g; B=uint8 b} }
+    | [48] :: [5] :: [i] :: tail -> ansiCodesToStyle colors256 tail { style with Background = Some (colors256[i]) }
     | [code] :: tail ->
         let newStyle =
             match code with

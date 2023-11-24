@@ -45,9 +45,15 @@ let graphicOverview =
         ("30–37",
          $"Set foreground color (standard)<br/>{{{{link_to '{AnsiColorsSequencesPage.slug}' 'more details'}}}}",
          "Hi \x1B[32mWorld")
+        ("38",
+         $"Set foreground color (38;5;n or 38;2;r;g;b)<br/>{{{{link_to '{AnsiColorsSequencesPage.slug}' 'more details'}}}}",
+         "Hi \x1B[38;2;110;120;170mWorld")
         ("40–47",
          $"Set background color (standard)<br/>{{{{link_to '{AnsiColorsSequencesPage.slug}' 'more details'}}}}",
          "Hi \x1B[42mWorld")
+        ("48",
+         $"Set background color (48;5;n or 48;2;r;g;b)<br/>{{{{link_to '{AnsiColorsSequencesPage.slug}' 'more details'}}}}",
+         "Hi \x1B[48;2;110;120;170mWorld")
         ("90–97",
          $"Set foreground color (bright)<br/>{{{{link_to '{AnsiColorsSequencesPage.slug}' 'more details'}}}}",
          "Hi \x1B[92mWorld")

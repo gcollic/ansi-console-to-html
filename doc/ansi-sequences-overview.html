@@ -174,10 +174,22 @@ Each display attribute remains in effect until a following occurrence of SGR res
 <td><pre style='color:#FFFFFF;background:#000000'>Hi <span style='color:#00BB00;'>World</span></pre></td>
 </tr>
 <tr>
+<td>38</td>
+<td>Set foreground color (38;5;n or 38;2;r;g;b)<br/><a href='ansi_colors_sequences.html'>more details</a></td>
+<td><code style='color:#A31515;'>&quot;Hi \x1B[38;2;110;120;170mWorld&quot;</code></td>
+<td><pre style='color:#FFFFFF;background:#000000'>Hi <span style='color:#6E78AA;'>World</span></pre></td>
+</tr>
+<tr>
 <td>40–47</td>
 <td>Set background color (standard)<br/><a href='ansi_colors_sequences.html'>more details</a></td>
 <td><code style='color:#A31515;'>&quot;Hi \x1B[42mWorld&quot;</code></td>
 <td><pre style='color:#FFFFFF;background:#000000'>Hi <span style='background:#00BB00;'>World</span></pre></td>
+</tr>
+<tr>
+<td>48</td>
+<td>Set background color (48;5;n or 48;2;r;g;b)<br/><a href='ansi_colors_sequences.html'>more details</a></td>
+<td><code style='color:#A31515;'>&quot;Hi \x1B[48;2;110;120;170mWorld&quot;</code></td>
+<td><pre style='color:#FFFFFF;background:#000000'>Hi <span style='background:#6E78AA;'>World</span></pre></td>
 </tr>
 <tr>
 <td>90–97</td>
