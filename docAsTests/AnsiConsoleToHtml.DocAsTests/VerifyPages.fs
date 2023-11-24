@@ -32,9 +32,12 @@ let verifyDocPart (part: DocPart.DocPart) =
 [<Tests>]
 let tests =
     testList "Doc parts" [
-        testList "ANSI Colors Page" (AnsiColorsPage.pages () |> List.map verifyDocPart)
-        testList "Getting started Page" (GettingStartedPage.pages () |> List.map verifyDocPart)
+        testList "ANSI colors table page" (AnsiColorsTablePage.pages () |> List.map verifyDocPart)
         testList
-            "Sequences overview Page"
+            "ANSI colors sequences page"
+            (AnsiColorsSequencesPage.pages () |> List.map verifyDocPart)
+        testList "Getting started page" (GettingStartedPage.pages () |> List.map verifyDocPart)
+        testList
+            "Sequences overview page"
             (SequencesOverviewPage.pages () |> List.map verifyDocPart)
     ]
