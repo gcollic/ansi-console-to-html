@@ -29,7 +29,7 @@ Substract 'x' to get the actual index in the {{link_to 'ansi_colors_table' '256 
 
 ## 24-bit colors: 38;2;r;g;b / 48;2;r;g;b
 
-'r' 'g' and 'b' are the red, green, and blue components of the RGB color space.
+'r' 'g' and 'b' are the red, green, and blue components of the RGB color space (each between 0 and 255).
 
 {{include 'ansi_colors_sequences-24bit-colors'}}
 

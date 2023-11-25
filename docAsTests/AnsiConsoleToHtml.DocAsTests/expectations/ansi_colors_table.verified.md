@@ -19,12 +19,16 @@ The name of these colors are in the specification, but the actual colors depends
 
 ## 16-231: 216 colors
 
-It's a 6×6×6 color cube.
+It's a 6×6×6 color cube, with blue green and red dimensions.
+Blue changes at each steps (each column in the example),
+green every 6 steps (each 6×6 square in the example),
+red every 36 steps (each row  in the example).
+The 6 levels in each dimensions are 0, 95, 135, 175, 215 and 255.
 
 <div>{{include '216-color-table'}}</div>
 
 ## 232-255: gray
 
-It's a scale of 24 shades of gray.
+It's a scale of 24 shades of gray, with the level increasing 10 by 10, from 8 to 238.
 
 <div>{{include 'grays-table'}}</div>

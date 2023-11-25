@@ -39,7 +39,7 @@ let graphicOverviewSlug = slug + "_graphic"
 
 let graphicOverview =
     [
-        ("0", "Reset", "\x1B[32mHi \x1B[0mWorld")
+        ("0", "Reset", "\x1B[32;1;3mHi \x1B[0mWorld")
         ("1", "Bold or intense", "Hi \x1B[1mWorld")
         ("3", "Italic", "Hi \x1B[3mWorld")
         ("4",
@@ -106,9 +106,9 @@ Only the <abbr title="Select Graphic Rendition">SGR</abbr> sequence is supported
 
 References: [Wikipedia](https://en.wikipedia.org/wiki/ANSI_escape_code#SGR_(Select_Graphic_Rendition)_parameters)
 
-The control sequence {sgrSample}, named Select Graphic Rendition (SGR), sets display attributes.
-Several attributes can be set in the same sequence, separated by semicolons.
-Each display attribute remains in effect until a following occurrence of SGR resets it.
+The control sequence {sgrSample} (where `n` is one of the codes below) is named Select Graphic Rendition (SGR).
+It sets display attributes. Several attributes can be set in the same sequence, separated by semicolons.
+Each display attribute remains in effect until a following occurrence of SGR explicitely resets it.
 
 {{{{include '{graphicOverviewSlug}'}}}}
 

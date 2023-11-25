@@ -1,7 +1,7 @@
 ﻿
 | n | Description | Example | Rendered |
 |---|-------------|---------|----------|
-| 0 | Reset | <code style='color:#A31515;'>"\x1B[32mHi \x1B[0mWorld"</code> | <pre style='color:#FFFFFF;background:#000000'><span style='color:#00BB00;'>Hi </span>World</pre> |
+| 0 | Reset | <code style='color:#A31515;'>"\x1B[32;1;3mHi \x1B[0mWorld"</code> | <pre style='color:#FFFFFF;background:#000000'><span style='color:#00BB00;font-weight:900;font-style:italic;'>Hi </span>World</pre> |
 | 1 | Bold or intense | <code style='color:#A31515;'>"Hi \x1B[1mWorld"</code> | <pre style='color:#FFFFFF;background:#000000'>Hi <span style='font-weight:900;'>World</span></pre> |
 | 3 | Italic | <code style='color:#A31515;'>"Hi \x1B[3mWorld"</code> | <pre style='color:#FFFFFF;background:#000000'>Hi <span style='font-style:italic;'>World</span></pre> |
 | 4 | Underline (with optional style)<br/>{{link_to 'ansi_text_decorations' 'more details'}} | <code style='color:#A31515;'>"Hi \x1B[4mWorld"</code> | <pre style='color:#FFFFFF;background:#000000'>Hi <span style='text-decoration:underline 1px solid ;'>World</span></pre> |
