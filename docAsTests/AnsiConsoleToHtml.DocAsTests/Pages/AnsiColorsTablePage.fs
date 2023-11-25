@@ -43,7 +43,7 @@ let codesToMarkdownTable codes =
     |> String.concat "\n"
     |> fun s -> $"| Code | Result |\n|---|---|\n{s}\n"
 
-let title = "ANSI colors table"
+let title = "ANSI 256 colors table (8-bit)"
 let slug = "ansi_colors_table"
 let table16ColorsSlug = "16-color-table"
 let table216ColorsSlug = "216-color-table"
@@ -64,13 +64,13 @@ let pages () = [
                 Toc =
                     Some {
                         Parent = "ANSI escape sequences"
-                        Label = title
+                        Label = "256 colors table"
                         Order = 100
                     }
             }
         Content =
             $"""
-# ANSI 256 colors table (8 bits)
+# {title}
 
 References: [Wikipedia](https://en.wikipedia.org/wiki/ANSI_escape_code#8-bit)
 

@@ -101,9 +101,11 @@
       
               <li><a href="ansi-sequences-overview.html" class="secondary" aria-current="page">Overview</a></li>
       
-              <li><a href="ansi_colors_sequences.html" class="secondary">ANSI colors sequences</a></li>
+              <li><a href="ansi_colors_sequences.html" class="secondary">Colors sequences</a></li>
       
-              <li><a href="ansi_colors_table.html" class="secondary">ANSI colors table</a></li>
+              <li><a href="ansi_text_decorations.html" class="secondary">Decorations sequences</a></li>
+      
+              <li><a href="ansi_colors_table.html" class="secondary">256 colors table</a></li>
       
             </ul>
           </details>
@@ -162,10 +164,28 @@ Each display attribute remains in effect until a following occurrence of SGR res
 <td><pre style='color:#FFFFFF;background:#000000'>Hi <span style='font-style:italic;'>World</span></pre></td>
 </tr>
 <tr>
+<td>4</td>
+<td>Underline (with optional style)<br/><a href='ansi_text_decorations.html'>more details</a></td>
+<td><code style='color:#A31515;'>&quot;Hi \x1B[4mWorld&quot;</code></td>
+<td><pre style='color:#FFFFFF;background:#000000'>Hi <span style='text-decoration:underline 1px solid ;'>World</span></pre></td>
+</tr>
+<tr>
+<td>21</td>
+<td>Doubly underlined<br/><a href='ansi_text_decorations.html'>more details</a></td>
+<td><code style='color:#A31515;'>&quot;Hi \x1B[21mWorld&quot;</code></td>
+<td><pre style='color:#FFFFFF;background:#000000'>Hi <span style='text-decoration:underline 1px double ;'>World</span></pre></td>
+</tr>
+<tr>
 <td>23</td>
 <td>Not italic</td>
 <td><code style='color:#A31515;'>&quot;\x1B[3mHi \x1B[23mWorld&quot;</code></td>
 <td><pre style='color:#FFFFFF;background:#000000'><span style='font-style:italic;'>Hi </span>World</pre></td>
+</tr>
+<tr>
+<td>24</td>
+<td>Not underlined<br/><a href='ansi_text_decorations.html'>more details</a></td>
+<td><code style='color:#A31515;'>&quot;\x1B[4mHi \x1B[24mWorld&quot;</code></td>
+<td><pre style='color:#FFFFFF;background:#000000'><span style='text-decoration:underline 1px solid ;'>Hi </span>World</pre></td>
 </tr>
 <tr>
 <td>30–37</td>

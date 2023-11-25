@@ -1,50 +1,7 @@
 module AnsiColorsSequencesPage
 
 open DocPart
-open SampleRenderer
-
-let cartesianCodesToAsciiTable slug (xCodes: string list) (yCodes: string list) =
-    let maxXLength = xCodes |> List.map _.Length |> List.max
-    let maxYLength = yCodes |> List.map _.Length |> List.max
-    let alternativeText = "^(;,;)^"
-
-    let maxTextLength =
-        let total = maxXLength + maxYLength + 1
-
-        if total <= alternativeText.Length then
-            total
-        else
-            max alternativeText.Length (maxXLength + 1)
-
-
-    let header =
-        xCodes
-        |> List.map (fun x -> x.PadLeft(maxTextLength, ' '))
-        |> String.concat ""
-        |> (fun row -> new string (' ', maxYLength) + row)
-
-    let toText (code: string) =
-        if code.Length <= maxTextLength then
-            code
-        else
-            alternativeText
-        |> _.PadLeft(maxTextLength, ' ')
-
-    let rows =
-        yCodes
-        |> List.map (fun y ->
-            xCodes
-            |> List.map (fun x -> $"{x};{y}")
-            |> List.map (fun combo -> $"\x1B[{combo}m{toText combo}\x1B[0m")
-            |> String.concat ""
-            |> (fun row -> y.PadLeft(maxYLength, ' ') + row))
-
-    header :: rows |> String.concat "\n" |> createSample slug
-
-let cartesianSimpleCodesToAsciiTable slug (xCodes: int list) (yCodes: int list) =
-    let xAsString = xCodes |> List.map _.ToString()
-    let yAsString = yCodes |> List.map _.ToString()
-    cartesianCodesToAsciiTable slug xAsString yAsString
+open ExampleRenderer
 
 let title = "ANSI colors sequences"
 let slug = "ansi_colors_sequences"
@@ -53,11 +10,11 @@ let table8bitColorsSlug = slug + "-8bit-colors"
 let table24bitColorsSlug = slug + "-24bit-colors"
 
 let pages () = [
-    cartesianSimpleCodesToAsciiTable table4bitColorsSlug [ yield! [ 40..47 ]; yield! [ 100..107 ] ] [
-        yield! [ 30..37 ]
-        yield! [ 90..97 ]
-    ]
-    cartesianCodesToAsciiTable table8bitColorsSlug [
+    cartesianSimpleCodesToSampleDocPart table4bitColorsSlug [
+        yield! [ 40..47 ]
+        yield! [ 100..107 ]
+    ] [ yield! [ 30..37 ]; yield! [ 90..97 ] ]
+    cartesianCodesToSampleDocPart table8bitColorsSlug [
         "48;5;16"
         "48;5;17"
         "48;5;18"
@@ -65,7 +22,7 @@ let pages () = [
         "48;5;20"
         "48;5;21"
     ] [ "38;5;16"; "38;5;22"; "38;5;28"; "38;5;34"; "38;5;40"; "38;5;46" ]
-    cartesianCodesToAsciiTable table24bitColorsSlug [
+    cartesianCodesToSampleDocPart table24bitColorsSlug [
         "48;2;237;201;81"
         "48;2;235;104;65"
         "48;2;204;42;54"
@@ -87,7 +44,7 @@ let pages () = [
                 Toc =
                     Some {
                         Parent = "ANSI escape sequences"
-                        Label = title
+                        Label = "Colors sequences"
                         Order = 3
                     }
             }

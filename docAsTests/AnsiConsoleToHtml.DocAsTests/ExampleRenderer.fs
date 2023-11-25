@@ -1,0 +1,79 @@
+module ExampleRenderer
+
+open AnsiConsoleToHtml
+open DocPart
+open Sample
+
+let createSampleDocPart slug sample =
+    let result = AnsiConsole.ToHtml sample
+    let sample = { Input = sample; Output = result }
+
+    {
+        Slug = Slug.from slug
+        Metadata = None
+        Content = sample.serialize ()
+        Format = Sample
+    }
+
+let cartesianCodesToSampleDocPart slug (xCodes: string list) (yCodes: string list) =
+    let maxXLength = xCodes |> List.map _.Length |> List.max
+    let maxYLength = yCodes |> List.map _.Length |> List.max
+    let alternativeText = "^(;,;)^"
+
+    let maxTextLength =
+        let total = maxXLength + maxYLength + 1
+
+        if total <= alternativeText.Length then
+            total
+        else
+            max alternativeText.Length (maxXLength + 1)
+
+
+    let header =
+        xCodes
+        |> List.map (fun x -> x.PadLeft(maxTextLength, ' '))
+        |> String.concat ""
+        |> (fun row -> new string (' ', maxYLength) + row)
+
+    let toText (code: string) =
+        if code.Length <= maxTextLength then
+            code
+        else
+            alternativeText
+        |> _.PadLeft(maxTextLength, ' ')
+
+    let rows =
+        yCodes
+        |> List.map (fun y ->
+            xCodes
+            |> List.map (fun x -> $"{x};{y}")
+            |> List.map (fun combo -> $"\x1B[{combo}m{toText combo}\x1B[0m")
+            |> String.concat ""
+            |> (fun row -> y.PadLeft(maxYLength, ' ') + row))
+
+    header :: rows |> String.concat "\n" |> createSampleDocPart slug
+
+let cartesianSimpleCodesToSampleDocPart slug (xCodes: int list) (yCodes: int list) =
+    let xAsString = xCodes |> List.map _.ToString()
+    let yAsString = yCodes |> List.map _.ToString()
+    cartesianCodesToSampleDocPart slug xAsString yAsString
+
+
+let examplesToMarkdownDocPart slug examples =
+    examples
+    |> List.map (fun ((code: string), (description: string), example) ->
+        let dotnet = Colorizer.inlineHtmlDotNetstring example
+        let result = AnsiConsole.ToHtml example |> _.Replace("\n", "")
+        $"| {code} | {description} | {dotnet} | {result} |")
+    |> String.concat "\n"
+    |> fun rows ->
+        $"
+| n | Description | Example | Rendered |
+|---|-------------|---------|----------|
+{rows}"
+    |> (fun table -> {
+        Slug = Slug.from slug
+        Metadata = None
+        Content = table
+        Format = Markdown
+    })

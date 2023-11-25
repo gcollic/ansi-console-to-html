@@ -2,6 +2,7 @@ module SequencesOverviewPage
 
 open AnsiConsoleToHtml
 open DocPart
+open ExampleRenderer
 
 let colors = AnsiConsole.Colors256()
 
@@ -41,7 +42,16 @@ let graphicOverview =
         ("0", "Reset", "\x1B[32mHi \x1B[0mWorld")
         ("1", "Bold or intense", "Hi \x1B[1mWorld")
         ("3", "Italic", "Hi \x1B[3mWorld")
+        ("4",
+         $"Underline (with optional style)<br/>{{{{link_to '{AnsiTextDecorationsPage.slug}' 'more details'}}}}",
+         "Hi \x1B[4mWorld")
+        ("21",
+         $"Doubly underlined<br/>{{{{link_to '{AnsiTextDecorationsPage.slug}' 'more details'}}}}",
+         "Hi \x1B[21mWorld")
         ("23", "Not italic", "\x1B[3mHi \x1B[23mWorld")
+        ("24",
+         $"Not underlined<br/>{{{{link_to '{AnsiTextDecorationsPage.slug}' 'more details'}}}}",
+         "\x1B[4mHi \x1B[24mWorld")
         ("30–37",
          $"Set foreground color (standard)<br/>{{{{link_to '{AnsiColorsSequencesPage.slug}' 'more details'}}}}",
          "Hi \x1B[32mWorld")
@@ -61,27 +71,12 @@ let graphicOverview =
          $"Set background color (bright)<br/>{{{{link_to '{AnsiColorsSequencesPage.slug}' 'more details'}}}}",
          "Hi \x1B[102mWorld")
     ]
-    |> List.map (fun (n, description, example) ->
-        let dotnet = Colorizer.inlineHtmlDotNetstring example
-        let result = AnsiConsole.ToHtml example |> _.Replace("\n", "")
-        $"| {n} | {description} | {dotnet} | {result} |")
-    |> String.concat "\n"
-    |> fun rows ->
-        $"
-| n | Description | Example | Rendered |
-|---|-------------|---------|----------|
-{rows}
-"
+    |> examplesToMarkdownDocPart graphicOverviewSlug
 
 let sgrSample = "\x1B[ n m" |> Colorizer.inlineHtmlDotNetstring
 
 let pages () = [
-    {
-        Slug = Slug.from graphicOverviewSlug
-        Metadata = None
-        Content = graphicOverview
-        Format = Markdown
-    }
+    graphicOverview
     {
         Slug = Slug.from nonGraphicOverviewSlug
         Metadata = None

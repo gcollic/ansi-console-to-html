@@ -1,12 +1,12 @@
 ﻿---
-Title: 'ANSI colors table'
+Title: 'ANSI 256 colors table (8-bit)'
 Toc:
   Parent: 'ANSI escape sequences'
-  Label: 'ANSI colors table'
+  Label: '256 colors table'
   Order: 100
 ---
 
-# ANSI 256 colors table (8 bits)
+# ANSI 256 colors table (8-bit)
 
 References: [Wikipedia](https://en.wikipedia.org/wiki/ANSI_escape_code#8-bit)
 

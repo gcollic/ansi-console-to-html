@@ -7,10 +7,11 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="SampleTests.fs" />
-    <Compile Include="SampleRenderer.fs" />
+    <Compile Include="ExampleRenderer.fs" />
     <Compile Include="Pages\GettingStartedPage.fs" />
     <Compile Include="Pages\AnsiColorsTablePage.fs" />
     <Compile Include="Pages\AnsiColorsSequencesPage.fs" />
+    <Compile Include="Pages\AnsiTextDecorationsPage.fs" />
     <Compile Include="Pages\SequencesOverviewPage.fs" />
     <Compile Include="VerifyPages.fs" />
     <Compile Include="Main.fs" />

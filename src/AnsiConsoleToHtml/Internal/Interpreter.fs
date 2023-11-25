@@ -10,18 +10,29 @@ let rec private ansiCodesToStyle (colors256: Color[]) codes style =
     | [38] :: [5] :: [i] :: tail -> ansiCodesToStyle colors256 tail { style with Foreground = Some (colors256[i]) }
     | [48] :: [2] :: [r] :: [g] :: [b] :: tail -> ansiCodesToStyle colors256 tail { style with Background = Some {R=uint8 r; G=uint8 g; B=uint8 b} }
     | [48] :: [5] :: [i] :: tail -> ansiCodesToStyle colors256 tail { style with Background = Some (colors256[i]) }
-    | [code] :: tail ->
+    | (code :: options) :: tail ->
         let newStyle =
             match code with
             | 0 -> AnsiStyle.Empty
             | 1 -> { style with Bold = true }
             | 3 -> { style with Italic = true }
+            | 4 ->
+                match options with
+                | [] -> style.EnableUnderline()
+                | [0] -> { style with Underline = NoUnderline }
+                | [1] -> { style with Underline = StraightUnderline }
+                | [2] -> { style with Underline = DoubleUnderline }
+                | [3] -> { style with Underline = CurlyUnderline }
+                | [4] -> { style with Underline = DottedUnderline }
+                | [5] -> { style with Underline = DashedUnderline }
+                | _ -> style
+            | 21 -> { style with Underline = DoubleUnderline }
             | 23 -> { style with Italic = false }
+            | 24 -> { style with Underline = NoUnderline }
             | x when (30 <= x && x <= 37) -> { style with Foreground = Some (colors256[x-30]) }
             | x when (40 <= x && x <= 47) -> { style with Background = Some (colors256[x-40]) }
             | x when (90 <= x && x <= 97) -> { style with Foreground = Some (colors256[x-82]) }
             | x when (100 <= x && x <= 107) -> { style with Background = Some (colors256[x-92]) }
-            // Unsupported
             | _ -> style
         ansiCodesToStyle colors256 tail newStyle
     | _ ->  style

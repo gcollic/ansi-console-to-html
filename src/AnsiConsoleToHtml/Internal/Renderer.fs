@@ -6,7 +6,19 @@ open AnsiConsoleToHtml
 open AnsiModel
 open Interpreter
 
+let private toTextDecoration (style: AnsiStyle) =
+    match style.Underline with
+    | StraightUnderline -> Some "solid"
+    | DoubleUnderline -> Some "double"
+    | CurlyUnderline -> Some "wavy"
+    | DottedUnderline -> Some "dotted"
+    | DashedUnderline -> Some "dashed"
+    | _ -> None
+    |> Option.map (fun x -> $"underline 1px {x} ")
+    |> Option.map (fun x -> $"text-decoration:{x};")
+
 let private toHtmlStyle (style: AnsiStyle) =
+    let textDecoration = toTextDecoration style
 
     seq {
         if style.Foreground.IsSome then
@@ -20,6 +32,10 @@ let private toHtmlStyle (style: AnsiStyle) =
 
         if style.Italic then
             yield "font-style:italic;"
+
+        if textDecoration.IsSome then
+            yield textDecoration.Value
+
     }
     |> String.Concat
 

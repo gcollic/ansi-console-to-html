@@ -2,7 +2,7 @@
 Title: 'ANSI colors sequences'
 Toc:
   Parent: 'ANSI escape sequences'
-  Label: 'ANSI colors sequences'
+  Label: 'Colors sequences'
   Order: 3
 ---
 

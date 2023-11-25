@@ -4,12 +4,12 @@
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Change Log</title>
-    <meta name="description" content="Change Log" />
+    <title>ANSI text decorations sequences</title>
+    <meta name="description" content="ANSI text decorations sequences" />
     <meta name="robots" content="index, follow" />
-    <meta property="og:title" content="Change Log" />
-    <meta property="og:description" content="Change Log" />
-    <meta property="og:url" content="./changelog.html" />
+    <meta property="og:title" content="ANSI text decorations sequences" />
+    <meta property="og:description" content="ANSI text decorations sequences" />
+    <meta property="og:url" content="./ansi_text_decorations.html" />
     <meta property="og:site_name" content="ANSIConsoleToHtml" />
     <meta property="og:type" content="website" />
     <meta property="og:image" content="./og_image.jpg" />
@@ -95,7 +95,7 @@
             </ul>
           </details>
       
-          <details >
+          <details  open="true">
             <summary>ANSI escape sequences</summary>
             <ul>
       
@@ -103,20 +103,20 @@
       
               <li><a href="ansi_colors_sequences.html" class="secondary">Colors sequences</a></li>
       
-              <li><a href="ansi_text_decorations.html" class="secondary">Decorations sequences</a></li>
+              <li><a href="ansi_text_decorations.html" class="secondary" aria-current="page">Decorations sequences</a></li>
       
               <li><a href="ansi_colors_table.html" class="secondary">256 colors table</a></li>
       
             </ul>
           </details>
       
-          <details  open="true">
+          <details >
             <summary>Misc</summary>
             <ul>
       
               <li><a href="credits.html" class="secondary">Credits</a></li>
       
-              <li><a href="changelog.html" class="secondary" aria-current="page">Change Log</a></li>
+              <li><a href="changelog.html" class="secondary">Change Log</a></li>
       
             </ul>
           </details>
@@ -127,9 +127,81 @@
       <div role="document">
 
 
-        <section id="start" class="page_changelog">
-<h1>Change Log</h1>
-<p>All notable changes to this project will be documented in this file. See <a href="https://github.com/versionize/versionize">versionize</a> for commit guidelines.</p>
+        <section id="start" class="page_ansi_text_decorations">
+<h1>ANSI text decorations sequences</h1>
+<h2>Underline</h2>
+<p>4 (underline) and 24 (no underline) are classic codes for underlines.</p>
+<p>21 is double-underline per ECMA-48, but instead disables bold intensity on some terminals, including in the Linux kernel'sconsole <em>before version 4.17</em>.</p>
+<p>More recently, options have been added to the code sequence 4.
+It was originally added by Kitty, now also adopted by other terminals, and supported by applications such as vim.</p>
+<p>See <a href="https://sw.kovidgoyal.net/kitty/underlines/">https://sw.kovidgoyal.net/kitty/underlines/</a></p>
+<p><table>
+<thead>
+<tr>
+<th>n</th>
+<th>Description</th>
+<th>Example</th>
+<th>Rendered</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>4</td>
+<td>straight underline</td>
+<td><code style='color:#A31515;'>&quot;\x1B[4mHello World&quot;</code></td>
+<td><pre style='color:#FFFFFF;background:#000000'><span style='text-decoration:underline 1px solid ;'>Hello World</span></pre></td>
+</tr>
+<tr>
+<td>4:0</td>
+<td>no underline</td>
+<td><code style='color:#A31515;'>&quot;\x1B[4mHello \x1B[4:0mWorld&quot;</code></td>
+<td><pre style='color:#FFFFFF;background:#000000'><span style='text-decoration:underline 1px solid ;'>Hello </span>World</pre></td>
+</tr>
+<tr>
+<td>4:1</td>
+<td>straight underline</td>
+<td><code style='color:#A31515;'>&quot;\x1B[4:1mHello World&quot;</code></td>
+<td><pre style='color:#FFFFFF;background:#000000'><span style='text-decoration:underline 1px solid ;'>Hello World</span></pre></td>
+</tr>
+<tr>
+<td>4:2</td>
+<td>double underline</td>
+<td><code style='color:#A31515;'>&quot;\x1B[4:2mHello World&quot;</code></td>
+<td><pre style='color:#FFFFFF;background:#000000'><span style='text-decoration:underline 1px double ;'>Hello World</span></pre></td>
+</tr>
+<tr>
+<td>4:3</td>
+<td>curly underline</td>
+<td><code style='color:#A31515;'>&quot;\x1B[4:3mHello World&quot;</code></td>
+<td><pre style='color:#FFFFFF;background:#000000'><span style='text-decoration:underline 1px wavy ;'>Hello World</span></pre></td>
+</tr>
+<tr>
+<td>4:4</td>
+<td>dotted underline</td>
+<td><code style='color:#A31515;'>&quot;\x1B[4:4mHello World&quot;</code></td>
+<td><pre style='color:#FFFFFF;background:#000000'><span style='text-decoration:underline 1px dotted ;'>Hello World</span></pre></td>
+</tr>
+<tr>
+<td>4:5</td>
+<td>dashed underline</td>
+<td><code style='color:#A31515;'>&quot;\x1B[4:5mHello World&quot;</code></td>
+<td><pre style='color:#FFFFFF;background:#000000'><span style='text-decoration:underline 1px dashed ;'>Hello World</span></pre></td>
+</tr>
+<tr>
+<td>21</td>
+<td>double underline</td>
+<td><code style='color:#A31515;'>&quot;\x1B[21mHello World&quot;</code></td>
+<td><pre style='color:#FFFFFF;background:#000000'><span style='text-decoration:underline 1px double ;'>Hello World</span></pre></td>
+</tr>
+<tr>
+<td>24</td>
+<td>no underline</td>
+<td><code style='color:#A31515;'>&quot;\x1B[4mHello \x1B[24mWorld&quot;</code></td>
+<td><pre style='color:#FFFFFF;background:#000000'><span style='text-decoration:underline 1px solid ;'>Hello </span>World</pre></td>
+</tr>
+</tbody>
+</table>
+</p>
 
         </section>
 
