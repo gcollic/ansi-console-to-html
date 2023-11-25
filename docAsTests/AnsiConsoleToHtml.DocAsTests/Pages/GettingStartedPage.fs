@@ -1,25 +1,35 @@
 module GettingStartedPage
 
+open Expecto
+open VerifyPages
 open AnsiConsoleToHtml
 open DocPart
 
-let colors = AnsiConsole.Colors256()
-
 let title = "Getting started"
 let comparisonSlug = "getting_started_comparison"
-let sample = "Hi \x1B[32mWorld"
 
-let dotnet =
-    $"{nameof AnsiConsole}.{nameof AnsiConsole.ToHtml}(
-    {Colorizer.toDotNetString sample}
-)"
-    |> Colorizer.cSharp
+let pageContent =
+    $"""
+# {title}
 
-let result = AnsiConsole.ToHtml sample
-let html = result |> Colorizer.html
+<div>{{{{ include '{comparisonSlug}' }}}}<div>
+
+"""
 
 let comparison =
-    $"
+    let sample = "Hi \x1B[32mWorld"
+
+    let dotnet =
+        $"{nameof AnsiConsole}.{nameof AnsiConsole.ToHtml}(
+    {Colorizer.toDotNetString sample}
+)"
+        |> Colorizer.cSharp
+
+    let result = AnsiConsole.ToHtml sample
+    let html = result |> Colorizer.html
+
+    let content =
+        $"
 <div>
     DotNet
 {dotnet}
@@ -33,33 +43,32 @@ let comparison =
 {result}
 </div>"
 
-let pages () = [
     {
         Slug = Slug.from comparisonSlug
         Metadata = None
-        Content = comparison
+        Content = content
         Format = Html
     }
-    {
-        Slug = Slug.from "getting_started"
-        Metadata =
-            Some {
-                Title = title
-                Navbar = Some { Label = "Documentation"; Order = 1 }
-                Toc =
-                    Some {
-                        Parent = title
-                        Label = "How to use"
-                        Order = 1
-                    }
-            }
-        Content =
-            $"""
-# {title}
 
-<div>{{{{ include '{comparisonSlug}' }}}}<div>
-
-"""
-        Format = Markdown
-    }
-]
+[<Tests>]
+let tests =
+    verifyListOfDocPart title
+    <| [
+        {
+            Slug = Slug.from "getting_started"
+            Metadata =
+                Some {
+                    Title = title
+                    Navbar = Some { Label = "Documentation"; Order = 1 }
+                    Toc =
+                        Some {
+                            Parent = title
+                            Label = "How to use"
+                            Order = 1
+                        }
+                }
+            Content = pageContent
+            Format = Markdown
+        }
+        comparison
+    ]

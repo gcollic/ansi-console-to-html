@@ -77,3 +77,28 @@ let examplesToMarkdownDocPart slug examples =
         Content = table
         Format = Markdown
     })
+
+let examplesGroupedByResultInMarkdownDocPart slug examples =
+    examples
+    |> List.map (fun (sample, comment) ->
+        (Colorizer.inlineHtmlDotNetstring sample, comment, AnsiConsole.ToHtml sample))
+    |> List.groupBy (fun (_, _, result) -> result)
+    |> List.map (fun (result, values) ->
+        let tableContent =
+            values
+            |> List.map (fun (dotnet, comment, _) -> $"| {dotnet} | {comment} |")
+            |> String.concat "\n"
+
+        $"All the following sequences are rendered as {result}
+
+| Input | Sequence meaning |
+|-------|------------------|
+{tableContent}
+"   )
+    |> String.concat "\n"
+    |> (fun content -> {
+        Slug = Slug.from slug
+        Metadata = None
+        Content = content
+        Format = Markdown
+    })

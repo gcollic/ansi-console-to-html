@@ -1,5 +1,7 @@
 module SequencesOverviewPage
 
+open Expecto
+open VerifyPages
 open AnsiConsoleToHtml
 open DocPart
 open ExampleRenderer
@@ -10,32 +12,32 @@ let slug = "ansi-sequences-overview"
 let title = "ANSI sequences overview"
 
 let nonGraphicOverviewSlug = slug + "_non_graphic"
-
-let nonGraphicOverview =
-    [
-        ("Hello \x1B[3A World", "Cursor 3 times up")
-        ("Hello \x1B[22;5H World", "Moves the cursor to row 22, column 5")
-        ("Hello \x1B[2J World", "Clear entire screen")
-        ("Hello \x1B World", "Invalid/unfinished sequence")
-    ]
-    |> List.map (fun (sample, comment) ->
-        (Colorizer.inlineHtmlDotNetstring sample, comment, AnsiConsole.ToHtml sample))
-    |> List.groupBy (fun (_, _, result) -> result)
-    |> List.map (fun (result, values) ->
-        let tableContent =
-            values
-            |> List.map (fun (dotnet, comment, _) -> $"| {dotnet} | {comment} |")
-            |> String.concat "\n"
-
-        $"All the following sequences are rendered as {result}
-
-| Input | Sequence meaning |
-|-------|------------------|
-{tableContent}
-"   )
-    |> String.concat "\n"
-
 let graphicOverviewSlug = slug + "_graphic"
+
+let sgrSample = "\x1B[ n m" |> Colorizer.inlineHtmlDotNetstring
+
+let pageContent =
+    $"""
+# {title}
+
+Only the <abbr title="Select Graphic Rendition">SGR</abbr> sequence is supported. The other ANSI escape sequences are ignored.
+
+## Graphic sequence
+
+References: [Wikipedia](https://en.wikipedia.org/wiki/ANSI_escape_code#SGR_(Select_Graphic_Rendition)_parameters)
+
+The control sequence {sgrSample} (where `n` is one of the codes below) is named Select Graphic Rendition (SGR).
+It sets display attributes. Several attributes can be set in the same sequence, separated by semicolons,
+and (rarely) with options separated by colons.
+Each display attribute remains in effect until a following occurrence of SGR explicitely resets it.
+
+{{{{include '{graphicOverviewSlug}'}}}}
+
+## Non-graphic sequences
+
+{{{{include '{nonGraphicOverviewSlug}'}}}}
+
+"""
 
 let graphicOverview =
     [
@@ -73,50 +75,35 @@ let graphicOverview =
     ]
     |> examplesToMarkdownDocPart graphicOverviewSlug
 
-let sgrSample = "\x1B[ n m" |> Colorizer.inlineHtmlDotNetstring
+let nonGraphicOverview =
+    [
+        ("Hello \x1B[3A World", "Cursor 3 times up")
+        ("Hello \x1B[22;5H World", "Moves the cursor to row 22, column 5")
+        ("Hello \x1B[2J World", "Clear entire screen")
+        ("Hello \x1B World", "Invalid/unfinished sequence")
+    ]
+    |> examplesGroupedByResultInMarkdownDocPart nonGraphicOverviewSlug
 
-let pages () = [
-    graphicOverview
-    {
-        Slug = Slug.from nonGraphicOverviewSlug
-        Metadata = None
-        Content = nonGraphicOverview
-        Format = Markdown
-    }
-    {
-        Slug = Slug.from slug
-        Metadata =
-            Some {
-                Title = title
-                Navbar = None
-                Toc =
-                    Some {
-                        Parent = "ANSI escape sequences"
-                        Label = "Overview"
-                        Order = 1
-                    }
-            }
-        Content =
-            $"""
-# {title}
-
-Only the <abbr title="Select Graphic Rendition">SGR</abbr> sequence is supported. The other ANSI escape sequences are ignored.
-
-## Graphic sequence
-
-References: [Wikipedia](https://en.wikipedia.org/wiki/ANSI_escape_code#SGR_(Select_Graphic_Rendition)_parameters)
-
-The control sequence {sgrSample} (where `n` is one of the codes below) is named Select Graphic Rendition (SGR).
-It sets display attributes. Several attributes can be set in the same sequence, separated by semicolons.
-Each display attribute remains in effect until a following occurrence of SGR explicitely resets it.
-
-{{{{include '{graphicOverviewSlug}'}}}}
-
-## Non-graphic sequences
-
-{{{{include '{nonGraphicOverviewSlug}'}}}}
-
-"""
-        Format = Markdown
-    }
-]
+[<Tests>]
+let tests =
+    verifyListOfDocPart title
+    <| [
+        {
+            Slug = Slug.from slug
+            Metadata =
+                Some {
+                    Title = title
+                    Navbar = None
+                    Toc =
+                        Some {
+                            Parent = "ANSI escape sequences"
+                            Label = "Overview"
+                            Order = 1
+                        }
+                }
+            Content = pageContent
+            Format = Markdown
+        }
+        graphicOverview
+        nonGraphicOverview
+    ]

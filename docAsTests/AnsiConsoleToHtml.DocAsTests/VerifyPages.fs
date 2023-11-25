@@ -1,4 +1,4 @@
-module Tests
+module VerifyPages
 
 open Expecto
 open VerifyTests
@@ -12,7 +12,7 @@ verifySettings.DisableDiff()
 EmptyFiles.FileExtensions.AddTextExtension("sample")
 
 
-let verifyDocPart (part: DocPart.DocPart) =
+let verifyDocPart (part: DocPart) =
     let slug = part.Slug.ToString()
 
     testTask slug {
@@ -29,18 +29,5 @@ let verifyDocPart (part: DocPart.DocPart) =
             )
     }
 
-[<Tests>]
-let tests =
-    testList "Doc parts" [
-        testList "ANSI colors table page" (AnsiColorsTablePage.pages () |> List.map verifyDocPart)
-        testList
-            "ANSI colors sequences page"
-            (AnsiColorsSequencesPage.pages () |> List.map verifyDocPart)
-        testList
-            "ANSI text decoration page"
-            (AnsiTextDecorationsPage.pages () |> List.map verifyDocPart)
-        testList "Getting started page" (GettingStartedPage.pages () |> List.map verifyDocPart)
-        testList
-            "Sequences overview page"
-            (SequencesOverviewPage.pages () |> List.map verifyDocPart)
-    ]
+let verifyListOfDocPart name (parts: DocPart list) =
+    testList name (List.map verifyDocPart parts)
