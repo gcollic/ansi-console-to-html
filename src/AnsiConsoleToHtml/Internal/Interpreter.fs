@@ -30,7 +30,9 @@ let rec private ansiCodesToStyle (colors256: Color[]) codes style =
             | 23 -> { style with Italic = false }
             | 24 -> { style with Underline = NoUnderline }
             | x when (30 <= x && x <= 37) -> { style with Foreground = Some (colors256[x-30]) }
+            | 39 -> { style with Foreground = None }
             | x when (40 <= x && x <= 47) -> { style with Background = Some (colors256[x-40]) }
+            | 49 -> { style with Background = None }
             | x when (90 <= x && x <= 97) -> { style with Foreground = Some (colors256[x-82]) }
             | x when (100 <= x && x <= 107) -> { style with Background = Some (colors256[x-92]) }
             | _ -> style

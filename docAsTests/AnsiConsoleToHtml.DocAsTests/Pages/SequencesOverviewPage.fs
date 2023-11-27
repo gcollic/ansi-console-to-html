@@ -99,6 +99,11 @@ let graphicOverview =
             MoreDetails = Some AnsiColorsSequencesPage.slug
         }
         {
+            Type = Reset 39
+            Description = "Default foreground color"
+            MoreDetails = None
+        }
+        {
             Type = Range(40, 47)
             Description = "Set background color (standard)"
             MoreDetails = Some AnsiColorsSequencesPage.slug
@@ -107,6 +112,11 @@ let graphicOverview =
             Type = RGB 48
             Description = "Set background color (48;5;n or 48;2;r;g;b)"
             MoreDetails = Some AnsiColorsSequencesPage.slug
+        }
+        {
+            Type = Reset 49
+            Description = "Default background color"
+            MoreDetails = None
         }
         {
             Type = Range(90, 97)
