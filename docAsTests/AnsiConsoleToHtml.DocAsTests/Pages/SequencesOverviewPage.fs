@@ -39,40 +39,103 @@ Each display attribute remains in effect until a following occurrence of SGR exp
 
 """
 
+type ExampleType =
+    | Reset of int
+    | Direct of int
+    | Range of int * int
+    | RGB of int
+
+type Example = {
+    Type: ExampleType
+    Description: string
+    MoreDetails: string option
+}
+
 let graphicOverview =
     [
-        ("0", "Reset", "\x1B[32;1;3mHi \x1B[0mWorld")
-        ("1", "Bold or intense", "Hi \x1B[1mWorld")
-        ("3", "Italic", "Hi \x1B[3mWorld")
-        ("4",
-         $"Underline (with optional style)<br/>{{{{link_to '{AnsiTextDecorationsPage.slug}' 'more details'}}}}",
-         "Hi \x1B[4mWorld")
-        ("21",
-         $"Doubly underlined<br/>{{{{link_to '{AnsiTextDecorationsPage.slug}' 'more details'}}}}",
-         "Hi \x1B[21mWorld")
-        ("23", "Not italic", "\x1B[3mHi \x1B[23mWorld")
-        ("24",
-         $"Not underlined<br/>{{{{link_to '{AnsiTextDecorationsPage.slug}' 'more details'}}}}",
-         "\x1B[4mHi \x1B[24mWorld")
-        ("30–37",
-         $"Set foreground color (standard)<br/>{{{{link_to '{AnsiColorsSequencesPage.slug}' 'more details'}}}}",
-         "Hi \x1B[32mWorld")
-        ("38",
-         $"Set foreground color (38;5;n or 38;2;r;g;b)<br/>{{{{link_to '{AnsiColorsSequencesPage.slug}' 'more details'}}}}",
-         "Hi \x1B[38;2;110;120;170mWorld")
-        ("40–47",
-         $"Set background color (standard)<br/>{{{{link_to '{AnsiColorsSequencesPage.slug}' 'more details'}}}}",
-         "Hi \x1B[42mWorld")
-        ("48",
-         $"Set background color (48;5;n or 48;2;r;g;b)<br/>{{{{link_to '{AnsiColorsSequencesPage.slug}' 'more details'}}}}",
-         "Hi \x1B[48;2;110;120;170mWorld")
-        ("90–97",
-         $"Set foreground color (bright)<br/>{{{{link_to '{AnsiColorsSequencesPage.slug}' 'more details'}}}}",
-         "Hi \x1B[92mWorld")
-        ("100–107",
-         $"Set background color (bright)<br/>{{{{link_to '{AnsiColorsSequencesPage.slug}' 'more details'}}}}",
-         "Hi \x1B[102mWorld")
+        {
+            Type = Reset 0
+            Description = "Reset"
+            MoreDetails = None
+        }
+        {
+            Type = Direct 1
+            Description = "Bold or intense"
+            MoreDetails = None
+        }
+        {
+            Type = Direct 3
+            Description = "Italic"
+            MoreDetails = None
+        }
+        {
+            Type = Direct 4
+            Description = "Underline (with optional style)"
+            MoreDetails = Some AnsiTextDecorationsPage.slug
+        }
+        {
+            Type = Direct 21
+            Description = "Doubly underlined"
+            MoreDetails = Some AnsiTextDecorationsPage.slug
+        }
+        {
+            Type = Reset 23
+            Description = "Not italic"
+            MoreDetails = None
+        }
+        {
+            Type = Reset 24
+            Description = "Not underlined"
+            MoreDetails = Some AnsiTextDecorationsPage.slug
+        }
+        {
+            Type = Range(30, 37)
+            Description = "Set foreground color (standard)"
+            MoreDetails = Some AnsiColorsSequencesPage.slug
+        }
+        {
+            Type = RGB 38
+            Description = "Set foreground color (38;5;n or 38;2;r;g;b)"
+            MoreDetails = Some AnsiColorsSequencesPage.slug
+        }
+        {
+            Type = Range(40, 47)
+            Description = "Set background color (standard)"
+            MoreDetails = Some AnsiColorsSequencesPage.slug
+        }
+        {
+            Type = RGB 48
+            Description = "Set background color (48;5;n or 48;2;r;g;b)"
+            MoreDetails = Some AnsiColorsSequencesPage.slug
+        }
+        {
+            Type = Range(90, 97)
+            Description = "Set foreground color (bright)"
+            MoreDetails = Some AnsiColorsSequencesPage.slug
+        }
+        {
+            Type = Range(100, 107)
+            Description = "Set background color (bright)"
+            MoreDetails = Some AnsiColorsSequencesPage.slug
+        }
     ]
+    |> List.map
+        (fun
+            {
+                Type = typ
+                Description = desc
+                MoreDetails = details
+            } ->
+            let completeDescription =
+                match details with
+                | None -> desc
+                | Some slug -> $"{desc}<br/>{{{{link_to '{slug}' 'more details'}}}}"
+
+            match typ with
+            | Reset x -> (x.ToString(), completeDescription, $"\x1B[44;33;1;3;4mHi \x1B[{x}mWorld")
+            | Direct x -> (x.ToString(), completeDescription, $"Hi \x1B[{x}mWorld")
+            | Range(x, y) -> ($"{x}–{y}", completeDescription, $"Hi \x1B[{x + 2}mWorld")
+            | RGB x -> (x.ToString(), completeDescription, $"Hi \x1B[{x};2;110;120;170mWorld"))
     |> examplesToMarkdownDocPart graphicOverviewSlug
 
 let nonGraphicOverview =
