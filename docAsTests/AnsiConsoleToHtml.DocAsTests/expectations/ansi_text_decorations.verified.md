@@ -12,7 +12,7 @@ Toc:
 
 4 (underline) and 24 (no underline) are classic codes for underlines.
 
-21 is double-underline per ECMA-48, but instead disables bold intensity on some terminals, including in the Linux kernel'sconsole <em>before version 4.17</em>.
+21 is double-underline per ECMA-48, but instead disables bold intensity on some terminals, including in the Linux kernel's console <em>before version 4.17</em>.
 
 More recently, options have been added to the code sequence 4.
 It was originally added by Kitty, now also adopted by other terminals, and supported by applications such as vim.
