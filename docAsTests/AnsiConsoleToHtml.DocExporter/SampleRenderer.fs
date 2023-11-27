@@ -31,3 +31,4 @@ let renderSample (sample: Sample) =
   </div>
 </div>
 """
+    |> _.Replace("\r", "")
