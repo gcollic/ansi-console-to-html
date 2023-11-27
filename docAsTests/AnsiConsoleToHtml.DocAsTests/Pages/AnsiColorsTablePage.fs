@@ -5,42 +5,6 @@ open VerifyPages
 open AnsiConsoleToHtml
 open DocPart
 
-let title = "ANSI 256 colors table (8-bit)"
-let slug = "ansi_colors_table"
-let table16ColorsSlug = "16-color-table"
-let table216ColorsSlug = "216-color-table"
-let tableGraysSlug = "grays-table"
-
-let pageContent =
-    $"""
-# {title}
-
-References: [Wikipedia](https://en.wikipedia.org/wiki/ANSI_escape_code#8-bit)
-
-## 0-15: named colors
-
-The name of these colors are in the specification, but the actual colors depends on the terminal and user configuration.
-0-7 are standard colors, and 8-15 high-intensity versions.
-
-<div>{{{{include '{table16ColorsSlug}'}}}}</div>
-
-## 16-231: 216 colors
-
-It's a 6×6×6 color cube, with blue green and red dimensions.
-Blue changes at each steps (each column in the example),
-green every 6 steps (each 6×6 square in the example),
-red every 36 steps (each row  in the example).
-The 6 levels in each dimensions are 0, 95, 135, 175, 215 and 255.
-
-<div>{{{{include '{table216ColorsSlug}'}}}}</div>
-
-## 232-255: gray
-
-It's a scale of 24 shades of gray, with the level increasing 10 by 10, from 8 to 238.
-
-<div>{{{{include '{tableGraysSlug}'}}}}</div>
-"""
-
 let colors = AnsiConsole.Colors256()
 
 let toCell (colors256: Color[]) i =
@@ -83,27 +47,11 @@ let codesToMarkdownTable codes =
 
 [<Tests>]
 let tests =
-    verifyListOfDocPart title
+    verifyListOfDocPart "ANSI 256 colors table"
     <| [
-        {
-            Slug = Slug.from slug
-            Metadata =
-                Some {
-                    Title = title
-                    Navbar = None
-                    Toc =
-                        Some {
-                            Parent = "ANSI escape sequences"
-                            Label = "256 colors table"
-                            Order = 100
-                        }
-                }
-            Content = pageContent
-            Format = Markdown
-        }
-        colorsToHtmlTableDocPart table16ColorsSlug [ [ 0..7 ]; [ 8..15 ] ]
-        colorsToHtmlTableDocPart table216ColorsSlug [
+        colorsToHtmlTableDocPart "16-color-table" [ [ 0..7 ]; [ 8..15 ] ]
+        colorsToHtmlTableDocPart "216-color-table" [
             for rowIndex in 0..5 -> [ for col in 0..35 -> (rowIndex * 36 + col + 16) ]
         ]
-        colorsToHtmlTableDocPart tableGraysSlug [ [ 232..255 ] ]
+        colorsToHtmlTableDocPart "grays-table" [ [ 232..255 ] ]
     ]

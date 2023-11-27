@@ -2,42 +2,12 @@ module SequencesOverviewPage
 
 open Expecto
 open VerifyPages
-open AnsiConsoleToHtml
-open DocPart
 open ExampleRenderer
 
-let colors = AnsiConsole.Colors256()
-
 let slug = "ansi-sequences-overview"
-let title = "ANSI sequences overview"
 
 let nonGraphicOverviewSlug = slug + "_non_graphic"
 let graphicOverviewSlug = slug + "_graphic"
-
-let sgrSample = "\x1B[ n m" |> Colorizer.inlineHtmlDotNetstring
-
-let pageContent =
-    $"""
-# {title}
-
-Only the <abbr title="Select Graphic Rendition">SGR</abbr> sequence is supported. The other ANSI escape sequences are ignored.
-
-## Graphic sequence
-
-References: [Wikipedia](https://en.wikipedia.org/wiki/ANSI_escape_code#SGR_(Select_Graphic_Rendition)_parameters)
-
-The control sequence {sgrSample} (where `n` is one of the codes below) is named Select Graphic Rendition (SGR).
-It sets display attributes. Several attributes can be set in the same sequence, separated by semicolons,
-and (rarely) with options separated by colons.
-Each display attribute remains in effect until a following occurrence of SGR explicitely resets it.
-
-{{{{include '{graphicOverviewSlug}'}}}}
-
-## Non-graphic sequences
-
-{{{{include '{nonGraphicOverviewSlug}'}}}}
-
-"""
 
 type ExampleType =
     | Reset of int
@@ -159,24 +129,5 @@ let nonGraphicOverview =
 
 [<Tests>]
 let tests =
-    verifyListOfDocPart title
-    <| [
-        {
-            Slug = Slug.from slug
-            Metadata =
-                Some {
-                    Title = title
-                    Navbar = None
-                    Toc =
-                        Some {
-                            Parent = "ANSI escape sequences"
-                            Label = "Overview"
-                            Order = 1
-                        }
-                }
-            Content = pageContent
-            Format = Markdown
-        }
-        graphicOverview
-        nonGraphicOverview
-    ]
+    verifyListOfDocPart "ANSI sequences overview"
+    <| [ graphicOverview; nonGraphicOverview ]

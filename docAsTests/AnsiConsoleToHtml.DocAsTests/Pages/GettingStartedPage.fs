@@ -5,17 +5,6 @@ open VerifyPages
 open AnsiConsoleToHtml
 open DocPart
 
-let title = "Getting started"
-let comparisonSlug = "getting_started_comparison"
-
-let pageContent =
-    $"""
-# {title}
-
-<div>{{{{ include '{comparisonSlug}' }}}}<div>
-
-"""
-
 let comparison =
     let sample = "Hi \x1B[32mWorld"
 
@@ -44,31 +33,11 @@ let comparison =
 </div>"
 
     {
-        Slug = Slug.from comparisonSlug
+        Slug = Slug.from "getting_started_comparison"
         Metadata = None
         Content = content
         Format = Html
     }
 
 [<Tests>]
-let tests =
-    verifyListOfDocPart title
-    <| [
-        {
-            Slug = Slug.from "getting_started"
-            Metadata =
-                Some {
-                    Title = title
-                    Navbar = Some { Label = "Documentation"; Order = 1 }
-                    Toc =
-                        Some {
-                            Parent = title
-                            Label = "How to use"
-                            Order = 1
-                        }
-                }
-            Content = pageContent
-            Format = Markdown
-        }
-        comparison
-    ]
+let tests = verifyListOfDocPart "Getting started" <| [ comparison ]
