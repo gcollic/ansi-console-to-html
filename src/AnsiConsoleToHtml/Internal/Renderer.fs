@@ -18,7 +18,7 @@ let private toTextDecoration (style: AnsiStyle) =
         | DottedUnderline -> Some "dotted"
         | DashedUnderline -> Some "dashed"
         | _ -> None
-        |> Option.map (fun x -> $"underline 1px {x} ")
+        |> Option.map (fun x -> $"underline 1px {x}")
 
     seq {
         if style.Strikethrough then
@@ -29,29 +29,29 @@ let private toTextDecoration (style: AnsiStyle) =
     }
     |> mapIfNotEmpty (fun x ->
         let decoration = String.concat " " x
-        $"text-decoration:{decoration};")
+        $"text-decoration:{decoration}")
 
 let private toHtmlStyle (style: AnsiStyle) =
     let textDecoration = toTextDecoration style
 
     seq {
         if style.Foreground.IsSome then
-            yield $"color:{style.Foreground.Value.AsHexColor()};"
+            yield $"color:{style.Foreground.Value.AsHexColor()}"
 
         if style.Background.IsSome then
-            yield $"background:{style.Background.Value.AsHexColor()};"
+            yield $"background:{style.Background.Value.AsHexColor()}"
 
         if style.Bold then
-            yield "font-weight:900;"
+            yield "font-weight:900"
 
         if style.Italic then
-            yield "font-style:italic;"
+            yield "font-style:italic"
 
         if textDecoration.IsSome then
             yield textDecoration.Value
 
     }
-    |> mapIfNotEmpty String.Concat
+    |> mapIfNotEmpty (String.concat ";")
 
 let private toSpan ansiStyle innerContent =
     match toHtmlStyle ansiStyle with
