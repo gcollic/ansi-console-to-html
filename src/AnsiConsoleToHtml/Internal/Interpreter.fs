@@ -4,12 +4,16 @@ open AnsiConsoleToHtml
 open AnsiModel
 open Parser
 
+let (|RGB|_|) (colors256: Color[]) codes =
+    match codes with
+    | [head] :: [2] :: [r] :: [g] :: [b] :: tail ->  Some (head, {R=uint8 r; G=uint8 g; B=uint8 b}, tail)
+    | [head] :: [5] :: [i] :: tail -> Some (head, colors256[i], tail)
+    | _ -> None
+
 let rec private ansiCodesToStyle (colors256: Color[]) codes style =
     match codes with
-    | [38] :: [2] :: [r] :: [g] :: [b] :: tail -> ansiCodesToStyle colors256 tail { style with Foreground = Some {R=uint8 r; G=uint8 g; B=uint8 b} }
-    | [38] :: [5] :: [i] :: tail -> ansiCodesToStyle colors256 tail { style with Foreground = Some (colors256[i]) }
-    | [48] :: [2] :: [r] :: [g] :: [b] :: tail -> ansiCodesToStyle colors256 tail { style with Background = Some {R=uint8 r; G=uint8 g; B=uint8 b} }
-    | [48] :: [5] :: [i] :: tail -> ansiCodesToStyle colors256 tail { style with Background = Some (colors256[i]) }
+    | RGB colors256 (38, color, tail) -> ansiCodesToStyle colors256 tail { style with Foreground = Some color }
+    | RGB colors256 (48, color, tail) -> ansiCodesToStyle colors256 tail { style with Background = Some color }
     | (code :: options) :: tail ->
         let newStyle =
             match code with
