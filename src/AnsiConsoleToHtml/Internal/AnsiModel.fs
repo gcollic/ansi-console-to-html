@@ -19,14 +19,6 @@ type AnsiStyle = {
     Strikethrough: bool
 } with
 
-    member this.EnableUnderline() =
-        match this.Underline with
-        | NoUnderline -> {
-            this with
-                Underline = StraightUnderline
-          }
-        | _ -> this
-
     static member Empty = {
         Foreground = None
         Background = None

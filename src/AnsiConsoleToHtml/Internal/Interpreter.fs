@@ -18,7 +18,10 @@ let rec private ansiCodesToStyle (colors256: Color[]) codes style =
             | 3 -> { style with Italic = true }
             | 4 ->
                 match options with
-                | [] -> style.EnableUnderline()
+                | [] ->
+                    match style.Underline with
+                    | NoUnderline -> { style with Underline = StraightUnderline }
+                    | _ -> style
                 | [0] -> { style with Underline = NoUnderline }
                 | [1] -> { style with Underline = StraightUnderline }
                 | [2] -> { style with Underline = DoubleUnderline }
