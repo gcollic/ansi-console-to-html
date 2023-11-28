@@ -44,6 +44,11 @@ let graphicOverview =
             MoreDetails = Some AnsiTextDecorationsPage.slug
         }
         {
+            Type = Direct 9
+            Description = "Crossed-out"
+            MoreDetails = None
+        }
+        {
             Type = Direct 21
             Description = "Doubly underlined"
             MoreDetails = Some AnsiTextDecorationsPage.slug
@@ -57,6 +62,11 @@ let graphicOverview =
             Type = Reset 24
             Description = "Not underlined"
             MoreDetails = Some AnsiTextDecorationsPage.slug
+        }
+        {
+            Type = Reset 29
+            Description = "Not crossed out"
+            MoreDetails = None
         }
         {
             Type = Range(30, 37)
@@ -112,7 +122,8 @@ let graphicOverview =
                 | Some slug -> $"{desc}<br/>{{{{link_to '{slug}' 'more details'}}}}"
 
             match typ with
-            | Reset x -> (x.ToString(), completeDescription, $"\x1B[44;33;1;3;4mHi \x1B[{x}mWorld")
+            | Reset x ->
+                (x.ToString(), completeDescription, $"\x1B[44;33;1;3;4;9mHi \x1B[{x}mWorld")
             | Direct x -> (x.ToString(), completeDescription, $"Hi \x1B[{x}mWorld")
             | Range(x, y) -> ($"{x}–{y}", completeDescription, $"Hi \x1B[{x + 2}mWorld")
             | RGB x -> (x.ToString(), completeDescription, $"Hi \x1B[{x};2;110;120;170mWorld"))

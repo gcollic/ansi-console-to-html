@@ -149,8 +149,8 @@ Each display attribute remains in effect until a following occurrence of SGR exp
 <tr>
 <td>0</td>
 <td>Reset</td>
-<td><code style='color:#A31515;'>&quot;\x1B[44;33;1;3;4mHi \x1B[0mWorld&quot;</code></td>
-<td><pre style='color:#FFFFFF;background:#000000'><span style='color:#BBBB00;background:#0000BB;font-weight:900;font-style:italic;text-decoration:underline 1px solid ;'>Hi </span>World</pre></td>
+<td><code style='color:#A31515;'>&quot;\x1B[44;33;1;3;4;9mHi \x1B[0mWorld&quot;</code></td>
+<td><pre style='color:#FFFFFF;background:#000000'><span style='color:#BBBB00;background:#0000BB;font-weight:900;font-style:italic;text-decoration:line-through underline 1px solid ;'>Hi </span>World</pre></td>
 </tr>
 <tr>
 <td>1</td>
@@ -171,6 +171,12 @@ Each display attribute remains in effect until a following occurrence of SGR exp
 <td><pre style='color:#FFFFFF;background:#000000'>Hi <span style='text-decoration:underline 1px solid ;'>World</span></pre></td>
 </tr>
 <tr>
+<td>9</td>
+<td>Crossed-out</td>
+<td><code style='color:#A31515;'>&quot;Hi \x1B[9mWorld&quot;</code></td>
+<td><pre style='color:#FFFFFF;background:#000000'>Hi <span style='text-decoration:line-through;'>World</span></pre></td>
+</tr>
+<tr>
 <td>21</td>
 <td>Doubly underlined<br/><a href='ansi_text_decorations.html'>more details</a></td>
 <td><code style='color:#A31515;'>&quot;Hi \x1B[21mWorld&quot;</code></td>
@@ -179,14 +185,20 @@ Each display attribute remains in effect until a following occurrence of SGR exp
 <tr>
 <td>23</td>
 <td>Not italic</td>
-<td><code style='color:#A31515;'>&quot;\x1B[44;33;1;3;4mHi \x1B[23mWorld&quot;</code></td>
-<td><pre style='color:#FFFFFF;background:#000000'><span style='color:#BBBB00;background:#0000BB;font-weight:900;font-style:italic;text-decoration:underline 1px solid ;'>Hi </span><span style='color:#BBBB00;background:#0000BB;font-weight:900;text-decoration:underline 1px solid ;'>World</span></pre></td>
+<td><code style='color:#A31515;'>&quot;\x1B[44;33;1;3;4;9mHi \x1B[23mWorld&quot;</code></td>
+<td><pre style='color:#FFFFFF;background:#000000'><span style='color:#BBBB00;background:#0000BB;font-weight:900;font-style:italic;text-decoration:line-through underline 1px solid ;'>Hi </span><span style='color:#BBBB00;background:#0000BB;font-weight:900;text-decoration:line-through underline 1px solid ;'>World</span></pre></td>
 </tr>
 <tr>
 <td>24</td>
 <td>Not underlined<br/><a href='ansi_text_decorations.html'>more details</a></td>
-<td><code style='color:#A31515;'>&quot;\x1B[44;33;1;3;4mHi \x1B[24mWorld&quot;</code></td>
-<td><pre style='color:#FFFFFF;background:#000000'><span style='color:#BBBB00;background:#0000BB;font-weight:900;font-style:italic;text-decoration:underline 1px solid ;'>Hi </span><span style='color:#BBBB00;background:#0000BB;font-weight:900;font-style:italic;'>World</span></pre></td>
+<td><code style='color:#A31515;'>&quot;\x1B[44;33;1;3;4;9mHi \x1B[24mWorld&quot;</code></td>
+<td><pre style='color:#FFFFFF;background:#000000'><span style='color:#BBBB00;background:#0000BB;font-weight:900;font-style:italic;text-decoration:line-through underline 1px solid ;'>Hi </span><span style='color:#BBBB00;background:#0000BB;font-weight:900;font-style:italic;text-decoration:line-through;'>World</span></pre></td>
+</tr>
+<tr>
+<td>29</td>
+<td>Not crossed out</td>
+<td><code style='color:#A31515;'>&quot;\x1B[44;33;1;3;4;9mHi \x1B[29mWorld&quot;</code></td>
+<td><pre style='color:#FFFFFF;background:#000000'><span style='color:#BBBB00;background:#0000BB;font-weight:900;font-style:italic;text-decoration:line-through underline 1px solid ;'>Hi </span><span style='color:#BBBB00;background:#0000BB;font-weight:900;font-style:italic;text-decoration:underline 1px solid ;'>World</span></pre></td>
 </tr>
 <tr>
 <td>30–37</td>
@@ -203,8 +215,8 @@ Each display attribute remains in effect until a following occurrence of SGR exp
 <tr>
 <td>39</td>
 <td>Default foreground color</td>
-<td><code style='color:#A31515;'>&quot;\x1B[44;33;1;3;4mHi \x1B[39mWorld&quot;</code></td>
-<td><pre style='color:#FFFFFF;background:#000000'><span style='color:#BBBB00;background:#0000BB;font-weight:900;font-style:italic;text-decoration:underline 1px solid ;'>Hi </span><span style='background:#0000BB;font-weight:900;font-style:italic;text-decoration:underline 1px solid ;'>World</span></pre></td>
+<td><code style='color:#A31515;'>&quot;\x1B[44;33;1;3;4;9mHi \x1B[39mWorld&quot;</code></td>
+<td><pre style='color:#FFFFFF;background:#000000'><span style='color:#BBBB00;background:#0000BB;font-weight:900;font-style:italic;text-decoration:line-through underline 1px solid ;'>Hi </span><span style='background:#0000BB;font-weight:900;font-style:italic;text-decoration:line-through underline 1px solid ;'>World</span></pre></td>
 </tr>
 <tr>
 <td>40–47</td>
@@ -221,8 +233,8 @@ Each display attribute remains in effect until a following occurrence of SGR exp
 <tr>
 <td>49</td>
 <td>Default background color</td>
-<td><code style='color:#A31515;'>&quot;\x1B[44;33;1;3;4mHi \x1B[49mWorld&quot;</code></td>
-<td><pre style='color:#FFFFFF;background:#000000'><span style='color:#BBBB00;background:#0000BB;font-weight:900;font-style:italic;text-decoration:underline 1px solid ;'>Hi </span><span style='color:#BBBB00;font-weight:900;font-style:italic;text-decoration:underline 1px solid ;'>World</span></pre></td>
+<td><code style='color:#A31515;'>&quot;\x1B[44;33;1;3;4;9mHi \x1B[49mWorld&quot;</code></td>
+<td><pre style='color:#FFFFFF;background:#000000'><span style='color:#BBBB00;background:#0000BB;font-weight:900;font-style:italic;text-decoration:line-through underline 1px solid ;'>Hi </span><span style='color:#BBBB00;font-weight:900;font-style:italic;text-decoration:line-through underline 1px solid ;'>World</span></pre></td>
 </tr>
 <tr>
 <td>90–97</td>

@@ -26,9 +26,11 @@ let rec private ansiCodesToStyle (colors256: Color[]) codes style =
                 | [4] -> { style with Underline = DottedUnderline }
                 | [5] -> { style with Underline = DashedUnderline }
                 | _ -> style
+            | 9 -> { style with Strikethrough = true }
             | 21 -> { style with Underline = DoubleUnderline }
             | 23 -> { style with Italic = false }
             | 24 -> { style with Underline = NoUnderline }
+            | 29 -> { style with Strikethrough = false }
             | x when (30 <= x && x <= 37) -> { style with Foreground = Some (colors256[x-30]) }
             | 39 -> { style with Foreground = None }
             | x when (40 <= x && x <= 47) -> { style with Background = Some (colors256[x-40]) }

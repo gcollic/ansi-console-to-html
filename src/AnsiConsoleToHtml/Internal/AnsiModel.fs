@@ -16,6 +16,7 @@ type AnsiStyle = {
     Bold: bool
     Italic: bool
     Underline: UnderlineKind
+    Strikethrough: bool
 } with
 
     member this.EnableUnderline() =
@@ -32,4 +33,5 @@ type AnsiStyle = {
         Bold = false
         Italic = false
         Underline = NoUnderline
+        Strikethrough = false
     }
