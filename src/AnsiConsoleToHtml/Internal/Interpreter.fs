@@ -46,21 +46,17 @@ let rec private ansiCodesToStyle (colors256: Color[]) codes style =
             | x when (100 <= x && x <= 107) -> { style with Background = Some (colors256[x-92]) }
             | _ -> style
         ansiCodesToStyle colors256 tail newStyle
-    | _ ->  style
+    | _ -> style
 
 type StyledText =
     | Text of (string * AnsiStyle)
     | NewLine
 
-let rec private interpretRec colors256 tokens currentStyle =
-    match tokens with
-    | NonPrintable :: tail -> interpretRec colors256 tail currentStyle
-    | RawNewLine :: tail -> NewLine :: interpretRec colors256 tail currentStyle
-    | RawText t :: tail -> Text(t, currentStyle) :: interpretRec colors256 tail currentStyle
-    | AnsiMCommand args :: tail ->
-        let newStyle = ansiCodesToStyle colors256 args currentStyle
-        interpretRec colors256 tail newStyle
-    | [] -> []
-
 let interpretCommands colors256 tokens =
-    interpretRec colors256 tokens AnsiStyle.Empty
+    let interpretToken (results, currentStyle) token =
+        match token with
+        | NonPrintable -> (results, currentStyle)
+        | RawNewLine -> (results @ [NewLine], currentStyle)
+        | RawText t -> (results @ [Text(t, currentStyle)], currentStyle)
+        | AnsiMCommand codes -> (results, ansiCodesToStyle colors256 codes currentStyle)
+    List.fold interpretToken ([], AnsiStyle.Empty) tokens |> fst
