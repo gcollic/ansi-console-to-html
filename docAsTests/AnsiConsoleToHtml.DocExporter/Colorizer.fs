@@ -2,13 +2,15 @@ module Colorizer
 
 open ColorCode
 
-let toDotNetString (s: string) =
-    let cleaned = s.Replace("\\", "\\\\").Replace("\x1B", "\\x1B").Replace("\"", "\\\"")
+let private clean escapedEsc (s: string) =
+    let cleaned =
+        s.Replace("\\", "\\\\").Replace("\x1B", escapedEsc).Replace("\"", "\\\"")
+
     "\"" + cleaned + "\""
 
-let toUnixShellString (s: string) =
-    let cleaned = s.Replace("\\", "\\\\").Replace("\x1B", "\\033").Replace("\"", "\\\"")
-    "\"" + cleaned + "\""
+let toDotNetString s = clean "\\x1B" s
+let toUnixShellString (s: string) = clean "\\033" s
+let toPowerShellString (s: string) = clean "`e" s
 
 let inlineHtmlDotNetstring (s: string) =
     $"<code style='color:#A31515;'>{toDotNetString s}</code>"
