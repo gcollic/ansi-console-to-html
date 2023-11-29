@@ -4,6 +4,9 @@ open AnsiConsoleToHtml
 open AnsiModel
 open Parser
 
+let private (|Between|_|) first last code =
+    if first <= code && code <= last then Some() else None
+
 let (|RGB|_|) (colors256: Color[]) codes =
     match codes with
     | [head] :: [2] :: [r] :: [g] :: [b] :: tail ->  Some (head, {R=uint8 r; G=uint8 g; B=uint8 b}, tail)
@@ -38,12 +41,12 @@ let rec private ansiCodesToStyle (colors256: Color[]) codes style =
             | 23 -> { style with Italic = false }
             | 24 -> { style with Underline = NoUnderline }
             | 29 -> { style with Strikethrough = false }
-            | x when (30 <= x && x <= 37) -> { style with Foreground = Some (colors256[x-30]) }
+            | Between 30 37 -> { style with Foreground = Some (colors256[code-30]) }
             | 39 -> { style with Foreground = None }
-            | x when (40 <= x && x <= 47) -> { style with Background = Some (colors256[x-40]) }
+            | Between 40 47 -> { style with Background = Some (colors256[code-40]) }
             | 49 -> { style with Background = None }
-            | x when (90 <= x && x <= 97) -> { style with Foreground = Some (colors256[x-82]) }
-            | x when (100 <= x && x <= 107) -> { style with Background = Some (colors256[x-92]) }
+            | Between 90 97 -> { style with Foreground = Some (colors256[code-82]) }
+            | Between 100 107 -> { style with Background = Some (colors256[code-92]) }
             | _ -> style
         ansiCodesToStyle colors256 tail newStyle
     | _ -> style
