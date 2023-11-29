@@ -15,118 +15,45 @@ type ExampleType =
     | Range of int * int
     | RGB of int
 
-type Example = {
-    Type: ExampleType
-    Description: string
-    MoreDetails: string option
-}
+type Row =
+    static member from(typ: ExampleType, desc: string) =
+        match typ with
+        | Reset x -> (x.ToString(), desc, $"\x1B[44;33;1;3;4;9mHi \x1B[{x}mWorld")
+        | Direct x -> (x.ToString(), desc, $"Hi \x1B[{x}mWorld")
+        | Range(x, y) -> ($"{x}–{y}", desc, $"Hi \x1B[{x + 2}mWorld")
+        | RGB x -> (x.ToString(), desc, $"Hi \x1B[{x};2;110;120;170mWorld")
+
+    static member from(typ: ExampleType, desc: string, slug: string) =
+        Row.from (typ, $"{desc}<br/>{{{{link_to '{slug}' 'more details'}}}}")
 
 let graphicOverview =
     [
-        {
-            Type = Reset 0
-            Description = "Reset"
-            MoreDetails = None
-        }
-        {
-            Type = Direct 1
-            Description = "Bold or intense"
-            MoreDetails = None
-        }
-        {
-            Type = Direct 3
-            Description = "Italic"
-            MoreDetails = None
-        }
-        {
-            Type = Direct 4
-            Description = "Underline (with optional style)"
-            MoreDetails = Some AnsiTextDecorationsPage.slug
-        }
-        {
-            Type = Direct 9
-            Description = "Crossed-out"
-            MoreDetails = None
-        }
-        {
-            Type = Direct 21
-            Description = "Doubly underlined"
-            MoreDetails = Some AnsiTextDecorationsPage.slug
-        }
-        {
-            Type = Reset 23
-            Description = "Not italic"
-            MoreDetails = None
-        }
-        {
-            Type = Reset 24
-            Description = "Not underlined"
-            MoreDetails = Some AnsiTextDecorationsPage.slug
-        }
-        {
-            Type = Reset 29
-            Description = "Not crossed out"
-            MoreDetails = None
-        }
-        {
-            Type = Range(30, 37)
-            Description = "Set foreground color (standard)"
-            MoreDetails = Some AnsiColorsSequencesPage.slug
-        }
-        {
-            Type = RGB 38
-            Description = "Set foreground color (38;5;n or 38;2;r;g;b)"
-            MoreDetails = Some AnsiColorsSequencesPage.slug
-        }
-        {
-            Type = Reset 39
-            Description = "Default foreground color"
-            MoreDetails = None
-        }
-        {
-            Type = Range(40, 47)
-            Description = "Set background color (standard)"
-            MoreDetails = Some AnsiColorsSequencesPage.slug
-        }
-        {
-            Type = RGB 48
-            Description = "Set background color (48;5;n or 48;2;r;g;b)"
-            MoreDetails = Some AnsiColorsSequencesPage.slug
-        }
-        {
-            Type = Reset 49
-            Description = "Default background color"
-            MoreDetails = None
-        }
-        {
-            Type = Range(90, 97)
-            Description = "Set foreground color (bright)"
-            MoreDetails = Some AnsiColorsSequencesPage.slug
-        }
-        {
-            Type = Range(100, 107)
-            Description = "Set background color (bright)"
-            MoreDetails = Some AnsiColorsSequencesPage.slug
-        }
+        Row.from (Reset 0, "Reset")
+        Row.from (Direct 1, "Bold or intense")
+        Row.from (Direct 3, "Italic")
+        Row.from (Direct 4, "Underline (with optional style)", AnsiTextDecorationsPage.slug)
+        Row.from (Direct 9, "Crossed-out")
+        Row.from (Direct 21, "Doubly underlined", AnsiTextDecorationsPage.slug)
+        Row.from (Reset 23, "Not italic")
+        Row.from (Reset 24, "Not underlined", AnsiTextDecorationsPage.slug)
+        Row.from (Reset 29, "Not crossed out")
+        Row.from (Range(30, 37), "Set foreground color (standard)", AnsiColorsSequencesPage.slug)
+        Row.from (
+            RGB 38,
+            "Set foreground color (38;5;n or 38;2;r;g;b)",
+            AnsiColorsSequencesPage.slug
+        )
+        Row.from (Reset 39, "Default foreground color")
+        Row.from (Range(40, 47), "Set background color (standard)", AnsiColorsSequencesPage.slug)
+        Row.from (
+            RGB 48,
+            "Set background color (48;5;n or 48;2;r;g;b)",
+            AnsiColorsSequencesPage.slug
+        )
+        Row.from (Reset 49, "Default background color")
+        Row.from (Range(90, 97), "Set foreground color (bright)", AnsiColorsSequencesPage.slug)
+        Row.from (Range(100, 107), "Set background color (bright)", AnsiColorsSequencesPage.slug)
     ]
-    |> List.map
-        (fun
-            {
-                Type = typ
-                Description = desc
-                MoreDetails = details
-            } ->
-            let completeDescription =
-                match details with
-                | None -> desc
-                | Some slug -> $"{desc}<br/>{{{{link_to '{slug}' 'more details'}}}}"
-
-            match typ with
-            | Reset x ->
-                (x.ToString(), completeDescription, $"\x1B[44;33;1;3;4;9mHi \x1B[{x}mWorld")
-            | Direct x -> (x.ToString(), completeDescription, $"Hi \x1B[{x}mWorld")
-            | Range(x, y) -> ($"{x}–{y}", completeDescription, $"Hi \x1B[{x + 2}mWorld")
-            | RGB x -> (x.ToString(), completeDescription, $"Hi \x1B[{x};2;110;120;170mWorld"))
     |> examplesToMarkdownDocPart graphicOverviewSlug
 
 let nonGraphicOverview =
