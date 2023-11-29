@@ -161,3 +161,11 @@ span[role=tabcopy] svg{
   height: 0.6em;
   fill:currentcolor;
 }
+
+td {
+  padding: 0.5em var(--spacing);
+}
+td pre {
+  padding: 0.5em;
+  margin-bottom: 0;
+}

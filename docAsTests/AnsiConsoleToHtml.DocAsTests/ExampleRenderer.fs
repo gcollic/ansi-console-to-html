@@ -18,15 +18,15 @@ let createSampleDocPart slug sample =
 let cartesianCodesToSampleDocPart slug (xCodes: string list) (yCodes: string list) =
     let maxXLength = xCodes |> List.map _.Length |> List.max
     let maxYLength = yCodes |> List.map _.Length |> List.max
-    let alternativeText = "^(;,;)^"
+    let alternativeText = " Test "
 
-    let maxTextLength =
+    let (useAlternativeText, maxTextLength) =
         let total = maxXLength + maxYLength + 1
 
         if total <= alternativeText.Length then
-            total
+            (false, total)
         else
-            max alternativeText.Length (maxXLength + 1)
+            (true, max alternativeText.Length (maxXLength + 1))
 
 
     let header =
@@ -36,10 +36,7 @@ let cartesianCodesToSampleDocPart slug (xCodes: string list) (yCodes: string lis
         |> (fun row -> new string (' ', maxYLength) + row)
 
     let toText (code: string) =
-        if code.Length <= maxTextLength then
-            code
-        else
-            alternativeText
+        if useAlternativeText then alternativeText else code
         |> _.PadLeft(maxTextLength, ' ')
 
     let rows =
