@@ -18,7 +18,7 @@ type ExampleType =
 type Row =
     static member from(typ: ExampleType, desc: string) =
         match typ with
-        | Reset x -> (x.ToString(), desc, $"\x1B[44;33;1;3;4;9mHi \x1B[{x}mWorld")
+        | Reset x -> (x.ToString(), desc, $"\x1B[44;33;1;3;4;9;58;5;1mHi \x1B[{x}mWorld")
         | Direct x -> (x.ToString(), desc, $"Hi \x1B[{x}mWorld")
         | Range(x, y) -> ($"{x}–{y}", desc, $"Hi \x1B[{x + 2}mWorld")
         | RGB x -> (x.ToString(), desc, $"Hi \x1B[{x};2;110;120;170mWorld")
@@ -51,6 +51,12 @@ let graphicOverview =
             AnsiColorsSequencesPage.slug
         )
         Row.from (Reset 49, "Default background color")
+        Row.from (
+            RGB 58,
+            "Set underline color (58;5;n or 58;2;r;g;b)",
+            AnsiTextDecorationsPage.slug
+        )
+        Row.from (Reset 59, "Default underline color")
         Row.from (Range(90, 97), "Set foreground color (bright)", AnsiColorsSequencesPage.slug)
         Row.from (Range(100, 107), "Set background color (bright)", AnsiColorsSequencesPage.slug)
     ]

@@ -23,6 +23,7 @@ let interpretCommands (colors256: Color[]) tokens =
         match codes with
         | RGB (38, color, tail) -> applyCodesToStyle tail { style with Foreground = Some color }
         | RGB (48, color, tail) -> applyCodesToStyle tail { style with Background = Some color }
+        | RGB (58, color, tail) -> applyCodesToStyle tail { style with UnderlineColor = Some color }
         | (code :: options) :: tail ->
             match code with
             | 0 ->                     AnsiStyle.Empty
@@ -50,6 +51,7 @@ let interpretCommands (colors256: Color[]) tokens =
             | 39 ->                  { style with Foreground = None }
             | Between 40 47   ->     { style with Background = Some colors256[code-40] }
             | 49 ->                  { style with Background = None }
+            | 59 ->                  { style with UnderlineColor = None }
             | Between 90 97   ->     { style with Foreground = Some colors256[code-82] }
             | Between 100 107 ->     { style with Background = Some colors256[code-92] }
             | _  ->                    style

@@ -18,7 +18,13 @@ let private toTextDecoration (style: AnsiStyle) =
         | DottedUnderline -> Some "dotted"
         | DashedUnderline -> Some "dashed"
         | _ -> None
-        |> Option.map (fun x -> $"underline 1px {x}")
+        |> Option.map (fun x ->
+            let color =
+                style.UnderlineColor
+                |> Option.map (fun c -> " " + c.AsHexColor())
+                |> Option.defaultValue ""
+
+            $"underline 1px {x}{color}")
 
     seq {
         if style.Strikethrough then
@@ -63,7 +69,22 @@ let rec private convertToHtmlParts tokens =
     | NewLine :: tail -> "\n" :: convertToHtmlParts tail
     | Text(text, style) :: tail ->
         let escapedText = HttpUtility.HtmlEncode text
-        let span = toSpan style escapedText
+
+        let span =
+            match style with
+            // to have different color for strikethrough and underline, you need to nest two spans
+            | { Strikethrough = false }
+            | { Underline = NoUnderline }
+            | { UnderlineColor = None } -> toSpan style escapedText
+            | _ ->
+                escapedText
+                |> toSpan {
+                    AnsiStyle.Empty with
+                        Underline = style.Underline
+                        UnderlineColor = style.UnderlineColor
+                }
+                |> toSpan { style with Underline = NoUnderline }
+
         span :: convertToHtmlParts tail
     | [] -> []
 

@@ -16,6 +16,7 @@ type AnsiStyle = {
     Bold: bool
     Italic: bool
     Underline: UnderlineKind
+    UnderlineColor: Option<Color>
     Strikethrough: bool
 } with
 
@@ -25,5 +26,6 @@ type AnsiStyle = {
         Bold = false
         Italic = false
         Underline = NoUnderline
+        UnderlineColor = None
         Strikethrough = false
     }
