@@ -130,11 +130,12 @@
         <section id="start" class="page_ansi_text_decorations">
 <h1>ANSI text decorations sequences</h1>
 <h2>Underline</h2>
-<p>4 (underline) and 24 (no underline) are classic codes for underlines.</p>
-<p>21 is double-underline per ECMA-48, but instead disables bold intensity on some terminals, including in the Linux kernel's console <em>before version 4.17</em>.</p>
-<p>More recently, options have been added to the code sequence 4.
+<p>Style and color options have been added to the classic underline code sequences.
 It was originally added by Kitty, now also adopted by other terminals, and supported by applications such as vim.</p>
 <p>See <a href="https://sw.kovidgoyal.net/kitty/underlines/">https://sw.kovidgoyal.net/kitty/underlines/</a></p>
+<p><code>4</code> (underline) and <code>24</code> (no underline) are classic codes for underlines.</p>
+<p><code>21</code> is double-underline per ECMA-48, but instead disables bold intensity on some terminals, including in the Linux kernel's console <em>before version 4.17</em>.</p>
+<p><code>4:x</code> are the new extensions.</p>
 <p><table>
 <thead>
 <tr>
@@ -202,6 +203,7 @@ It was originally added by Kitty, now also adopted by other terminals, and suppo
 </tbody>
 </table>
 </p>
+<p>For underline color, see the <a href='ansi_colors_sequences.html'>colors sequences</a>.</p>
 
         </section>
 

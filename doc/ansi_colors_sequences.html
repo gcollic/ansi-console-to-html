@@ -218,7 +218,7 @@ AnsiConsole.ToHtml(<span style="color:#A31515;">@&quot;      40    41    42    4
 </div>
 </p>
 <h2>8-bit colors: 38;5;n / 48;5;n</h2>
-<p>'n' is the index in the <a href='ansi_colors_table.html'>256 colors table</a>.</p>
+<p><code>n</code> is the index in the <a href='ansi_colors_table.html'>256 colors table</a>.</p>
 <p>
 <div role="sample">
   <div role="tabselect">
@@ -262,7 +262,7 @@ AnsiConsole.ToHtml(<span style="color:#A31515;">@&quot;        48;5;16 48;5;17 4
 </div>
 </p>
 <h2>24-bit colors: 38;2;r;g;b / 48;2;r;g;b</h2>
-<p>'r' 'g' and 'b' are the red, green, and blue components of the RGB color space (each between 0 and 255).</p>
+<p><code>r</code> <code>g</code> and <code>b</code> are the red, green, and blue components of the RGB color space (each between 0 and 255).</p>
 <p>
 <div role="sample">
   <div role="tabselect">
@@ -299,6 +299,46 @@ AnsiConsole.ToHtml(<span style="color:#A31515;">@&quot;                48;2;237;
  38;2;204;42;54\033[48;2;237;201;81;38;2;204;42;54m           Test \033[0m\033[48;2;235;104;65;38;2;204;42;54m           Test \033[0m\033[48;2;204;42;54;38;2;204;42;54m           Test \033[0m\033[48;2;79;55;45;38;2;204;42;54m           Test \033[0m\033[48;2;0;160;176;38;2;204;42;54m           Test \033[0m
   38;2;79;55;45\033[48;2;237;201;81;38;2;79;55;45m           Test \033[0m\033[48;2;235;104;65;38;2;79;55;45m           Test \033[0m\033[48;2;204;42;54;38;2;79;55;45m           Test \033[0m\033[48;2;79;55;45;38;2;79;55;45m           Test \033[0m\033[48;2;0;160;176;38;2;79;55;45m           Test \033[0m
  38;2;0;160;176\033[48;2;237;201;81;38;2;0;160;176m           Test \033[0m\033[48;2;235;104;65;38;2;0;160;176m           Test \033[0m\033[48;2;204;42;54;38;2;0;160;176m           Test \033[0m\033[48;2;79;55;45;38;2;0;160;176m           Test \033[0m\033[48;2;0;160;176;38;2;0;160;176m           Test \033[0m"</pre>
+  </div>
+</div>
+</p>
+<h2>Underline color</h2>
+<p>By default, the underline color is the same as the foreground color.
+To set a different color, the code <code>58</code> is used, and works exactly like the codes <code>38</code> and <code>48</code>.</p>
+<p>See <a href='ansi_text_decorations.html'>text decorations</a> for more underline details.</p>
+<p>
+<div role="sample">
+  <div role="tabselect">
+    <ul>
+      <li><a href="#" role="tab" aria-current="true">HTML</a></li>
+      <li><a href="#" role="tab">DotNet</a></li>
+      <li><a href="#" role="tab">Bash</a></li>
+    </ul>
+  </div>
+  <div role="tabpanel">
+<pre style='color:#FFFFFF;background:#000000'>
+                  4   4:1   4:2   4:3   4:4   4:5    21
+           94<span style='color:#5555FF;text-decoration:underline 1px solid'> Test </span><span style='color:#5555FF;text-decoration:underline 1px solid'> Test </span><span style='color:#5555FF;text-decoration:underline 1px double'> Test </span><span style='color:#5555FF;text-decoration:underline 1px wavy'> Test </span><span style='color:#5555FF;text-decoration:underline 1px dotted'> Test </span><span style='color:#5555FF;text-decoration:underline 1px dashed'> Test </span><span style='color:#5555FF;text-decoration:underline 1px double'> Test </span>
+       58;5;2<span style='text-decoration:underline 1px solid #00BB00'> Test </span><span style='text-decoration:underline 1px solid #00BB00'> Test </span><span style='text-decoration:underline 1px double #00BB00'> Test </span><span style='text-decoration:underline 1px wavy #00BB00'> Test </span><span style='text-decoration:underline 1px dotted #00BB00'> Test </span><span style='text-decoration:underline 1px dashed #00BB00'> Test </span><span style='text-decoration:underline 1px double #00BB00'> Test </span>
+58;2;120;99;0<span style='text-decoration:underline 1px solid #786300'> Test </span><span style='text-decoration:underline 1px solid #786300'> Test </span><span style='text-decoration:underline 1px double #786300'> Test </span><span style='text-decoration:underline 1px wavy #786300'> Test </span><span style='text-decoration:underline 1px dotted #786300'> Test </span><span style='text-decoration:underline 1px dashed #786300'> Test </span><span style='text-decoration:underline 1px double #786300'> Test </span>
+    94;58;5;2<span style='color:#5555FF;text-decoration:underline 1px solid #00BB00'> Test </span><span style='color:#5555FF;text-decoration:underline 1px solid #00BB00'> Test </span><span style='color:#5555FF;text-decoration:underline 1px double #00BB00'> Test </span><span style='color:#5555FF;text-decoration:underline 1px wavy #00BB00'> Test </span><span style='color:#5555FF;text-decoration:underline 1px dotted #00BB00'> Test </span><span style='color:#5555FF;text-decoration:underline 1px dashed #00BB00'> Test </span><span style='color:#5555FF;text-decoration:underline 1px double #00BB00'> Test </span>
+</pre>
+  </div>
+  <div role="tabpanel" hidden>
+<div style="color:#000000;background-color:#FFFFFF;"><pre>
+AnsiConsole.ToHtml(<span style="color:#A31515;">@&quot;                  4   4:1   4:2   4:3   4:4   4:5    21
+           94\x1B[4;94m Test \x1B[0m\x1B[4:1;94m Test \x1B[0m\x1B[4:2;94m Test \x1B[0m\x1B[4:3;94m Test \x1B[0m\x1B[4:4;94m Test \x1B[0m\x1B[4:5;94m Test \x1B[0m\x1B[21;94m Test \x1B[0m
+       58;5;2\x1B[4;58;5;2m Test \x1B[0m\x1B[4:1;58;5;2m Test \x1B[0m\x1B[4:2;58;5;2m Test \x1B[0m\x1B[4:3;58;5;2m Test \x1B[0m\x1B[4:4;58;5;2m Test \x1B[0m\x1B[4:5;58;5;2m Test \x1B[0m\x1B[21;58;5;2m Test \x1B[0m
+58;2;120;99;0\x1B[4;58;2;120;99;0m Test \x1B[0m\x1B[4:1;58;2;120;99;0m Test \x1B[0m\x1B[4:2;58;2;120;99;0m Test \x1B[0m\x1B[4:3;58;2;120;99;0m Test \x1B[0m\x1B[4:4;58;2;120;99;0m Test \x1B[0m\x1B[4:5;58;2;120;99;0m Test \x1B[0m\x1B[21;58;2;120;99;0m Test \x1B[0m
+    94;58;5;2\x1B[4;94;58;5;2m Test \x1B[0m\x1B[4:1;94;58;5;2m Test \x1B[0m\x1B[4:2;94;58;5;2m Test \x1B[0m\x1B[4:3;94;58;5;2m Test \x1B[0m\x1B[4:4;94;58;5;2m Test \x1B[0m\x1B[4:5;94;58;5;2m Test \x1B[0m\x1B[21;94;58;5;2m Test \x1B[0m&quot;</span>)
+</pre></div>
+  </div>
+  <div role="tabpanel" hidden>
+<pre>printf "                  4   4:1   4:2   4:3   4:4   4:5    21
+           94\033[4;94m Test \033[0m\033[4:1;94m Test \033[0m\033[4:2;94m Test \033[0m\033[4:3;94m Test \033[0m\033[4:4;94m Test \033[0m\033[4:5;94m Test \033[0m\033[21;94m Test \033[0m
+       58;5;2\033[4;58;5;2m Test \033[0m\033[4:1;58;5;2m Test \033[0m\033[4:2;58;5;2m Test \033[0m\033[4:3;58;5;2m Test \033[0m\033[4:4;58;5;2m Test \033[0m\033[4:5;58;5;2m Test \033[0m\033[21;58;5;2m Test \033[0m
+58;2;120;99;0\033[4;58;2;120;99;0m Test \033[0m\033[4:1;58;2;120;99;0m Test \033[0m\033[4:2;58;2;120;99;0m Test \033[0m\033[4:3;58;2;120;99;0m Test \033[0m\033[4:4;58;2;120;99;0m Test \033[0m\033[4:5;58;2;120;99;0m Test \033[0m\033[21;58;2;120;99;0m Test \033[0m
+    94;58;5;2\033[4;94;58;5;2m Test \033[0m\033[4:1;94;58;5;2m Test \033[0m\033[4:2;94;58;5;2m Test \033[0m\033[4:3;94;58;5;2m Test \033[0m\033[4:4;94;58;5;2m Test \033[0m\033[4:5;94;58;5;2m Test \033[0m\033[21;94;58;5;2m Test \033[0m"</pre>
   </div>
 </div>
 </p>

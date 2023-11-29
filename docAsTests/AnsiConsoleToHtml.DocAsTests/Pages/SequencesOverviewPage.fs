@@ -54,7 +54,7 @@ let graphicOverview =
         Row.from (
             RGB 58,
             "Set underline color (58;5;n or 58;2;r;g;b)",
-            AnsiTextDecorationsPage.slug
+            AnsiColorsSequencesPage.slug
         )
         Row.from (Reset 59, "Default underline color")
         Row.from (Range(90, 97), "Set foreground color (bright)", AnsiColorsSequencesPage.slug)

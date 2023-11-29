@@ -5,19 +5,16 @@ open VerifyPages
 open ExampleRenderer
 
 let slug = "ansi_colors_sequences"
-let table4bitColorsSlug = slug + "-4bit-colors"
-let table8bitColorsSlug = slug + "-8bit-colors"
-let table24bitColorsSlug = slug + "-24bit-colors"
 
 [<Tests>]
 let tests =
     verifyListOfDocPart "ANSI colors sequences"
     <| [
-        cartesianSimpleCodesToSampleDocPart table4bitColorsSlug [
+        cartesianSimpleCodesToSampleDocPart (slug + "-4bit-colors") [
             yield! [ 40..47 ]
             yield! [ 100..107 ]
         ] [ yield! [ 30..37 ]; yield! [ 90..97 ] ]
-        cartesianCodesToSampleDocPart table8bitColorsSlug [
+        cartesianCodesToSampleDocPart (slug + "-8bit-colors") [
             "48;5;16"
             "48;5;17"
             "48;5;18"
@@ -25,7 +22,7 @@ let tests =
             "48;5;20"
             "48;5;21"
         ] [ "38;5;16"; "38;5;22"; "38;5;28"; "38;5;34"; "38;5;40"; "38;5;46" ]
-        cartesianCodesToSampleDocPart table24bitColorsSlug [
+        cartesianCodesToSampleDocPart (slug + "-24bit-colors") [
             "48;2;237;201;81"
             "48;2;235;104;65"
             "48;2;204;42;54"
@@ -38,4 +35,13 @@ let tests =
             "38;2;79;55;45"
             "38;2;0;160;176"
         ]
+        cartesianCodesToSampleDocPart (slug + "_underline") [
+            "4"
+            "4:1"
+            "4:2"
+            "4:3"
+            "4:4"
+            "4:5"
+            "21"
+        ] [ "94"; "58;5;2"; "58;2;120;99;0"; "94;58;5;2" ]
     ]
