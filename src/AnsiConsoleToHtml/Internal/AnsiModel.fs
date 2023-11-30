@@ -13,6 +13,7 @@ type UnderlineKind =
 type AnsiStyle = {
     Foreground: Option<Color>
     Background: Option<Color>
+    Dim: bool
     Bold: bool
     Italic: bool
     Underline: UnderlineKind
@@ -23,6 +24,7 @@ type AnsiStyle = {
     static member Empty = {
         Foreground = None
         Background = None
+        Dim = false
         Bold = false
         Italic = false
         Underline = NoUnderline

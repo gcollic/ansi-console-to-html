@@ -42,9 +42,22 @@ let convertStyledTextToHtml (colors256: Color[]) tokens =
     let toHtmlStyle (style: AnsiStyle) =
         let textDecoration = toTextDecoration style
 
+        let actualForeground =
+            if style.Dim then
+                style.Foreground
+                |> Option.defaultValue colors256[15]
+                |> (fun c -> {
+                    R = c.R / 2uy
+                    G = c.G / 2uy
+                    B = c.B / 2uy
+                })
+                |> Some
+            else
+                style.Foreground
+
         seq {
-            if style.Foreground.IsSome then
-                yield $"color:{style.Foreground.Value.AsHexColor()}"
+            if actualForeground.IsSome then
+                yield $"color:{actualForeground.Value.AsHexColor()}"
 
             if style.Background.IsSome then
                 yield $"background:{style.Background.Value.AsHexColor()}"

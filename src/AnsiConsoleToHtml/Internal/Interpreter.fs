@@ -28,6 +28,7 @@ let interpretCommands (colors256: Color[]) tokens =
             match code with
             | 0 ->                     AnsiStyle.Empty
             | 1 ->                   { style with Bold = true }
+            | 2 ->                   { style with Dim = true }
             | 3 ->                   { style with Italic = true }
             | 4 ->
                 match options with
@@ -44,6 +45,7 @@ let interpretCommands (colors256: Color[]) tokens =
                 |  _  ->               style
             | 9  ->                  { style with Strikethrough = true }
             | 21 ->                  { style with Underline = DoubleUnderline }
+            | 22 ->                  { style with Dim = false; Bold = false }
             | 23 ->                  { style with Italic = false }
             | 24 ->                  { style with Underline = NoUnderline }
             | 29 ->                  { style with Strikethrough = false }

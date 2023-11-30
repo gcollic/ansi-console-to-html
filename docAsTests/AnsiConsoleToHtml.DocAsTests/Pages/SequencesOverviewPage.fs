@@ -18,7 +18,7 @@ type ExampleType =
 type Row =
     static member from(typ: ExampleType, desc: string) =
         match typ with
-        | Reset x -> (x.ToString(), desc, $"\x1B[44;33;1;3;4;9;58;5;1mHi \x1B[{x}mWorld")
+        | Reset x -> (x.ToString(), desc, $"\x1B[44;33;1;2;3;4;9;58;5;1mHi \x1B[{x}mWorld")
         | Direct x -> (x.ToString(), desc, $"Hi \x1B[{x}mWorld")
         | Range(x, y) -> ($"{x}–{y}", desc, $"Hi \x1B[{x + 2}mWorld")
         | RGB x -> (x.ToString(), desc, $"Hi \x1B[{x};2;110;120;170mWorld")
@@ -30,10 +30,12 @@ let graphicOverview =
     [
         Row.from (Reset 0, "Reset")
         Row.from (Direct 1, "Bold or intense")
+        Row.from (Direct 2, "Faint/Dim")
         Row.from (Direct 3, "Italic")
         Row.from (Direct 4, "Underline (with optional style)", AnsiTextDecorationsPage.slug)
         Row.from (Direct 9, "Crossed-out")
         Row.from (Direct 21, "Doubly underlined", AnsiTextDecorationsPage.slug)
+        Row.from (Reset 22, "Neither bold nor faint")
         Row.from (Reset 23, "Not italic")
         Row.from (Reset 24, "Not underlined", AnsiTextDecorationsPage.slug)
         Row.from (Reset 29, "Not crossed out")
