@@ -134,14 +134,14 @@
 <ul>
 <li>Standard colors
 <ul>
-<li>foreground: 30-37 (substract 30 for color index)</li>
-<li>background: 40-47 (substract 40 for color index)</li>
+<li>foreground: <code>30</code>-<code>37</code> (substract 30 for color index)</li>
+<li>background: <code>40</code>-<code>47</code> (substract 40 for color index)</li>
 </ul>
 </li>
 <li>Bright colors
 <ul>
-<li>foreground: 90-97 (substract 82 for color index)</li>
-<li>background: 100-107 (substract 92 for color index)</li>
+<li>foreground: <code>90</code>-<code>97</code> (substract 82 for color index)</li>
+<li>background: <code>100</code>-<code>107</code> (substract 92 for color index)</li>
 </ul>
 </li>
 </ul>
@@ -262,6 +262,10 @@ AnsiConsole.ToHtml(<span style="color:#A31515;">@&quot;      40    41    42    4
 </div>
 </p>
 <h2>8-bit colors: 38;5;n / 48;5;n</h2>
+<ul>
+<li>foreground: <code>38</code></li>
+<li>background: <code>48</code></li>
+</ul>
 <p><code>n</code> is the index in the <a href='ansi_colors_table.html'>256 colors table</a>.</p>
 <p>
 <div role="sample">
@@ -330,6 +334,10 @@ AnsiConsole.ToHtml(<span style="color:#A31515;">@&quot;        48;5;16 48;5;17 4
 </div>
 </p>
 <h2>24-bit colors: 38;2;r;g;b / 48;2;r;g;b</h2>
+<ul>
+<li>foreground: <code>38</code></li>
+<li>background: <code>48</code></li>
+</ul>
 <p><code>r</code> <code>g</code> and <code>b</code> are the red, green, and blue components of the RGB color space (each between 0 and 255).</p>
 <p>
 <div role="sample">
@@ -392,7 +400,7 @@ AnsiConsole.ToHtml(<span style="color:#A31515;">@&quot;                48;2;237;
   </div>
 </div>
 </p>
-<h2>Underline color</h2>
+<h2>Underline color: 58;2;r;g;b / 58;5;n</h2>
 <p>By default, the underline color is the same as the foreground color.
 To set a different color, the code <code>58</code> is used, and works exactly like the codes <code>38</code> and <code>48</code>.</p>
 <p>See <a href='ansi_text_decorations.html'>text decorations</a> for more underline details.</p>
