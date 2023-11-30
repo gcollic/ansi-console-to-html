@@ -21,7 +21,9 @@ type Row =
         | Reset x -> (x.ToString(), desc, $"\x1B[44;33;1;2;3;4;9;58;5;1mHi \x1B[{x}mWorld")
         | Direct x -> (x.ToString(), desc, $"Hi \x1B[{x}mWorld")
         | Range(x, y) -> ($"{x}–{y}", desc, $"Hi \x1B[{x + 2}mWorld")
-        | RGB x -> (x.ToString(), desc, $"Hi \x1B[{x};2;110;120;170mWorld")
+        | RGB x ->
+            let prefix = if x = 58 then "\x1B[4m" else ""
+            (x.ToString(), desc, $"{prefix}Hi \x1B[{x};2;110;120;170mWorld")
 
     static member from(typ: ExampleType, desc: string, slug: string) =
         Row.from (typ, $"{desc}<br/>{{{{link_to '{slug}' 'more details'}}}}")
