@@ -1,19 +1,16 @@
 module SampleRenderer
 
-open AnsiConsoleToHtml
 open Sample
 
 let renderSample (sample: Sample) =
 
-    let dotnet =
-        $"{nameof AnsiConsole}.{nameof AnsiConsole.ToHtml}(@{Colorizer.toDotNetString sample.Input})"
-        |> Colorizer.cSharp
+    let colorizedHtml = Colorizer.html sample.Output
 
-    let rawHtml = Colorizer.html sample.Output
+    let dotnet = Colorizer.toMultilineDotNetPre sample.Input
 
-    let powerShell = $"<pre>echo {Colorizer.toPowerShellString sample.Input}</pre>"
+    let powerShell = Colorizer.toPowershellPre sample.Input
 
-    let unixShell = $"<pre>printf {Colorizer.toUnixShellString sample.Input}</pre>"
+    let unixShell = Colorizer.toUnixShellPre sample.Input
 
     $"""
 <div role="sample">
@@ -30,7 +27,7 @@ let renderSample (sample: Sample) =
 {sample.Output}
   </div>
   <div role="tabpanel" hidden>
-{rawHtml}
+{colorizedHtml}
   </div>
   <div role="tabpanel" hidden>
 {dotnet}

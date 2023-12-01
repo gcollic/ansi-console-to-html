@@ -9,10 +9,9 @@ let comparison =
     let sample = "Hi \x1B[32mWorld"
 
     let dotnet =
-        $"{nameof AnsiConsole}.{nameof AnsiConsole.ToHtml}(
-    {Colorizer.toDotNetString sample}
-)"
-        |> Colorizer.cSharp
+        sample
+        |> Colorizer.toSingleLineDotNet
+        |> Colorizer.toCommandInPre $"{nameof AnsiConsole}.{nameof AnsiConsole.ToHtml}(\n    " "\n)"
 
     let result = AnsiConsole.ToHtml sample
     let html = result |> Colorizer.html

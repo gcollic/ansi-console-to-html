@@ -132,7 +132,7 @@
 <p>Only the <abbr title="Select Graphic Rendition">SGR</abbr> sequence is supported. The other ANSI escape sequences are ignored.</p>
 <h2>Graphic sequence</h2>
 <p>References: <a href="https://en.wikipedia.org/wiki/ANSI_escape_code#SGR_(Select_Graphic_Rendition)_parameters">Wikipedia</a></p>
-<p>The control sequence <code style='color:#A31515;'>&quot;\x1B[ n m&quot;</code> (where <code>n</code> is one of the codes below) is named Select Graphic Rendition (SGR).
+<p>The control sequence <code>ESC [ n m</code> (where <code>n</code> is one of the codes below) is named Select Graphic Rendition (SGR).
 It sets display attributes. Several attributes can be set in the same sequence, separated by semicolons,
 and (rarely) with options separated by colons.
 Each display attribute remains in effect until a following occurrence of SGR explicitely resets it.</p>
@@ -149,127 +149,127 @@ Each display attribute remains in effect until a following occurrence of SGR exp
 <tr>
 <td>0</td>
 <td>Reset</td>
-<td><code style='color:#A31515;'>&quot;\x1B[44;33;1;2;3;4;9;58;5;1mHi \x1B[0mWorld&quot;</code></td>
+<td><code><span style="color:#A31515">&quot;<span style="color:#EE0000">\x1B</span>[44;33;1;2;3;4;9;58;5;1mHi <span style="color:#EE0000">\x1B</span>[0mWorld&quot;</span></code></td>
 <td><pre style='color:#FFFFFF;background:#000000'><span style='color:#5D5D00;background:#0000BB;font-weight:900;font-style:italic;text-decoration:line-through'><span style='text-decoration:underline 1px solid #BB0000'>Hi </span></span>World</pre></td>
 </tr>
 <tr>
 <td>1</td>
 <td>Bold or intense</td>
-<td><code style='color:#A31515;'>&quot;Hi \x1B[1mWorld&quot;</code></td>
+<td><code><span style="color:#A31515">&quot;Hi <span style="color:#EE0000">\x1B</span>[1mWorld&quot;</span></code></td>
 <td><pre style='color:#FFFFFF;background:#000000'>Hi <span style='font-weight:900'>World</span></pre></td>
 </tr>
 <tr>
 <td>2</td>
 <td>Faint/Dim</td>
-<td><code style='color:#A31515;'>&quot;Hi \x1B[2mWorld&quot;</code></td>
+<td><code><span style="color:#A31515">&quot;Hi <span style="color:#EE0000">\x1B</span>[2mWorld&quot;</span></code></td>
 <td><pre style='color:#FFFFFF;background:#000000'>Hi <span style='color:#7F7F7F'>World</span></pre></td>
 </tr>
 <tr>
 <td>3</td>
 <td>Italic</td>
-<td><code style='color:#A31515;'>&quot;Hi \x1B[3mWorld&quot;</code></td>
+<td><code><span style="color:#A31515">&quot;Hi <span style="color:#EE0000">\x1B</span>[3mWorld&quot;</span></code></td>
 <td><pre style='color:#FFFFFF;background:#000000'>Hi <span style='font-style:italic'>World</span></pre></td>
 </tr>
 <tr>
 <td>4</td>
 <td>Underline (with optional style)<br/><a href='ansi_text_decorations.html'>more details</a></td>
-<td><code style='color:#A31515;'>&quot;Hi \x1B[4mWorld&quot;</code></td>
+<td><code><span style="color:#A31515">&quot;Hi <span style="color:#EE0000">\x1B</span>[4mWorld&quot;</span></code></td>
 <td><pre style='color:#FFFFFF;background:#000000'>Hi <span style='text-decoration:underline 1px solid'>World</span></pre></td>
 </tr>
 <tr>
 <td>9</td>
 <td>Crossed-out</td>
-<td><code style='color:#A31515;'>&quot;Hi \x1B[9mWorld&quot;</code></td>
+<td><code><span style="color:#A31515">&quot;Hi <span style="color:#EE0000">\x1B</span>[9mWorld&quot;</span></code></td>
 <td><pre style='color:#FFFFFF;background:#000000'>Hi <span style='text-decoration:line-through'>World</span></pre></td>
 </tr>
 <tr>
 <td>21</td>
 <td>Doubly underlined<br/><a href='ansi_text_decorations.html'>more details</a></td>
-<td><code style='color:#A31515;'>&quot;Hi \x1B[21mWorld&quot;</code></td>
+<td><code><span style="color:#A31515">&quot;Hi <span style="color:#EE0000">\x1B</span>[21mWorld&quot;</span></code></td>
 <td><pre style='color:#FFFFFF;background:#000000'>Hi <span style='text-decoration:underline 1px double'>World</span></pre></td>
 </tr>
 <tr>
 <td>22</td>
 <td>Neither bold nor faint</td>
-<td><code style='color:#A31515;'>&quot;\x1B[44;33;1;2;3;4;9;58;5;1mHi \x1B[22mWorld&quot;</code></td>
+<td><code><span style="color:#A31515">&quot;<span style="color:#EE0000">\x1B</span>[44;33;1;2;3;4;9;58;5;1mHi <span style="color:#EE0000">\x1B</span>[22mWorld&quot;</span></code></td>
 <td><pre style='color:#FFFFFF;background:#000000'><span style='color:#5D5D00;background:#0000BB;font-weight:900;font-style:italic;text-decoration:line-through'><span style='text-decoration:underline 1px solid #BB0000'>Hi </span></span><span style='color:#BBBB00;background:#0000BB;font-style:italic;text-decoration:line-through'><span style='text-decoration:underline 1px solid #BB0000'>World</span></span></pre></td>
 </tr>
 <tr>
 <td>23</td>
 <td>Not italic</td>
-<td><code style='color:#A31515;'>&quot;\x1B[44;33;1;2;3;4;9;58;5;1mHi \x1B[23mWorld&quot;</code></td>
+<td><code><span style="color:#A31515">&quot;<span style="color:#EE0000">\x1B</span>[44;33;1;2;3;4;9;58;5;1mHi <span style="color:#EE0000">\x1B</span>[23mWorld&quot;</span></code></td>
 <td><pre style='color:#FFFFFF;background:#000000'><span style='color:#5D5D00;background:#0000BB;font-weight:900;font-style:italic;text-decoration:line-through'><span style='text-decoration:underline 1px solid #BB0000'>Hi </span></span><span style='color:#5D5D00;background:#0000BB;font-weight:900;text-decoration:line-through'><span style='text-decoration:underline 1px solid #BB0000'>World</span></span></pre></td>
 </tr>
 <tr>
 <td>24</td>
 <td>Not underlined<br/><a href='ansi_text_decorations.html'>more details</a></td>
-<td><code style='color:#A31515;'>&quot;\x1B[44;33;1;2;3;4;9;58;5;1mHi \x1B[24mWorld&quot;</code></td>
+<td><code><span style="color:#A31515">&quot;<span style="color:#EE0000">\x1B</span>[44;33;1;2;3;4;9;58;5;1mHi <span style="color:#EE0000">\x1B</span>[24mWorld&quot;</span></code></td>
 <td><pre style='color:#FFFFFF;background:#000000'><span style='color:#5D5D00;background:#0000BB;font-weight:900;font-style:italic;text-decoration:line-through'><span style='text-decoration:underline 1px solid #BB0000'>Hi </span></span><span style='color:#5D5D00;background:#0000BB;font-weight:900;font-style:italic;text-decoration:line-through'>World</span></pre></td>
 </tr>
 <tr>
 <td>29</td>
 <td>Not crossed out</td>
-<td><code style='color:#A31515;'>&quot;\x1B[44;33;1;2;3;4;9;58;5;1mHi \x1B[29mWorld&quot;</code></td>
+<td><code><span style="color:#A31515">&quot;<span style="color:#EE0000">\x1B</span>[44;33;1;2;3;4;9;58;5;1mHi <span style="color:#EE0000">\x1B</span>[29mWorld&quot;</span></code></td>
 <td><pre style='color:#FFFFFF;background:#000000'><span style='color:#5D5D00;background:#0000BB;font-weight:900;font-style:italic;text-decoration:line-through'><span style='text-decoration:underline 1px solid #BB0000'>Hi </span></span><span style='color:#5D5D00;background:#0000BB;font-weight:900;font-style:italic;text-decoration:underline 1px solid #BB0000'>World</span></pre></td>
 </tr>
 <tr>
 <td>30–37</td>
 <td>Set foreground color (standard)<br/><a href='ansi_colors_sequences.html'>more details</a></td>
-<td><code style='color:#A31515;'>&quot;Hi \x1B[32mWorld&quot;</code></td>
+<td><code><span style="color:#A31515">&quot;Hi <span style="color:#EE0000">\x1B</span>[32mWorld&quot;</span></code></td>
 <td><pre style='color:#FFFFFF;background:#000000'>Hi <span style='color:#00BB00'>World</span></pre></td>
 </tr>
 <tr>
 <td>38</td>
 <td>Set foreground color (38;5;n or 38;2;r;g;b)<br/><a href='ansi_colors_sequences.html'>more details</a></td>
-<td><code style='color:#A31515;'>&quot;Hi \x1B[38;2;110;120;170mWorld&quot;</code></td>
+<td><code><span style="color:#A31515">&quot;Hi <span style="color:#EE0000">\x1B</span>[38;2;110;120;170mWorld&quot;</span></code></td>
 <td><pre style='color:#FFFFFF;background:#000000'>Hi <span style='color:#6E78AA'>World</span></pre></td>
 </tr>
 <tr>
 <td>39</td>
 <td>Default foreground color</td>
-<td><code style='color:#A31515;'>&quot;\x1B[44;33;1;2;3;4;9;58;5;1mHi \x1B[39mWorld&quot;</code></td>
+<td><code><span style="color:#A31515">&quot;<span style="color:#EE0000">\x1B</span>[44;33;1;2;3;4;9;58;5;1mHi <span style="color:#EE0000">\x1B</span>[39mWorld&quot;</span></code></td>
 <td><pre style='color:#FFFFFF;background:#000000'><span style='color:#5D5D00;background:#0000BB;font-weight:900;font-style:italic;text-decoration:line-through'><span style='text-decoration:underline 1px solid #BB0000'>Hi </span></span><span style='color:#7F7F7F;background:#0000BB;font-weight:900;font-style:italic;text-decoration:line-through'><span style='text-decoration:underline 1px solid #BB0000'>World</span></span></pre></td>
 </tr>
 <tr>
 <td>40–47</td>
 <td>Set background color (standard)<br/><a href='ansi_colors_sequences.html'>more details</a></td>
-<td><code style='color:#A31515;'>&quot;Hi \x1B[42mWorld&quot;</code></td>
+<td><code><span style="color:#A31515">&quot;Hi <span style="color:#EE0000">\x1B</span>[42mWorld&quot;</span></code></td>
 <td><pre style='color:#FFFFFF;background:#000000'>Hi <span style='background:#00BB00'>World</span></pre></td>
 </tr>
 <tr>
 <td>48</td>
 <td>Set background color (48;5;n or 48;2;r;g;b)<br/><a href='ansi_colors_sequences.html'>more details</a></td>
-<td><code style='color:#A31515;'>&quot;Hi \x1B[48;2;110;120;170mWorld&quot;</code></td>
+<td><code><span style="color:#A31515">&quot;Hi <span style="color:#EE0000">\x1B</span>[48;2;110;120;170mWorld&quot;</span></code></td>
 <td><pre style='color:#FFFFFF;background:#000000'>Hi <span style='background:#6E78AA'>World</span></pre></td>
 </tr>
 <tr>
 <td>49</td>
 <td>Default background color</td>
-<td><code style='color:#A31515;'>&quot;\x1B[44;33;1;2;3;4;9;58;5;1mHi \x1B[49mWorld&quot;</code></td>
+<td><code><span style="color:#A31515">&quot;<span style="color:#EE0000">\x1B</span>[44;33;1;2;3;4;9;58;5;1mHi <span style="color:#EE0000">\x1B</span>[49mWorld&quot;</span></code></td>
 <td><pre style='color:#FFFFFF;background:#000000'><span style='color:#5D5D00;background:#0000BB;font-weight:900;font-style:italic;text-decoration:line-through'><span style='text-decoration:underline 1px solid #BB0000'>Hi </span></span><span style='color:#5D5D00;font-weight:900;font-style:italic;text-decoration:line-through'><span style='text-decoration:underline 1px solid #BB0000'>World</span></span></pre></td>
 </tr>
 <tr>
 <td>58</td>
 <td>Set underline color (58;5;n or 58;2;r;g;b)<br/><a href='ansi_colors_sequences.html'>more details</a></td>
-<td><code style='color:#A31515;'>&quot;\x1B[4mHi \x1B[58;2;110;120;170mWorld&quot;</code></td>
+<td><code><span style="color:#A31515">&quot;<span style="color:#EE0000">\x1B</span>[4mHi <span style="color:#EE0000">\x1B</span>[58;2;110;120;170mWorld&quot;</span></code></td>
 <td><pre style='color:#FFFFFF;background:#000000'><span style='text-decoration:underline 1px solid'>Hi </span><span style='text-decoration:underline 1px solid #6E78AA'>World</span></pre></td>
 </tr>
 <tr>
 <td>59</td>
 <td>Default underline color</td>
-<td><code style='color:#A31515;'>&quot;\x1B[44;33;1;2;3;4;9;58;5;1mHi \x1B[59mWorld&quot;</code></td>
+<td><code><span style="color:#A31515">&quot;<span style="color:#EE0000">\x1B</span>[44;33;1;2;3;4;9;58;5;1mHi <span style="color:#EE0000">\x1B</span>[59mWorld&quot;</span></code></td>
 <td><pre style='color:#FFFFFF;background:#000000'><span style='color:#5D5D00;background:#0000BB;font-weight:900;font-style:italic;text-decoration:line-through'><span style='text-decoration:underline 1px solid #BB0000'>Hi </span></span><span style='color:#5D5D00;background:#0000BB;font-weight:900;font-style:italic;text-decoration:line-through underline 1px solid'>World</span></pre></td>
 </tr>
 <tr>
 <td>90–97</td>
 <td>Set foreground color (bright)<br/><a href='ansi_colors_sequences.html'>more details</a></td>
-<td><code style='color:#A31515;'>&quot;Hi \x1B[92mWorld&quot;</code></td>
+<td><code><span style="color:#A31515">&quot;Hi <span style="color:#EE0000">\x1B</span>[92mWorld&quot;</span></code></td>
 <td><pre style='color:#FFFFFF;background:#000000'>Hi <span style='color:#00FF00'>World</span></pre></td>
 </tr>
 <tr>
 <td>100–107</td>
 <td>Set background color (bright)<br/><a href='ansi_colors_sequences.html'>more details</a></td>
-<td><code style='color:#A31515;'>&quot;Hi \x1B[102mWorld&quot;</code></td>
+<td><code><span style="color:#A31515">&quot;Hi <span style="color:#EE0000">\x1B</span>[102mWorld&quot;</span></code></td>
 <td><pre style='color:#FFFFFF;background:#000000'>Hi <span style='background:#00FF00'>World</span></pre></td>
 </tr>
 </tbody>
@@ -288,19 +288,19 @@ Hello  World
 </thead>
 <tbody>
 <tr>
-<td><code style='color:#A31515;'>&quot;Hello \x1B[3A World&quot;</code></td>
+<td><code><span style="color:#A31515">&quot;Hello <span style="color:#EE0000">\x1B</span>[3A World&quot;</span></code></td>
 <td>Cursor 3 times up</td>
 </tr>
 <tr>
-<td><code style='color:#A31515;'>&quot;Hello \x1B[22;5H World&quot;</code></td>
+<td><code><span style="color:#A31515">&quot;Hello <span style="color:#EE0000">\x1B</span>[22;5H World&quot;</span></code></td>
 <td>Moves the cursor to row 22, column 5</td>
 </tr>
 <tr>
-<td><code style='color:#A31515;'>&quot;Hello \x1B[2J World&quot;</code></td>
+<td><code><span style="color:#A31515">&quot;Hello <span style="color:#EE0000">\x1B</span>[2J World&quot;</span></code></td>
 <td>Clear entire screen</td>
 </tr>
 <tr>
-<td><code style='color:#A31515;'>&quot;Hello \x1B World&quot;</code></td>
+<td><code><span style="color:#A31515">&quot;Hello <span style="color:#EE0000">\x1B</span> World&quot;</span></code></td>
 <td>Invalid/unfinished sequence</td>
 </tr>
 </tbody>

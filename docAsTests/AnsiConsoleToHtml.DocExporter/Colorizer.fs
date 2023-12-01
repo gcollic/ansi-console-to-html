@@ -1,24 +1,48 @@
 module Colorizer
 
+open System.Text.RegularExpressions
+open AnsiConsoleToHtml
 open ColorCode
 
-let private clean escapedEsc (s: string) =
-    let cleaned =
-        s.Replace("\\", "\\\\").Replace("\x1B", escapedEsc).Replace("\"", "\\\"")
+let private colorize color s =
+    $"<span style=\"color:{color}\">{s}</span>"
 
-    "\"" + cleaned + "\""
+let private colorString = colorize "#A31515"
+let private colorEscaped = colorize "#EE0000"
+let private colorFunction = colorize "#001080"
 
-let toDotNetString s = clean "\\x1B" s
-let toUnixShellString (s: string) = clean "\\033" s
-let toPowerShellString (s: string) = clean "`e" s
+let private between before after s = before + s + after
+
+let private toEscapedString escapedEsc (s: string) =
+    s
+        .Replace("\\", "\\\\")
+        .Replace("\"", "\\\"")
+        .Replace("\x1B", colorEscaped escapedEsc)
+    |> between "\"" "\""
+    |> colorString
+
+let toCommandInPre before after command =
+    command |> between before after |> colorFunction |> between "<pre>" "</pre>"
+
+let toSingleLineDotNet =
+    toEscapedString "\\x1B" >> _.Replace("\n", (colorEscaped "\\n"))
+
+let private afterNewLine = new Regex("(?<=\n)")
+
+let toMultilineDotNetPre (s: string) =
+    s
+    |> afterNewLine.Split
+    |> Array.map toSingleLineDotNet
+    |> String.concat ("+\n")
+    |> toCommandInPre $"{nameof AnsiConsole}.{nameof AnsiConsole.ToHtml}(" ")"
+
+let toUnixShellPre = toEscapedString "\\033" >> toCommandInPre "printf " ""
+let toPowershellPre = toEscapedString "`e" >> toCommandInPre "echo " ""
 
 let inlineHtmlDotNetstring (s: string) =
-    $"<code style='color:#A31515;'>{toDotNetString s}</code>"
+    s |> toSingleLineDotNet |> between "<code>" "</code>"
 
 let private formatter = new HtmlFormatter()
 
 let html code =
     formatter.GetHtmlString(code, Languages.Html)
-
-let cSharp code =
-    formatter.GetHtmlString(code, Languages.CSharp)
