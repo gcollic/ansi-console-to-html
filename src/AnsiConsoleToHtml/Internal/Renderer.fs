@@ -43,7 +43,9 @@ let convertStyledTextToHtml (colors256: Color[]) tokens =
         let textDecoration = toTextDecoration style
 
         let actualForeground =
-            if style.Dim then
+            match style with
+            | { Hidden = true } -> Some "transparent"
+            | { Dim = true } ->
                 style.Foreground
                 |> Option.defaultValue colors256[15]
                 |> (fun c -> {
@@ -51,13 +53,13 @@ let convertStyledTextToHtml (colors256: Color[]) tokens =
                     G = c.G / 2uy
                     B = c.B / 2uy
                 })
+                |> _.AsHexColor()
                 |> Some
-            else
-                style.Foreground
+            | _ -> style.Foreground |> Option.map _.AsHexColor()
 
         seq {
             if actualForeground.IsSome then
-                yield $"color:{actualForeground.Value.AsHexColor()}"
+                yield $"color:{actualForeground.Value}"
 
             if style.Background.IsSome then
                 yield $"background:{style.Background.Value.AsHexColor()}"

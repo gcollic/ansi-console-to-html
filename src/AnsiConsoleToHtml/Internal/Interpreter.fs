@@ -43,11 +43,13 @@ let interpretCommands (colors256: Color[]) tokens =
                 | [4] ->             { style with Underline = DottedUnderline }
                 | [5] ->             { style with Underline = DashedUnderline }
                 |  _  ->               style
+            | 8  ->                  { style with Hidden = true }
             | 9  ->                  { style with Strikethrough = true }
             | 21 ->                  { style with Underline = DoubleUnderline }
             | 22 ->                  { style with Dim = false; Bold = false }
             | 23 ->                  { style with Italic = false }
             | 24 ->                  { style with Underline = NoUnderline }
+            | 28 ->                  { style with Hidden = false }
             | 29 ->                  { style with Strikethrough = false }
             | Between 30 37   ->     { style with Foreground = Some colors256[code-30] }
             | 39 ->                  { style with Foreground = None }

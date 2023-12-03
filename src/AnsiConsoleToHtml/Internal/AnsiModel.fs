@@ -19,6 +19,7 @@ type AnsiStyle = {
     Underline: UnderlineKind
     UnderlineColor: Option<Color>
     Strikethrough: bool
+    Hidden: bool
 } with
 
     static member Empty = {
@@ -30,4 +31,5 @@ type AnsiStyle = {
         Underline = NoUnderline
         UnderlineColor = None
         Strikethrough = false
+        Hidden = false
     }
