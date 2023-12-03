@@ -39,30 +39,44 @@ let private toTextDecoration (style: AnsiStyle) =
 
 let convertStyledTextToHtml (colors256: Color[]) tokens =
 
-    let toHtmlStyle (style: AnsiStyle) =
-        let textDecoration = toTextDecoration style
+    let toColors (style: AnsiStyle) =
+        let applyToFg f (fg, bg) = (f fg, bg)
 
-        let actualForeground =
-            match style with
-            | { Hidden = true } -> Some "transparent"
-            | { Dim = true } ->
-                style.Foreground
+        (style.Foreground, style.Background)
+        |> applyToFg (fun fg ->
+            if style.Dim then
+                fg
                 |> Option.defaultValue colors256[15]
                 |> (fun c -> {
                     R = c.R / 2uy
                     G = c.G / 2uy
                     B = c.B / 2uy
                 })
-                |> _.AsHexColor()
                 |> Some
-            | _ -> style.Foreground |> Option.map _.AsHexColor()
+            else
+                fg)
+        |> (fun (fg, bg) ->
+            match style with
+            | { Inverse = true } ->
+                (bg |> Option.defaultValue (colors256[0]) |> Some,
+                 fg |> Option.defaultValue (colors256[15]) |> Some)
+            | _ -> (fg, bg))
+        |> applyToFg (fun fg ->
+            if style.Hidden then
+                Some "transparent"
+            else
+                fg |> Option.map _.AsHexColor())
+
+    let toHtmlStyle (style: AnsiStyle) =
+        let textDecoration = toTextDecoration style
+        let (foreground, background) = toColors style
 
         seq {
-            if actualForeground.IsSome then
-                yield $"color:{actualForeground.Value}"
+            if foreground.IsSome then
+                yield $"color:%s{foreground.Value}"
 
-            if style.Background.IsSome then
-                yield $"background:{style.Background.Value.AsHexColor()}"
+            if background.IsSome then
+                yield $"background:%s{background.Value.AsHexColor()}"
 
             if style.Bold then
                 yield "font-weight:900"

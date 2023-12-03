@@ -12,6 +12,7 @@ let graphicOverviewSlug = slug + "_graphic"
 type ExampleType =
     | Reset of int
     | Direct of int
+    | Prefix of int * string
     | Range of int * int
     | RGB of int
 
@@ -19,9 +20,8 @@ type Row =
     static member from(typ: ExampleType, desc: string) =
         match typ with
         | Reset x -> (x.ToString(), desc, $"\x1B[44;33;1;2;3;4;9;58;5;1mHi \x1B[{x}mWorld")
-        | Direct x ->
-            let prefix = if x = 28 then "\x1B[8m" else ""
-            (x.ToString(), desc, $"{prefix}Hi \x1B[{x}mWorld")
+        | Direct x -> (x.ToString(), desc, $"Hi \x1B[{x}mWorld")
+        | Prefix(x, y) -> (x.ToString(), desc, $"\x1B[{y}mHi \x1B[{x}mWorld")
         | Range(x, y) -> ($"{x}–{y}", desc, $"Hi \x1B[{x + 2}mWorld")
         | RGB x ->
             let prefix = if x = 58 then "\x1B[4m" else ""
@@ -37,13 +37,15 @@ let graphicOverview =
         Row.from (Direct 2, "Faint/Dim")
         Row.from (Direct 3, "Italic")
         Row.from (Direct 4, "Underline (with optional style)", AnsiTextDecorationsPage.slug)
+        Row.from (Direct 7, "Inverse foreground and background colors")
         Row.from (Direct 8, "Hidden (but selectable)")
         Row.from (Direct 9, "Crossed-out")
         Row.from (Direct 21, "Doubly underlined", AnsiTextDecorationsPage.slug)
         Row.from (Reset 22, "Neither bold nor faint")
         Row.from (Reset 23, "Not italic")
         Row.from (Reset 24, "Not underlined", AnsiTextDecorationsPage.slug)
-        Row.from (Direct 28, "Not hidden")
+        Row.from (Prefix(27, "7"), "Not inversed")
+        Row.from (Prefix(28, "8"), "Not hidden")
         Row.from (Reset 29, "Not crossed out")
         Row.from (Range(30, 37), "Set foreground color (standard)", AnsiColorsSequencesPage.slug)
         Row.from (

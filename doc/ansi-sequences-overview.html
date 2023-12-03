@@ -177,6 +177,12 @@ Each display attribute remains in effect until a following occurrence of SGR exp
 <td><pre style='color:#FFFFFF;background:#000000'>Hi <span style='text-decoration:underline 1px solid'>World</span></pre></td>
 </tr>
 <tr>
+<td>7</td>
+<td>Inverse foreground and background colors</td>
+<td><code><span style="color:#A31515">&quot;Hi <span style="color:#EE0000">\x1B</span>[7mWorld&quot;</span></code></td>
+<td><pre style='color:#FFFFFF;background:#000000'>Hi <span style='color:#000000;background:#FFFFFF'>World</span></pre></td>
+</tr>
+<tr>
 <td>8</td>
 <td>Hidden (but selectable)</td>
 <td><code><span style="color:#A31515">&quot;Hi <span style="color:#EE0000">\x1B</span>[8mWorld&quot;</span></code></td>
@@ -211,6 +217,12 @@ Each display attribute remains in effect until a following occurrence of SGR exp
 <td>Not underlined<br/><a href='ansi_text_decorations.html'>more details</a></td>
 <td><code><span style="color:#A31515">&quot;<span style="color:#EE0000">\x1B</span>[44;33;1;2;3;4;9;58;5;1mHi <span style="color:#EE0000">\x1B</span>[24mWorld&quot;</span></code></td>
 <td><pre style='color:#FFFFFF;background:#000000'><span style='color:#5D5D00;background:#0000BB;font-weight:900;font-style:italic;text-decoration:line-through'><span style='text-decoration:underline 1px solid #BB0000'>Hi </span></span><span style='color:#5D5D00;background:#0000BB;font-weight:900;font-style:italic;text-decoration:line-through'>World</span></pre></td>
+</tr>
+<tr>
+<td>27</td>
+<td>Not inversed</td>
+<td><code><span style="color:#A31515">&quot;<span style="color:#EE0000">\x1B</span>[7mHi <span style="color:#EE0000">\x1B</span>[27mWorld&quot;</span></code></td>
+<td><pre style='color:#FFFFFF;background:#000000'><span style='color:#000000;background:#FFFFFF'>Hi </span>World</pre></td>
 </tr>
 <tr>
 <td>28</td>
