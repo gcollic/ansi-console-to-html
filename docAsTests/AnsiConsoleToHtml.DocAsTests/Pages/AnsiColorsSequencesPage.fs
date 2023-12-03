@@ -44,4 +44,12 @@ let tests =
             "4:5"
             "21"
         ] [ "94"; "58;5;2"; "58;2;120;99;0"; "94;58;5;2" ]
+        createSampleDocPart
+            (slug + "_inverse")
+            "            Invert default colors: Default    \x1B[7mInversed\x1B[0m
+             Invert colorful text: \x1B[44;93mColor      \x1B[7mInversed\x1B[0m
+Inverted dim, dims the background: \x1B[44;93;2mDim        \x1B[7mInversed\x1B[0m
+  Inverted hidden, hides the text: \x1B[44;93;8mHidden     \x1B[7mInversed\x1B[0m
+               Inverted underline: \x1B[44;93;4mUnderlined \x1B[7mInversed\x1B[0m
+     Inverting twice does nothing: \x1B[7mOnce       \x1B[7mTwice   \x1B[0m"
     ]

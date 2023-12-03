@@ -1,0 +1,16 @@
+﻿###
+            Invert default colors: Default    [7mInversed[0m
+             Invert colorful text: [44;93mColor      [7mInversed[0m
+Inverted dim, dims the background: [44;93;2mDim        [7mInversed[0m
+  Inverted hidden, hides the text: [44;93;8mHidden     [7mInversed[0m
+               Inverted underline: [44;93;4mUnderlined [7mInversed[0m
+     Inverting twice does nothing: [7mOnce       [7mTwice   [0m
+###
+<pre style='color:#FFFFFF;background:#000000'>
+            Invert default colors: Default    <span style='color:#000000;background:#FFFFFF'>Inversed</span>
+             Invert colorful text: <span style='color:#FFFF55;background:#0000BB'>Color      </span><span style='color:#0000BB;background:#FFFF55'>Inversed</span>
+Inverted dim, dims the background: <span style='color:#7F7F2A;background:#0000BB'>Dim        </span><span style='color:#0000BB;background:#7F7F2A'>Inversed</span>
+  Inverted hidden, hides the text: <span style='color:transparent;background:#0000BB'>Hidden     </span><span style='color:transparent;background:#FFFF55'>Inversed</span>
+               Inverted underline: <span style='color:#FFFF55;background:#0000BB;text-decoration:underline 1px solid'>Underlined </span><span style='color:#0000BB;background:#FFFF55;text-decoration:underline 1px solid'>Inversed</span>
+     Inverting twice does nothing: <span style='color:#000000;background:#FFFFFF'>Once       </span><span style='color:#000000;background:#FFFFFF'>Twice   </span>
+</pre>

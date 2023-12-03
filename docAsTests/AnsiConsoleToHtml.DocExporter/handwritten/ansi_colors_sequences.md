@@ -39,6 +39,14 @@ Substract 'x' to get the actual index in the {{link_to 'ansi_colors_table' '256 
 
 {{include 'ansi_colors_sequences-24bit-colors'}}
 
+## Inverse colors: 7 / 27
+
+`7` inverses the foreground and the background colors, and `27` resets them back.
+
+{{include 'ansi_colors_sequences_inverse'}}
+
+Note: inverting dimmed text dims the background, like [XTerm](https://invisible-island.net/xterm/) and [Windows Terminal](https://github.com/microsoft/terminal) do, but some other terminals such as [Kitty](https://sw.kovidgoyal.net/kitty) and [Konsole](https://konsole.kde.org/) dims the foreground.
+
 ## Underline color: 58;2;r;g;b / 58;5;n
 
 By default, the underline color is the same as the foreground color.
