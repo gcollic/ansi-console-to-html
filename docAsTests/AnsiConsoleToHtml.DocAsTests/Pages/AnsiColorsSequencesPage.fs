@@ -43,6 +43,7 @@ let tests =
             "4:4"
             "4:5"
             "21"
+            "4;9"
         ] [ "94"; "58;5;2"; "58;2;120;99;0"; "94;58;5;2" ]
         createSampleDocPart
             (slug + "_inverse")
