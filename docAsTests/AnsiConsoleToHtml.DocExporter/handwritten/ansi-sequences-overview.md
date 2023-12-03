@@ -10,7 +10,7 @@ Toc:
 
 Only the <abbr title="Select Graphic Rendition">SGR</abbr> sequence is supported. The other ANSI escape sequences are ignored.
 
-## Graphic sequence
+## Graphic sequence (SGR)
 
 References: [Wikipedia](https://en.wikipedia.org/wiki/ANSI_escape_code#SGR_(Select_Graphic_Rendition)_parameters)
 
@@ -19,7 +19,13 @@ It sets display attributes. Several attributes can be set in the same sequence, 
 and (rarely) with options separated by colons.
 Each display attribute remains in effect until a following occurrence of SGR explicitely resets it.
 
+### Supported SGR attributes
+
 {{include 'ansi-sequences-overview_graphic'}}
+
+### Unsupported SGR attributes
+
+{{include 'ansi-sequences-overview_unsupported_graphic'}}
 
 ## Non-graphic sequences
 

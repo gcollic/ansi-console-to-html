@@ -6,9 +6,6 @@ open ExampleRenderer
 
 let slug = "ansi-sequences-overview"
 
-let nonGraphicOverviewSlug = slug + "_non_graphic"
-let graphicOverviewSlug = slug + "_graphic"
-
 type ExampleType =
     | Reset of int
     | Direct of int
@@ -70,7 +67,43 @@ let graphicOverview =
         Row.from (Range(90, 97), "Set foreground color (bright)", AnsiColorsSequencesPage.slug)
         Row.from (Range(100, 107), "Set background color (bright)", AnsiColorsSequencesPage.slug)
     ]
-    |> examplesToMarkdownDocPart graphicOverviewSlug
+    |> examplesToMarkdownDocPart (slug + "_graphic")
+
+let unsupportedGraphicOverview =
+    [
+        (5, "Slow blink")
+        (6, "Rapid blink")
+        (10, "Default font")
+        (11, "Alternative font 1")
+        (12, "Alternative font 2")
+        (13, "Alternative font 3")
+        (14, "Alternative font 4")
+        (15, "Alternative font 5")
+        (16, "Alternative font 6")
+        (17, "Alternative font 7")
+        (18, "Alternative font 8")
+        (19, "Alternative font 9")
+        (20, "Fraktur/Gothic font")
+        (25, "Not blinking")
+        (26, "Proportional spacing")
+        (50, "Disable proportional spacing")
+        (51, "Framed")
+        (52, "Encircled")
+        (53, "Overlined")
+        (54, "Neither framed nor encircled")
+        (55, "Not overlined")
+        (60, "Ideogram underline or right side line")
+        (61, "Ideogram double underline, or double line on the right side")
+        (62, "Ideogram overline or left side line")
+        (63, "Ideogram double overline, or double line on the left side")
+        (64, "Ideogram stress marking")
+        (65, "No ideogram attributes")
+        (73, "Superscript")
+        (74, "Subscript")
+        (75, "Neither superscript nor subscript")
+    ]
+    |> List.map (fun (code, description) -> ($"Hello \x1B[{code}m World", $"{code}: {description}"))
+    |> examplesGroupedByResultInMarkdownDocPart (slug + "_unsupported_graphic")
 
 let nonGraphicOverview =
     [
@@ -79,9 +112,10 @@ let nonGraphicOverview =
         ("Hello \x1B[2J World", "Clear entire screen")
         ("Hello \x1B World", "Invalid/unfinished sequence")
     ]
-    |> examplesGroupedByResultInMarkdownDocPart nonGraphicOverviewSlug
+    |> examplesGroupedByResultInMarkdownDocPart (slug + "_non_graphic")
+
 
 [<Tests>]
 let tests =
     verifyListOfDocPart "ANSI sequences overview"
-    <| [ graphicOverview; nonGraphicOverview ]
+    <| [ graphicOverview; unsupportedGraphicOverview; nonGraphicOverview ]

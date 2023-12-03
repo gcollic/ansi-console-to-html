@@ -130,12 +130,13 @@
         <section id="start" class="page_ansi-sequences-overview">
 <h1>ANSI sequences overview</h1>
 <p>Only the <abbr title="Select Graphic Rendition">SGR</abbr> sequence is supported. The other ANSI escape sequences are ignored.</p>
-<h2>Graphic sequence</h2>
+<h2>Graphic sequence (SGR)</h2>
 <p>References: <a href="https://en.wikipedia.org/wiki/ANSI_escape_code#SGR_(Select_Graphic_Rendition)_parameters">Wikipedia</a></p>
 <p>The control sequence <code>ESC [ n m</code> (where <code>n</code> is one of the codes below) is named Select Graphic Rendition (SGR).
 It sets display attributes. Several attributes can be set in the same sequence, separated by semicolons,
 and (rarely) with options separated by colons.
 Each display attribute remains in effect until a following occurrence of SGR explicitely resets it.</p>
+<h3>Supported SGR attributes</h3>
 <p><table>
 <thead>
 <tr>
@@ -295,6 +296,141 @@ Each display attribute remains in effect until a following occurrence of SGR exp
 <td>Set background color (bright)<br/><a href='ansi_colors_sequences.html'>more details</a></td>
 <td><code><span style="color:#A31515">&quot;Hi <span style="color:#EE0000">\x1B</span>[102mWorld&quot;</span></code></td>
 <td><pre style='color:#FFFFFF;background:#000000'>Hi <span style='background:#00FF00'>World</span></pre></td>
+</tr>
+</tbody>
+</table>
+</p>
+<h3>Unsupported SGR attributes</h3>
+<p><p>All the following sequences are rendered as <pre style='color:#FFFFFF;background:#000000'>
+Hello  World
+</pre></p>
+<table>
+<thead>
+<tr>
+<th>Input</th>
+<th>Sequence meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code><span style="color:#A31515">&quot;Hello <span style="color:#EE0000">\x1B</span>[5m World&quot;</span></code></td>
+<td>5: Slow blink</td>
+</tr>
+<tr>
+<td><code><span style="color:#A31515">&quot;Hello <span style="color:#EE0000">\x1B</span>[6m World&quot;</span></code></td>
+<td>6: Rapid blink</td>
+</tr>
+<tr>
+<td><code><span style="color:#A31515">&quot;Hello <span style="color:#EE0000">\x1B</span>[10m World&quot;</span></code></td>
+<td>10: Default font</td>
+</tr>
+<tr>
+<td><code><span style="color:#A31515">&quot;Hello <span style="color:#EE0000">\x1B</span>[11m World&quot;</span></code></td>
+<td>11: Alternative font 1</td>
+</tr>
+<tr>
+<td><code><span style="color:#A31515">&quot;Hello <span style="color:#EE0000">\x1B</span>[12m World&quot;</span></code></td>
+<td>12: Alternative font 2</td>
+</tr>
+<tr>
+<td><code><span style="color:#A31515">&quot;Hello <span style="color:#EE0000">\x1B</span>[13m World&quot;</span></code></td>
+<td>13: Alternative font 3</td>
+</tr>
+<tr>
+<td><code><span style="color:#A31515">&quot;Hello <span style="color:#EE0000">\x1B</span>[14m World&quot;</span></code></td>
+<td>14: Alternative font 4</td>
+</tr>
+<tr>
+<td><code><span style="color:#A31515">&quot;Hello <span style="color:#EE0000">\x1B</span>[15m World&quot;</span></code></td>
+<td>15: Alternative font 5</td>
+</tr>
+<tr>
+<td><code><span style="color:#A31515">&quot;Hello <span style="color:#EE0000">\x1B</span>[16m World&quot;</span></code></td>
+<td>16: Alternative font 6</td>
+</tr>
+<tr>
+<td><code><span style="color:#A31515">&quot;Hello <span style="color:#EE0000">\x1B</span>[17m World&quot;</span></code></td>
+<td>17: Alternative font 7</td>
+</tr>
+<tr>
+<td><code><span style="color:#A31515">&quot;Hello <span style="color:#EE0000">\x1B</span>[18m World&quot;</span></code></td>
+<td>18: Alternative font 8</td>
+</tr>
+<tr>
+<td><code><span style="color:#A31515">&quot;Hello <span style="color:#EE0000">\x1B</span>[19m World&quot;</span></code></td>
+<td>19: Alternative font 9</td>
+</tr>
+<tr>
+<td><code><span style="color:#A31515">&quot;Hello <span style="color:#EE0000">\x1B</span>[20m World&quot;</span></code></td>
+<td>20: Fraktur/Gothic font</td>
+</tr>
+<tr>
+<td><code><span style="color:#A31515">&quot;Hello <span style="color:#EE0000">\x1B</span>[25m World&quot;</span></code></td>
+<td>25: Not blinking</td>
+</tr>
+<tr>
+<td><code><span style="color:#A31515">&quot;Hello <span style="color:#EE0000">\x1B</span>[26m World&quot;</span></code></td>
+<td>26: Proportional spacing</td>
+</tr>
+<tr>
+<td><code><span style="color:#A31515">&quot;Hello <span style="color:#EE0000">\x1B</span>[50m World&quot;</span></code></td>
+<td>50: Disable proportional spacing</td>
+</tr>
+<tr>
+<td><code><span style="color:#A31515">&quot;Hello <span style="color:#EE0000">\x1B</span>[51m World&quot;</span></code></td>
+<td>51: Framed</td>
+</tr>
+<tr>
+<td><code><span style="color:#A31515">&quot;Hello <span style="color:#EE0000">\x1B</span>[52m World&quot;</span></code></td>
+<td>52: Encircled</td>
+</tr>
+<tr>
+<td><code><span style="color:#A31515">&quot;Hello <span style="color:#EE0000">\x1B</span>[53m World&quot;</span></code></td>
+<td>53: Overlined</td>
+</tr>
+<tr>
+<td><code><span style="color:#A31515">&quot;Hello <span style="color:#EE0000">\x1B</span>[54m World&quot;</span></code></td>
+<td>54: Neither framed nor encircled</td>
+</tr>
+<tr>
+<td><code><span style="color:#A31515">&quot;Hello <span style="color:#EE0000">\x1B</span>[55m World&quot;</span></code></td>
+<td>55: Not overlined</td>
+</tr>
+<tr>
+<td><code><span style="color:#A31515">&quot;Hello <span style="color:#EE0000">\x1B</span>[60m World&quot;</span></code></td>
+<td>60: Ideogram underline or right side line</td>
+</tr>
+<tr>
+<td><code><span style="color:#A31515">&quot;Hello <span style="color:#EE0000">\x1B</span>[61m World&quot;</span></code></td>
+<td>61: Ideogram double underline, or double line on the right side</td>
+</tr>
+<tr>
+<td><code><span style="color:#A31515">&quot;Hello <span style="color:#EE0000">\x1B</span>[62m World&quot;</span></code></td>
+<td>62: Ideogram overline or left side line</td>
+</tr>
+<tr>
+<td><code><span style="color:#A31515">&quot;Hello <span style="color:#EE0000">\x1B</span>[63m World&quot;</span></code></td>
+<td>63: Ideogram double overline, or double line on the left side</td>
+</tr>
+<tr>
+<td><code><span style="color:#A31515">&quot;Hello <span style="color:#EE0000">\x1B</span>[64m World&quot;</span></code></td>
+<td>64: Ideogram stress marking</td>
+</tr>
+<tr>
+<td><code><span style="color:#A31515">&quot;Hello <span style="color:#EE0000">\x1B</span>[65m World&quot;</span></code></td>
+<td>65: No ideogram attributes</td>
+</tr>
+<tr>
+<td><code><span style="color:#A31515">&quot;Hello <span style="color:#EE0000">\x1B</span>[73m World&quot;</span></code></td>
+<td>73: Superscript</td>
+</tr>
+<tr>
+<td><code><span style="color:#A31515">&quot;Hello <span style="color:#EE0000">\x1B</span>[74m World&quot;</span></code></td>
+<td>74: Subscript</td>
+</tr>
+<tr>
+<td><code><span style="color:#A31515">&quot;Hello <span style="color:#EE0000">\x1B</span>[75m World&quot;</span></code></td>
+<td>75: Neither superscript nor subscript</td>
 </tr>
 </tbody>
 </table>
