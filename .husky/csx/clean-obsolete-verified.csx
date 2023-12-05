@@ -31,7 +31,7 @@ if(!string.IsNullOrEmpty(gitStatus))
     return 1;
 }
 
-var expectationsFolder = Path.Combine(rootFolder, "docAsTests", "AnsiConsoleToHtml.DocAsTests", "expectations");
+var expectationsFolder = Path.Combine(rootFolder, "doc", "tests_expectations");
 Console.WriteLine($"➡️ delete all '.verified.' files in {expectationsFolder}");
 foreach(var file in Directory.GetFiles(expectationsFolder, "*.verified.*"))
 {

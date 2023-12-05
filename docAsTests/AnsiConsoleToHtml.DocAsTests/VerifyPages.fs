@@ -1,5 +1,6 @@
 module VerifyPages
 
+open System.IO
 open Expecto
 open VerifyTests
 open VerifyExpecto
@@ -7,7 +8,7 @@ open VerifyExpecto
 open DocPart
 
 let verifySettings = VerifySettings()
-verifySettings.UseDirectory("expectations")
+verifySettings.UseDirectory(Path.Combine("..", "..", "doc", "tests_expectations"))
 verifySettings.DisableDiff()
 EmptyFiles.FileExtensions.AddTextExtension("sample")
 
