@@ -9,7 +9,7 @@ open VerboseIo
 let projectConfig = {
     rootUrl = "."
     projectName = "ANSIConsoleToHtml"
-    repoRoot = "https://github.com/gcollic/ANSIConsoleToHtml"
+    repoRoot = "https://github.com/gcollic/ansi-console-to-html"
     licenseName = "MIT"
     version =
         Assembly.GetAssembly(typeof<Color>).GetName().Version

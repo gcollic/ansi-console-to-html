@@ -6,8 +6,8 @@
     <Authors>Guillaume Collic</Authors>
     <PackageId>AnsiConsoleToHtml</PackageId>
     <Company></Company>
-    <PackageProjectUrl>https://github.com/gcollic/ansiconsoletohtml/blob/main/README.md</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/gcollic/ansiconsoletohtml</RepositoryUrl>
+    <PackageProjectUrl>https://gcollic.github.io/ansi-console-to-html/</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/gcollic/ansi-console-to-html</RepositoryUrl>
     <PackageTags>ansi console colour color colors colours html convert converter</PackageTags>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageReadmeFile>README.md</PackageReadmeFile>
