@@ -7,7 +7,7 @@ open TemplateEngine
 open VerboseIo
 
 let projectConfig = {
-    rootUrl = "."
+    rootUrl = "https://gcollic.github.io/ansi-console-to-html"
     projectName = "ANSIConsoleToHtml"
     repoRoot = "https://github.com/gcollic/ansi-console-to-html"
     licenseName = "MIT"
