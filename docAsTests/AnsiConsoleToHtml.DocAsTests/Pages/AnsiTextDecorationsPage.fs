@@ -21,9 +21,9 @@ let underlineOverview =
     |> List.map (fun (code, description) ->
         let example =
             if description = "no underline" then
-                $"\x1B[4mHello \x1B[{code}mWorld"
+                $"\x1B[4mHello \x1B[%s{code}mWorld"
             else
-                $"\x1B[{code}mHello World"
+                $"\x1B[%s{code}mHello World"
 
         (code, description, example))
     |> examplesToMarkdownDocPart (slug + "_underline")

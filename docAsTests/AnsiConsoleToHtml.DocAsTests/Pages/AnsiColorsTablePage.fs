@@ -16,19 +16,19 @@ let toCell (colors256: Color[]) i =
 
     let fontColor = if isLightBackground then "black" else "white"
     let spacing = if i < 10 then $"&nbsp;&nbsp;" else ""
-    $"<td style='background:{(colors256[i]).AsHexColor()};color:{fontColor}'>{spacing}{i}</td>"
+    $"<td style='background:%s{(colors256[i]).AsHexColor()};color:%s{fontColor}'>%s{spacing}%i{i}</td>"
 
 let colorsToRow colors indexes =
     indexes
     |> List.map (toCell colors)
     |> String.concat ""
-    |> fun s -> $"<tr>{s}</tr>\n"
+    |> fun s -> $"<tr>%s{s}</tr>\n"
 
 let colorsToHtmlTable colors indexes =
     indexes
     |> List.map (colorsToRow colors)
     |> String.concat ""
-    |> fun s -> $"\n<table>\n{s}</table>\n"
+    |> fun s -> $"\n<table>\n%s{s}</table>\n"
 
 let colorsToHtmlTableDocPart slug indexes = {
     Slug = Slug.from slug
@@ -40,10 +40,10 @@ let colorsToHtmlTableDocPart slug indexes = {
 let codesToMarkdownTable codes =
     codes
     |> List.map (fun i ->
-        let result = $"\x1B[{i}mHello" |> AnsiConsole.ToHtml |> _.Replace("\n", "")
-        $"| {i} | {result} |")
+        let result = $"\x1B[%s{i}mHello" |> AnsiConsole.ToHtml |> _.Replace("\n", "")
+        $"| %s{i} | %s{result} |")
     |> String.concat "\n"
-    |> fun s -> $"| Code | Result |\n|---|---|\n{s}\n"
+    |> fun s -> $"| Code | Result |\n|---|---|\n%s{s}\n"
 
 [<Tests>]
 let tests =

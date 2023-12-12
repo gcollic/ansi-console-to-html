@@ -5,13 +5,14 @@ open DocPart
 // Legivel yaml deserialization library is F# fluent, but the trade-off is manual serialization.
 let private toYaml metadata =
     [
-        Some $"Title: '{metadata.Title}'"
+        Some $"Title: '%s{metadata.Title}'"
         Option.map
-            (fun (nav: NavbarMetadata) -> $"Navbar:\n  Label: '{nav.Label}'\n  Order: {nav.Order}")
+            (fun (nav: NavbarMetadata) ->
+                $"Navbar:\n  Label: '%s{nav.Label}'\n  Order: %i{nav.Order}")
             metadata.Navbar
         Option.map
             (fun (toc: TocMetadata) ->
-                $"Toc:\n  Parent: '{toc.Parent}'\n  Label: '{toc.Label}'\n  Order: {toc.Order}")
+                $"Toc:\n  Parent: '%s{toc.Parent}'\n  Label: '%s{toc.Label}'\n  Order: %i{toc.Order}")
             metadata.Toc
     ]
     |> List.choose id
@@ -22,6 +23,6 @@ let toYamlFrontMatter (doc: DocPart) =
     | None -> doc.Content
     | Some metadata ->
         $"---
-{toYaml metadata}
+%s{toYaml metadata}
 ---
-{doc.Content}"
+%s{doc.Content}"

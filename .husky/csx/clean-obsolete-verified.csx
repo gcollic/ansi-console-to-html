@@ -32,11 +32,11 @@ if(!string.IsNullOrEmpty(gitStatus))
 }
 
 var expectationsFolder = Path.Combine(rootFolder, "doc", "tests_expectations");
-Console.WriteLine($"➡️ delete all '.verified.' files in {expectationsFolder}");
+Console.WriteLine($"➡️ delete all '.verified.' files in %s{expectationsFolder}");
 foreach(var file in Directory.GetFiles(expectationsFolder, "*.verified.*"))
 {
     File.Delete(file);
-    Console.WriteLine($"Deleted: {file}");
+    Console.WriteLine($"Deleted: %s{file}");
 }
 
 Console.WriteLine($"➡️ dotnet test");

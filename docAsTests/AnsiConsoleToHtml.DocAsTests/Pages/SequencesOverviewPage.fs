@@ -16,16 +16,16 @@ type ExampleType =
 type Row =
     static member from(typ: ExampleType, desc: string) =
         match typ with
-        | Reset x -> (x.ToString(), desc, $"\x1B[44;33;1;2;3;4;9;58;5;1mHi \x1B[{x}mWorld")
-        | Direct x -> (x.ToString(), desc, $"Hi \x1B[{x}mWorld")
-        | Prefix(x, y) -> (x.ToString(), desc, $"\x1B[{y}mHi \x1B[{x}mWorld")
-        | Range(x, y) -> ($"{x}–{y}", desc, $"Hi \x1B[{x + 2}mWorld")
+        | Reset x -> (x.ToString(), desc, $"\x1B[44;33;1;2;3;4;9;58;5;1mHi \x1B[%i{x}mWorld")
+        | Direct x -> (x.ToString(), desc, $"Hi \x1B[%i{x}mWorld")
+        | Prefix(x, pre) -> (x.ToString(), desc, $"\x1B[%s{pre}mHi \x1B[%i{x}mWorld")
+        | Range(x, y) -> ($"%i{x}–%i{y}", desc, $"Hi \x1B[%i{x + 2}mWorld")
         | RGB x ->
             let prefix = if x = 58 then "\x1B[4m" else ""
-            (x.ToString(), desc, $"{prefix}Hi \x1B[{x};2;110;120;170mWorld")
+            (x.ToString(), desc, $"%s{prefix}Hi \x1B[%i{x};2;110;120;170mWorld")
 
     static member from(typ: ExampleType, desc: string, slug: string) =
-        Row.from (typ, $"{desc}<br/>{{{{link_to '{slug}' 'more details'}}}}")
+        Row.from (typ, $"%s{desc}<br/>{{{{link_to '%s{slug}' 'more details'}}}}")
 
 let graphicOverview =
     [
@@ -102,7 +102,8 @@ let unsupportedGraphicOverview =
         (74, "Subscript")
         (75, "Neither superscript nor subscript")
     ]
-    |> List.map (fun (code, description) -> ($"Hello \x1B[{code}m World", $"{code}: {description}"))
+    |> List.map (fun (code, description) ->
+        ($"Hello \x1B[%i{code}m World", $"%i{code}: %s{description}"))
     |> examplesGroupedByResultInMarkdownDocPart (slug + "_unsupported_graphic")
 
 let nonGraphicOverview =

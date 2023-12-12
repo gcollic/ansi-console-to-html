@@ -11,7 +11,9 @@ let comparison =
     let dotnet =
         sample
         |> Colorizer.toSingleLineDotNet
-        |> Colorizer.toCommandInPre $"{nameof AnsiConsole}.{nameof AnsiConsole.ToHtml}(\n    " "\n)"
+        |> Colorizer.toCommandInPre
+            $"%s{nameof AnsiConsole}.%s{nameof AnsiConsole.ToHtml}(\n    "
+            "\n)"
 
     let result = AnsiConsole.ToHtml sample
     let html = result |> Colorizer.html
@@ -20,15 +22,15 @@ let comparison =
         $"
 <div>
     DotNet
-{dotnet}
+%s{dotnet}
 </div>
 <div>
     HTML code result
-{html}
+%s{html}
 </div>
 <div>
     HTML render result
-{result}
+%s{result}
 </div>"
 
     {

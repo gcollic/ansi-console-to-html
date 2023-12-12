@@ -24,7 +24,7 @@ let private toTextDecoration (style: AnsiStyle) =
                 |> Option.map (fun c -> " " + c.AsHexColor())
                 |> Option.defaultValue ""
 
-            $"underline 1px {x}{color}")
+            $"underline 1px %s{x}%s{color}")
 
     seq {
         if style.Strikethrough then
@@ -35,7 +35,7 @@ let private toTextDecoration (style: AnsiStyle) =
     }
     |> mapIfNotEmpty (fun x ->
         let decoration = String.concat " " x
-        $"text-decoration:{decoration}")
+        $"text-decoration:%s{decoration}")
 
 let convertStyledTextToHtml (colors256: Color[]) tokens =
 
@@ -93,7 +93,7 @@ let convertStyledTextToHtml (colors256: Color[]) tokens =
     let toSpan ansiStyle innerContent =
         match toHtmlStyle ansiStyle with
         | None -> innerContent
-        | Some style -> $"<span style='{style}'>{innerContent}</span>"
+        | Some style -> $"<span style='%s{style}'>%s{innerContent}</span>"
 
     let rec convertToHtmlParts tokens =
         match tokens with
@@ -122,6 +122,6 @@ let convertStyledTextToHtml (colors256: Color[]) tokens =
     convertToHtmlParts tokens
     |> String.Concat
     |> fun str ->
-        $"<pre style='color:{(colors256[15]).AsHexColor()};background:{(colors256[0]).AsHexColor()}'>\n"
+        $"<pre style='color:%s{(colors256[15]).AsHexColor()};background:%s{(colors256[0]).AsHexColor()}'>\n"
         + str
         + "\n</pre>"

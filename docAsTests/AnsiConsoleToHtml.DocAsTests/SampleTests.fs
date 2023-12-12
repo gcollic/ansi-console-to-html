@@ -17,6 +17,6 @@ let tests =
     |> List.map (fun (testName, subject) ->
         test testName {
             let actual = subject.serialize () |> Sample.deserialize
-            Expect.equal actual subject $"[{testName}] Sample input and output should be equal"
+            Expect.equal actual subject $"[%s{testName}] Sample input and output should be equal"
         })
     |> testList "Sample"

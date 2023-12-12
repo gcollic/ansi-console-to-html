@@ -43,8 +43,8 @@ let cartesianCodesToSampleDocPart slug (xCodes: string list) (yCodes: string lis
         yCodes
         |> List.map (fun y ->
             xCodes
-            |> List.map (fun x -> $"{x};{y}")
-            |> List.map (fun combo -> $"\x1B[{combo}m{toText combo}\x1B[0m")
+            |> List.map (fun x -> $"%s{x};%s{y}")
+            |> List.map (fun combo -> $"\x1B[%s{combo}m%s{toText combo}\x1B[0m")
             |> String.concat ""
             |> (fun row -> y.PadLeft(maxYLength, ' ') + row))
 
@@ -61,13 +61,13 @@ let examplesToMarkdownDocPart slug examples =
     |> List.map (fun ((code: string), (description: string), example) ->
         let dotnet = Colorizer.inlineHtmlDotNetstring example
         let result = AnsiConsole.ToHtml example |> _.Replace("\n", "")
-        $"| {code} | {description} | {dotnet} | {result} |")
+        $"| %s{code} | %s{description} | %s{dotnet} | %s{result} |")
     |> String.concat "\n"
     |> fun rows ->
         $"
 | n | Description | Example | Rendered |
 |---|-------------|---------|----------|
-{rows}"
+%s{rows}"
     |> (fun table -> {
         Slug = Slug.from slug
         Metadata = None
@@ -83,14 +83,14 @@ let examplesGroupedByResultInMarkdownDocPart slug examples =
     |> List.map (fun (result, values) ->
         let tableContent =
             values
-            |> List.map (fun (dotnet, comment, _) -> $"| {dotnet} | {comment} |")
+            |> List.map (fun (dotnet, comment, _) -> $"| %s{dotnet} | %s{comment} |")
             |> String.concat "\n"
 
-        $"All the following sequences are rendered as {result}
+        $"All the following sequences are rendered as %s{result}
 
 | Input | Sequence meaning |
 |-------|------------------|
-{tableContent}
+%s{tableContent}
 "   )
     |> String.concat "\n"
     |> (fun content -> {

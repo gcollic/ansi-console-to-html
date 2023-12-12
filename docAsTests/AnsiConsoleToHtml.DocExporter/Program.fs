@@ -13,7 +13,7 @@ let projectConfig = {
     licenseName = "MIT"
     version =
         Assembly.GetAssembly(typeof<Color>).GetName().Version
-        |> fun v -> $"{v.Major}.{v.Minor}.{v.Build}"
+        |> fun v -> $"%i{v.Major}.%i{v.Minor}.%i{v.Build}"
 }
 
 let rootFolder = Directory.GetCurrentDirectory()

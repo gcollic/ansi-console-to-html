@@ -5,7 +5,7 @@ open AnsiConsoleToHtml
 open ColorCode
 
 let private colorize color s =
-    $"<span style=\"color:{color}\">{s}</span>"
+    $"<span style=\"color:%s{color}\">%s{s}</span>"
 
 let private colorString = colorize "#A31515"
 let private colorEscaped = colorize "#EE0000"
@@ -34,7 +34,7 @@ let toMultilineDotNetPre (s: string) =
     |> afterNewLine.Split
     |> Array.map toSingleLineDotNet
     |> String.concat ("+\n")
-    |> toCommandInPre $"{nameof AnsiConsole}.{nameof AnsiConsole.ToHtml}(" ")"
+    |> toCommandInPre $"%s{nameof AnsiConsole}.%s{nameof AnsiConsole.ToHtml}(" ")"
 
 let toUnixShellPre = toEscapedString "\\033" >> toCommandInPre "printf " ""
 let toPowershellPre = toEscapedString "`e" >> toCommandInPre "echo " ""
