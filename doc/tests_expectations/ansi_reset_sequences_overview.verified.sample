@@ -1,0 +1,10 @@
+﻿###
+       0 resets all kind of attributes: [44;33;1;2;3;4;9;58;5;1mBefore    [0mAfter '0'[0m
+0 is valid in the middle of a sequence: [44;33;1;2;3;4;9;58;5;1mBefore    [41;0;32mAfter '41;0;32'[0m
+      empty attribute is the same as 0: [44;33;1;2;3;4;9;58;5;1mBefore    [41;;32mAfter '41;;32'[0m
+###
+<pre style='color:#FFFFFF;background:#000000'>
+       0 resets all kind of attributes: <span style='color:#5D5D00;background:#0000BB;font-weight:900;font-style:italic;text-decoration:line-through'><span style='text-decoration:underline 1px solid #BB0000'>Before    </span></span>After &#39;0&#39;
+0 is valid in the middle of a sequence: <span style='color:#5D5D00;background:#0000BB;font-weight:900;font-style:italic;text-decoration:line-through'><span style='text-decoration:underline 1px solid #BB0000'>Before    </span></span><span style='color:#00BB00'>After &#39;41;0;32&#39;</span>
+      empty attribute is the same as 0: <span style='color:#5D5D00;background:#0000BB;font-weight:900;font-style:italic;text-decoration:line-through'><span style='text-decoration:underline 1px solid #BB0000'>Before    </span></span><span style='color:#00BB00'>After &#39;41;;32&#39;</span>
+</pre>

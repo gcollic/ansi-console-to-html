@@ -29,7 +29,7 @@ type Row =
 
 let graphicOverview =
     [
-        Row.from (Reset 0, "Reset")
+        Row.from (Reset 0, "Reset", AnsiResetSequencesPage.slug)
         Row.from (Direct 1, "Bold or intense")
         Row.from (Direct 2, "Faint/Dim")
         Row.from (Direct 3, "Italic")

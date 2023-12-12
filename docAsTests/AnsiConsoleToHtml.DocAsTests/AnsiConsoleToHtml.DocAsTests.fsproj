@@ -13,6 +13,7 @@
     <Compile Include="Pages\AnsiColorsTablePage.fs" />
     <Compile Include="Pages\AnsiColorsSequencesPage.fs" />
     <Compile Include="Pages\AnsiTextDecorationsPage.fs" />
+    <Compile Include="Pages\AnsiResetSequencesPage.fs" />
     <Compile Include="Pages\SequencesOverviewPage.fs" />
     <Compile Include="Main.fs" />
   </ItemGroup>

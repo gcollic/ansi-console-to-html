@@ -1,7 +1,7 @@
 ﻿
 | n | Description | Example | Rendered |
 |---|-------------|---------|----------|
-| 0 | Reset | <code><span style="color:#A31515">"<span style="color:#EE0000">\x1B</span>[44;33;1;2;3;4;9;58;5;1mHi <span style="color:#EE0000">\x1B</span>[0mWorld"</span></code> | <pre style='color:#FFFFFF;background:#000000'><span style='color:#5D5D00;background:#0000BB;font-weight:900;font-style:italic;text-decoration:line-through'><span style='text-decoration:underline 1px solid #BB0000'>Hi </span></span>World</pre> |
+| 0 | Reset<br/>{{link_to 'ansi_reset_sequences' 'more details'}} | <code><span style="color:#A31515">"<span style="color:#EE0000">\x1B</span>[44;33;1;2;3;4;9;58;5;1mHi <span style="color:#EE0000">\x1B</span>[0mWorld"</span></code> | <pre style='color:#FFFFFF;background:#000000'><span style='color:#5D5D00;background:#0000BB;font-weight:900;font-style:italic;text-decoration:line-through'><span style='text-decoration:underline 1px solid #BB0000'>Hi </span></span>World</pre> |
 | 1 | Bold or intense | <code><span style="color:#A31515">"Hi <span style="color:#EE0000">\x1B</span>[1mWorld"</span></code> | <pre style='color:#FFFFFF;background:#000000'>Hi <span style='font-weight:900'>World</span></pre> |
 | 2 | Faint/Dim | <code><span style="color:#A31515">"Hi <span style="color:#EE0000">\x1B</span>[2mWorld"</span></code> | <pre style='color:#FFFFFF;background:#000000'>Hi <span style='color:#7F7F7F'>World</span></pre> |
 | 3 | Italic | <code><span style="color:#A31515">"Hi <span style="color:#EE0000">\x1B</span>[3mWorld"</span></code> | <pre style='color:#FFFFFF;background:#000000'>Hi <span style='font-style:italic'>World</span></pre> |

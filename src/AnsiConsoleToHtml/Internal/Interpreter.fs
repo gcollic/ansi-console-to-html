@@ -62,7 +62,8 @@ let interpretCommands (colors256: Color[]) tokens =
             | Between 100 107 ->     { style with Background = Some colors256[code-92] }
             | _  ->                    style
             |> applyCodesToStyle tail
-        | _ -> style
+        | [] :: tail -> applyCodesToStyle tail AnsiStyle.Empty
+        | [] -> style
 
     let interpretToken (texts, currentStyle) token =
         match token with

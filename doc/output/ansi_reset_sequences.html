@@ -4,12 +4,12 @@
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Getting started</title>
-    <meta name="description" content="Getting started" />
+    <title>ANSI reset sequences</title>
+    <meta name="description" content="ANSI reset sequences" />
     <meta name="robots" content="index, follow" />
-    <meta property="og:title" content="Getting started" />
-    <meta property="og:description" content="Getting started" />
-    <meta property="og:url" content="https://gcollic.github.io/ansi-console-to-html/getting_started.html" />
+    <meta property="og:title" content="ANSI reset sequences" />
+    <meta property="og:description" content="ANSI reset sequences" />
+    <meta property="og:url" content="https://gcollic.github.io/ansi-console-to-html/ansi_reset_sequences.html" />
     <meta property="og:site_name" content="ANSIConsoleToHtml" />
     <meta property="og:type" content="website" />
     <meta property="og:image" content="https://gcollic.github.io/ansi-console-to-html/og_image.jpg" />
@@ -18,9 +18,9 @@
     <meta property="og:image:height" content="630" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta property="twitter:domain" content="gcollic.github.io" />
-    <meta property="twitter:url" content="https://gcollic.github.io/ansi-console-to-html/getting_started.html" />
-    <meta name="twitter:title" content="Getting started" />
-    <meta name="twitter:description" content="Getting started" />
+    <meta property="twitter:url" content="https://gcollic.github.io/ansi-console-to-html/ansi_reset_sequences.html" />
+    <meta name="twitter:title" content="ANSI reset sequences" />
+    <meta name="twitter:description" content="ANSI reset sequences" />
     <meta name="twitter:image" content="https://gcollic.github.io/ansi-console-to-html/og_image.jpg" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css" />
     <link rel="stylesheet" href="main.css" />
@@ -93,16 +93,16 @@
       <aside>
         <nav>
       
-          <details  open="true">
+          <details >
             <summary>Getting started</summary>
             <ul>
       
-              <li><a href="getting_started.html" class="secondary" aria-current="page">How to use</a></li>
+              <li><a href="getting_started.html" class="secondary">How to use</a></li>
       
             </ul>
           </details>
       
-          <details >
+          <details  open="true">
             <summary>ANSI escape sequences</summary>
             <ul>
       
@@ -112,7 +112,7 @@
       
               <li><a href="ansi_text_decorations.html" class="secondary">Decorations sequences</a></li>
       
-              <li><a href="ansi_reset_sequences.html" class="secondary">Reset sequences</a></li>
+              <li><a href="ansi_reset_sequences.html" class="secondary" aria-current="page">Reset sequences</a></li>
       
               <li><a href="ansi_colors_table.html" class="secondary">256 colors table</a></li>
       
@@ -136,29 +136,52 @@
       <div role="document">
 
 
-        <section id="start" class="page_getting_started">
-<h1>Getting started</h1>
+        <section id="start" class="page_ansi_reset_sequences">
+<h1>ANSI reset sequences</h1>
 <div>
-<div>
-    DotNet
-<pre><span style="color:#001080">AnsiConsole.ToHtml(
-    <span style="color:#A31515">"Hi <span style="color:#EE0000">\x1B</span>[32mWorld"</span>
-)</span></pre>
-</div>
-<div>
-    HTML code result
+<div role="sample">
+  <div role="tabselect">
+    <ul>
+      <li><a href="#" role="tab" aria-current="true">HTML</a></li>
+      <li><a href="#" role="tab">Raw HTML</a></li>
+      <li><a href="#" role="tab">DotNet</a></li>
+      <li><a href="#" role="tab">PowerShell</a></li>
+      <li><a href="#" role="tab">Unix shell</a></li>
+    </ul>
+  </div>
+  <div role="tabpanel">
+<pre style='color:#FFFFFF;background:#000000'>
+       0 resets all kind of attributes: <span style='color:#5D5D00;background:#0000BB;font-weight:900;font-style:italic;text-decoration:line-through'><span style='text-decoration:underline 1px solid #BB0000'>Before    </span></span>After &#39;0&#39;
+0 is valid in the middle of a sequence: <span style='color:#5D5D00;background:#0000BB;font-weight:900;font-style:italic;text-decoration:line-through'><span style='text-decoration:underline 1px solid #BB0000'>Before    </span></span><span style='color:#00BB00'>After &#39;41;0;32&#39;</span>
+      empty attribute is the same as 0: <span style='color:#5D5D00;background:#0000BB;font-weight:900;font-style:italic;text-decoration:line-through'><span style='text-decoration:underline 1px solid #BB0000'>Before    </span></span><span style='color:#00BB00'>After &#39;41;;32&#39;</span>
+</pre>
+  </div>
+  <div role="tabpanel" hidden>
 <div style="color:#000000;background-color:#FFFFFF;"><pre>
 <span style="color:#0000FF;">&lt;</span><span style="color:#A31515;">pre</span> <span style="color:#FF0000;">style</span><span style="color:#0000FF;">=</span><span style="color:#0000FF;">&#39;color:#FFFFFF;background:#000000&#39;</span><span style="color:#0000FF;">&gt;</span>
-Hi <span style="color:#0000FF;">&lt;</span><span style="color:#A31515;">span</span> <span style="color:#FF0000;">style</span><span style="color:#0000FF;">=</span><span style="color:#0000FF;">&#39;color:#00BB00&#39;</span><span style="color:#0000FF;">&gt;</span>World<span style="color:#0000FF;">&lt;/</span><span style="color:#A31515;">span</span><span style="color:#0000FF;">&gt;</span>
+       0 resets all kind of attributes: <span style="color:#0000FF;">&lt;</span><span style="color:#A31515;">span</span> <span style="color:#FF0000;">style</span><span style="color:#0000FF;">=</span><span style="color:#0000FF;">&#39;color:#5D5D00;background:#0000BB;font-weight:900;font-style:italic;text-decoration:line-through&#39;</span><span style="color:#0000FF;">&gt;</span><span style="color:#0000FF;">&lt;</span><span style="color:#A31515;">span</span> <span style="color:#FF0000;">style</span><span style="color:#0000FF;">=</span><span style="color:#0000FF;">&#39;text-decoration:underline 1px solid #BB0000&#39;</span><span style="color:#0000FF;">&gt;</span>Before    <span style="color:#0000FF;">&lt;/</span><span style="color:#A31515;">span</span><span style="color:#0000FF;">&gt;</span><span style="color:#0000FF;">&lt;/</span><span style="color:#A31515;">span</span><span style="color:#0000FF;">&gt;</span>After <span style="color:#FF0000;">&amp;#39;</span>0<span style="color:#FF0000;">&amp;#39;</span>
+0 is valid in the middle of a sequence: <span style="color:#0000FF;">&lt;</span><span style="color:#A31515;">span</span> <span style="color:#FF0000;">style</span><span style="color:#0000FF;">=</span><span style="color:#0000FF;">&#39;color:#5D5D00;background:#0000BB;font-weight:900;font-style:italic;text-decoration:line-through&#39;</span><span style="color:#0000FF;">&gt;</span><span style="color:#0000FF;">&lt;</span><span style="color:#A31515;">span</span> <span style="color:#FF0000;">style</span><span style="color:#0000FF;">=</span><span style="color:#0000FF;">&#39;text-decoration:underline 1px solid #BB0000&#39;</span><span style="color:#0000FF;">&gt;</span>Before    <span style="color:#0000FF;">&lt;/</span><span style="color:#A31515;">span</span><span style="color:#0000FF;">&gt;</span><span style="color:#0000FF;">&lt;/</span><span style="color:#A31515;">span</span><span style="color:#0000FF;">&gt;</span><span style="color:#0000FF;">&lt;</span><span style="color:#A31515;">span</span> <span style="color:#FF0000;">style</span><span style="color:#0000FF;">=</span><span style="color:#0000FF;">&#39;color:#00BB00&#39;</span><span style="color:#0000FF;">&gt;</span>After <span style="color:#FF0000;">&amp;#39;</span>41;0;32<span style="color:#FF0000;">&amp;#39;</span><span style="color:#0000FF;">&lt;/</span><span style="color:#A31515;">span</span><span style="color:#0000FF;">&gt;</span>
+      empty attribute is the same as 0: <span style="color:#0000FF;">&lt;</span><span style="color:#A31515;">span</span> <span style="color:#FF0000;">style</span><span style="color:#0000FF;">=</span><span style="color:#0000FF;">&#39;color:#5D5D00;background:#0000BB;font-weight:900;font-style:italic;text-decoration:line-through&#39;</span><span style="color:#0000FF;">&gt;</span><span style="color:#0000FF;">&lt;</span><span style="color:#A31515;">span</span> <span style="color:#FF0000;">style</span><span style="color:#0000FF;">=</span><span style="color:#0000FF;">&#39;text-decoration:underline 1px solid #BB0000&#39;</span><span style="color:#0000FF;">&gt;</span>Before    <span style="color:#0000FF;">&lt;/</span><span style="color:#A31515;">span</span><span style="color:#0000FF;">&gt;</span><span style="color:#0000FF;">&lt;/</span><span style="color:#A31515;">span</span><span style="color:#0000FF;">&gt;</span><span style="color:#0000FF;">&lt;</span><span style="color:#A31515;">span</span> <span style="color:#FF0000;">style</span><span style="color:#0000FF;">=</span><span style="color:#0000FF;">&#39;color:#00BB00&#39;</span><span style="color:#0000FF;">&gt;</span>After <span style="color:#FF0000;">&amp;#39;</span>41;;32<span style="color:#FF0000;">&amp;#39;</span><span style="color:#0000FF;">&lt;/</span><span style="color:#A31515;">span</span><span style="color:#0000FF;">&gt;</span>
 <span style="color:#0000FF;">&lt;/</span><span style="color:#A31515;">pre</span><span style="color:#0000FF;">&gt;</span>
 </pre></div>
+  </div>
+  <div role="tabpanel" hidden>
+<pre><span style="color:#001080">AnsiConsole.ToHtml(<span style="color:#A31515">"       0 resets all kind of attributes: <span style="color:#EE0000">\x1B</span>[44;33;1;2;3;4;9;58;5;1mBefore    <span style="color:#EE0000">\x1B</span>[0mAfter '0'<span style="color:#EE0000">\x1B</span>[0m<span style="color:#EE0000">\n</span>"</span>+
+<span style="color:#A31515">"0 is valid in the middle of a sequence: <span style="color:#EE0000">\x1B</span>[44;33;1;2;3;4;9;58;5;1mBefore    <span style="color:#EE0000">\x1B</span>[41;0;32mAfter '41;0;32'<span style="color:#EE0000">\x1B</span>[0m<span style="color:#EE0000">\n</span>"</span>+
+<span style="color:#A31515">"      empty attribute is the same as 0: <span style="color:#EE0000">\x1B</span>[44;33;1;2;3;4;9;58;5;1mBefore    <span style="color:#EE0000">\x1B</span>[41;;32mAfter '41;;32'<span style="color:#EE0000">\x1B</span>[0m"</span>)</span></pre>
+  </div>
+  <div role="tabpanel" hidden>
+<pre><span style="color:#001080">echo <span style="color:#A31515">"       0 resets all kind of attributes: <span style="color:#EE0000">`e</span>[44;33;1;2;3;4;9;58;5;1mBefore    <span style="color:#EE0000">`e</span>[0mAfter '0'<span style="color:#EE0000">`e</span>[0m
+0 is valid in the middle of a sequence: <span style="color:#EE0000">`e</span>[44;33;1;2;3;4;9;58;5;1mBefore    <span style="color:#EE0000">`e</span>[41;0;32mAfter '41;0;32'<span style="color:#EE0000">`e</span>[0m
+      empty attribute is the same as 0: <span style="color:#EE0000">`e</span>[44;33;1;2;3;4;9;58;5;1mBefore    <span style="color:#EE0000">`e</span>[41;;32mAfter '41;;32'<span style="color:#EE0000">`e</span>[0m"</span></span></pre>
+  </div>
+  <div role="tabpanel" hidden>
+<pre><span style="color:#001080">printf <span style="color:#A31515">"       0 resets all kind of attributes: <span style="color:#EE0000">\033</span>[44;33;1;2;3;4;9;58;5;1mBefore    <span style="color:#EE0000">\033</span>[0mAfter '0'<span style="color:#EE0000">\033</span>[0m
+0 is valid in the middle of a sequence: <span style="color:#EE0000">\033</span>[44;33;1;2;3;4;9;58;5;1mBefore    <span style="color:#EE0000">\033</span>[41;0;32mAfter '41;0;32'<span style="color:#EE0000">\033</span>[0m
+      empty attribute is the same as 0: <span style="color:#EE0000">\033</span>[44;33;1;2;3;4;9;58;5;1mBefore    <span style="color:#EE0000">\033</span>[41;;32mAfter '41;;32'<span style="color:#EE0000">\033</span>[0m"</span></span></pre>
+  </div>
 </div>
-<div>
-    HTML render result
-<pre style='color:#FFFFFF;background:#000000'>
-Hi <span style='color:#00BB00'>World</span>
-</pre>
-</div><div>
+</div>
 
         </section>
 
