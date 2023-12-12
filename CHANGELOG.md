@@ -7,6 +7,13 @@ Toc:
 ---
 # Change Log
 
+<a name="0.2.0"></a>
+## [0.2.0](https://www.github.com/gcollic/ansi-console-to-html/releases/tag/v0.2.0) (2023-12-12)
+
+### Features
+
+* **SGR:** empty attribute - reset ([a323de7](https://www.github.com/gcollic/ansi-console-to-html/commit/a323de79711488a390f451cbeb1deb656f69c92d))
+
 <a name="0.1.0"></a>
 ## [0.1.0](https://www.github.com/gcollic/ansi-console-to-html/releases/tag/v0.1.0) (2023-12-06)
 
