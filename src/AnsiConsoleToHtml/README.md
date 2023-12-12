@@ -2,4 +2,4 @@
 
 This library converts colorful ANSI console output to HTML.
 
-You can find the documentation [here](https://github.com/gcollic/ansi-console-to-html/blob/main/README.md).
+You can find the documentation [here](https://gcollic.github.io/ansi-console-to-html/).
