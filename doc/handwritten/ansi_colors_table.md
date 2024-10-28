@@ -29,6 +29,6 @@ The 6 levels in each dimensions are 0, 95, 135, 175, 215 and 255.
 
 ## 232-255: gray
 
-It's a scale of 24 shades of gray, with the level increasing 10 by 10, from 8 to 238.
+It's a scale of 24 shades of gray, with the level increasing 10 by 10, from (8,8,8) to (238,238,238).
 
 <div>{{include 'grays-table'}}</div>
